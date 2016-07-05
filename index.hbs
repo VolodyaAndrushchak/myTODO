@@ -1,0 +1,176 @@
+<html>
+
+
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+	<div id="header">
+		<h3>TODO list of Volodymyr Andrushchak</h3>
+	</div>
+
+	<div class="wrapper">
+		<input type="radio" name="point" id="slide1" checked>
+		<input type="radio" name="point" id="slide2">
+		<input type="radio" name="point" id="slide3">
+		<input type="radio" name="point" id="slide4">
+		<input type="radio" name="point" id="slide5">
+		<div class="slider">
+			<div class="slides slide1"></div>
+			<div class="slides slide3"></div>
+			<div class="slides slide2"></div>
+			<div class="slides slide4"></div>
+			<div class="slides slide5"></div>
+		</div>	
+		<div class="controls">
+			<label for="slide1"></label>
+			<label for="slide2"></label>
+			<label for="slide3"></label>
+			<label for="slide4"></label>
+			<label for="slide5"></label>
+		</div>
+	</div>
+
+	<div id="main_content">
+		<ul>
+			<!--<li class="liTodo">
+				<div class="TaskContent">
+					<div class="textContent">sasadasdasdasdasdasdasdasdasdasdasdassdassdasdasdasd  asdsdsdasdasdasasdasda</div> <div class="time1">10:00</div> <div class="time2">12:00</div> 
+					<div class="rating">
+					    <input type="radio" name="star" id="star1" checked="checked" />
+					    <label for="star1"><div class="star"></div></label>
+					    <input type="radio" name="star" id="star2" />
+					    <label for="star2"><div class="star"></div></label>
+					    <input type="radio" name="star" id="star3" />
+					    <label for="star3"><div class="star"></div></label>
+					    <input type="radio" name="star" id="star4" />
+					    <label for="star4"><div class="star"></div></label>
+					    <input type="radio" name="star" id="star5" />
+					    <label for="star5"><div class="star"></div></label>
+					</div>
+					<input value = 'delete' type='button' class='delete'> 
+					<input value = 'done' type='button' class='done'> 
+				</div>
+				
+				<div class = "popUpGRUD" >
+					<input class="tastInput">time 
+					<input class = 'time1Pop'>
+					to
+					<input class = 'time2Pop'>
+					<input class = 'editBut' value = 'edit' type='button'> 
+					
+				</div>
+			</li>-->
+
+			<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 1 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <div class='rating'> <input type='radio' name='star' id='star1' checked='checked'/> <label for='star1'><div class='star'></div></label> <input type='radio' name='star' id='star2' /><label for='star2'><div class='star'></div></label><input type='radio' name='star' id='star3' /><label for='star3'><div class='star'></div></label><input type='radio' name='star' id='star4' /> <label for='star4'><div class='star'></div></label><input type='radio' name='star' id='star5' /><label for='star5'><div class='star'></div></label></div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><input class = 'editAdd' onclick= "editADD(this);" value ='add' type='button'> </div> </li> 
+		</ul>
+	</div>
+
+	<div id="Add_task">
+			<button id="add_button">Add new task</button>
+	</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+	$('#add_button').click(function(){
+		
+		$('#main_content').append("<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <div class='rating'> <input type='radio' name='star' id='star1' checked='checked'/> <label for='star1'><div class='star'></div></label> <input type='radio' name='star' id='star2' /><label for='star2'><div class='star'></div></label><input type='radio' name='star' id='star3' /><label for='star3'><div class='star'></div></label><input type='radio' name='star' id='star4' /> <label for='star4'><div class='star'></div></label><input type='radio' name='star' id='star5' /><label for='star5'><div class='star'></div></label></div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><input class = 'editAdd' onclick= 'editADD(this)' value ='add' type='button'> </div> </li> ");
+	});
+
+		var editADD = function(event){
+
+				var $eventPoint = $(event).closest("li");		
+				console.log($eventPoint.find('.editAdd').val());
+				var obj = {
+					button: $eventPoint.find('.editAdd').val(),
+					pTask : $eventPoint.find('.textContent').html(),
+					nTask: $eventPoint.find('.tastInput').val(),
+					nTime1: $eventPoint.find('.time1Pop').val(),
+					nTime2: $eventPoint.find('.time2Pop').val()
+				};
+
+				 $.ajax({
+		            url: '/editAdd',
+		            type: 'GET',
+		            data: obj,
+		            success: function(answer){
+		            	console.log(answer);
+		            	$eventPoint.find('.editAdd').val(answer);
+		            }
+		        });
+			}
+
+
+	/*	$('.editAdd').click(function(event){
+				console.log(1);
+
+				var $eventPoint = $(event.target).closest("li");
+
+				var obj = {
+					pTask : $eventPoint.find('.textContent').html(),
+					nTask: $eventPoint.find('.tastInput').html(),
+					nTime1: $eventPoint.find('.time1Pop').html(),
+					nTime2: $eventPoint.find('.time2Pop').html()
+				};
+
+				 $.ajax({
+		            url: '/editAdd',
+		            type: 'GET',
+		            data: obj,
+		            success: function(answer){
+
+		            }
+		        });
+
+
+			});*/
+
+	$('#main_content').click(function(event){
+		
+		 var $evTar1 = $(event.target);
+		 var $eventPoint = $(event.target).closest("li");
+
+		// console.log(event.target.nodeName.toUpperCase());
+
+		/*var $valTask = $eventPoint.find('.textContent').html();
+		var $valTime1 = $eventPoint.find('.time1').html();
+		var $valTime2 = $eventPoint.find('.time2').html();*/
+
+		//console.log($valTask);
+		$eventPoint.find('.tastInput').val( $eventPoint.find('.textContent').html() );
+		$eventPoint.find('.time1Pop').val( $eventPoint.find('.time1').html() );
+		$eventPoint.find('.time2Pop').val( $eventPoint.find('.time2').html() );
+
+
+		if(event.target.nodeName.toUpperCase() != 'INPUT')
+		{
+	
+			if ($eventPoint.find('.popUpGRUD').css('display') == 'none')
+			{
+				$eventPoint.find('.popUpGRUD').show("fast");
+			}
+			else
+			{
+				$eventPoint.find('.popUpGRUD').hide(300);	
+			}
+		}
+	});
+	
+	
+	
+
+
+</script>
+
+</body>
+
+</html>
