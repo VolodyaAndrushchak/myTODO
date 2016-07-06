@@ -36,7 +36,7 @@
 	</div>
 
 	<div id="main_content">
-		<ul>
+		<ul id='mainUL'>
 			<!--<li class="liTodo">
 				<div class="TaskContent">
 					<div class="textContent">sasadasdasdasdasdasdasdasdasdasdasdassdassdasdasdasd  asdsdsdasdasdasasdasda</div> <div class="time1">10:00</div> <div class="time2">12:00</div> 
@@ -66,7 +66,7 @@
 				</div>
 			</li>-->
 
-			<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 1 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <div class='rating'> <input type='radio' name='star' id='star1' checked='checked'/> <label for='star1'><div class='star'></div></label> <input type='radio' name='star' id='star2' /><label for='star2'><div class='star'></div></label><input type='radio' name='star' id='star3' /><label for='star3'><div class='star'></div></label><input type='radio' name='star' id='star4' /> <label for='star4'><div class='star'></div></label><input type='radio' name='star' id='star5' /><label for='star5'><div class='star'></div></label></div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><input class = 'editAdd' onclick= "editADD(this);" value ='add' type='button'> </div> </li> 
+			<!--<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 1 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><select><option>A</option><option>B</option><option>C</option></select><input class = 'editAdd' onclick= "editADD(this);" value ='add' type='button'> </div> </li> -->
 		</ul>
 	</div>
 
@@ -81,21 +81,41 @@
 
 
 <script type="text/javascript">
+	
+	var mainpage = function(){
+		 $.ajax({
+		            url: '/mainList',
+		            type: 'GET',
+		            //data: obj,
+		            success: function(answer){
+		            	//console.log(answer);
+		            	$('#mainUL').html(answer);
+		            }
+		        });
+	}
+
+	 $('#main_content').each(function(){
+		//console.log(123);
+		mainpage();
+	});
+
 	$('#add_button').click(function(){
 		
-		$('#main_content').append("<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <div class='rating'> <input type='radio' name='star' id='star1' checked='checked'/> <label for='star1'><div class='star'></div></label> <input type='radio' name='star' id='star2' /><label for='star2'><div class='star'></div></label><input type='radio' name='star' id='star3' /><label for='star3'><div class='star'></div></label><input type='radio' name='star' id='star4' /> <label for='star4'><div class='star'></div></label><input type='radio' name='star' id='star5' /><label for='star5'><div class='star'></div></label></div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><input class = 'editAdd' onclick= 'editADD(this)' value ='add' type='button'> </div> </li> ");
+		$('#mainUL').append("<li class='liTodo'><div class='TaskContent' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div><input value = 'delete' type='button' class='delete' onclick= 'deleteTask(this);'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select><input class = 'editAdd' onclick= 'editADD(this)' value ='add' type='button'> </div> </li> ");
 	});
 
 		var editADD = function(event){
 
-				var $eventPoint = $(event).closest("li");		
-				console.log($eventPoint.find('.editAdd').val());
+				var $eventPoint = $(event).closest("li");
+				//console.log($eventPoint.find('.newPriority option:selected').text() + "Hello");		
+				//console.log($eventPoint.find('.editAdd').val());
 				var obj = {
 					button: $eventPoint.find('.editAdd').val(),
 					pTask : $eventPoint.find('.textContent').html(),
 					nTask: $eventPoint.find('.tastInput').val(),
 					nTime1: $eventPoint.find('.time1Pop').val(),
-					nTime2: $eventPoint.find('.time2Pop').val()
+					nTime2: $eventPoint.find('.time2Pop').val(),
+					priority: $eventPoint.find('.newPriority option:selected').text()
 				};
 
 				 $.ajax({
@@ -104,13 +124,36 @@
 		            data: obj,
 		            success: function(answer){
 		            	console.log(answer);
-		            	$eventPoint.find('.editAdd').val(answer);
+		            	//$eventPoint.find('.editAdd').val('edit');
+		            	mainpage();
+		            	/*$('#mainUL').empty();
+		            	$('#mainUL').html(answer);*/
 		            }
 		        });
-			}
+		}
 
+		var deleteTask = function(event){
+		
+			var $eventPoint = $(event).closest("li");
+			var obj = {
+					pTask : $eventPoint.find('.textContent').html()
+				};
+			
+				 $.ajax({
+		            url: '/delete',
+		            type: 'GET',
+		            data: obj,
+		            success: function(answer){
+		            	//console.log(answer);
+		            	$eventPoint.find('.editAdd').val(answer);
+		            	$('#mainUL').empty();
+		            	//mainpage();
+		            	$('#mainUL').html(answer);
+		            }
+		        });
+		}
 
-	/*	$('.editAdd').click(function(event){
+		/*$('.editAdd').click(function(event){
 				console.log(1);
 
 				var $eventPoint = $(event.target).closest("li");
@@ -127,19 +170,21 @@
 		            type: 'GET',
 		            data: obj,
 		            success: function(answer){
-
+		            	$eventPoint.find('.editAdd').val('edit');
+		            	$('#mainUL').empty();
+		            	$('#mainUL').html(answer);
 		            }
 		        });
 
 
 			});*/
 
-	$('#main_content').click(function(event){
-		
-		 var $evTar1 = $(event.target);
-		 var $eventPoint = $(event.target).closest("li");
+	//$('#main_content').click(function(event){
+	var clickList = function(event){	
+		 //var $evTar1 = $(event.target);
+		 var $eventPoint = $(event).closest("li");
 
-		// console.log(event.target.nodeName.toUpperCase());
+		//console.log(event.target.nodeName.toUpperCase());
 
 		/*var $valTask = $eventPoint.find('.textContent').html();
 		var $valTime1 = $eventPoint.find('.time1').html();
@@ -149,10 +194,11 @@
 		$eventPoint.find('.tastInput').val( $eventPoint.find('.textContent').html() );
 		$eventPoint.find('.time1Pop').val( $eventPoint.find('.time1').html() );
 		$eventPoint.find('.time2Pop').val( $eventPoint.find('.time2').html() );
+		//$eventPoint.find('.newPriority').val( $eventPoint.find('.time2').html() );
 
 
-		if(event.target.nodeName.toUpperCase() != 'INPUT')
-		{
+		/*if(event.target.nodeName.toUpperCase() != 'INPUT' && event.target.nodeName.toUpperCase() != 'OPTION' &&  event.target.nodeName.toUpperCase() != 'SELECT')
+		{*/
 	
 			if ($eventPoint.find('.popUpGRUD').css('display') == 'none')
 			{
@@ -162,8 +208,9 @@
 			{
 				$eventPoint.find('.popUpGRUD').hide(300);	
 			}
-		}
-	});
+		//}
+	}
+	//);
 	
 	
 	

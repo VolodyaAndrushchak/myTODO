@@ -29,7 +29,8 @@ var config = require('./config');
 var pool = mysql.createPool(config);
 
 var taskModel = require('./model')(pool);
-var controller = require('./controller')(taskModel);
+var view = require('./view')
+var controller = require('./controller')(taskModel, view);
 //var del = require('./view');
 
 app.get('/', function(req, res){
@@ -37,6 +38,8 @@ app.get('/', function(req, res){
 });
 
 app.get('/editAdd', controller.editAdd);
+app.get('/mainList', controller.mainList);
+app.get('/delete', controller.deleteList);
 
 app.listen(8080);
 console.log('Listening 8080...');
