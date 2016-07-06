@@ -14,25 +14,10 @@
 	</div>
 
 	<div class="wrapper">
-		<input type="radio" name="point" id="slide1" checked>
-		<input type="radio" name="point" id="slide2">
-		<input type="radio" name="point" id="slide3">
-		<input type="radio" name="point" id="slide4">
-		<input type="radio" name="point" id="slide5">
-		<div class="slider">
-			<div class="slides slide1"></div>
-			<div class="slides slide3"></div>
-			<div class="slides slide2"></div>
-			<div class="slides slide4"></div>
-			<div class="slides slide5"></div>
-		</div>	
-		<div class="controls">
-			<label for="slide1"></label>
-			<label for="slide2"></label>
-			<label for="slide3"></label>
-			<label for="slide4"></label>
-			<label for="slide5"></label>
-		</div>
+		<div id ='leftArrowSlider'><</div>
+		<div id = 'timeSlider'></div>
+		<div id='contentSlider'>asdasd</div>
+		<div id ='rightArrowSlider'>></div>
 	</div>
 
 	<div id="main_content">
@@ -71,7 +56,7 @@
 	</div>
 
 	<div id="Add_task">
-			<button id="add_button">Add new task</button>
+			<input type='button' id="add_button" value='Add new task'>
 	</div>
 
 
@@ -83,10 +68,19 @@
 <script type="text/javascript">
 	
 	var mainpage = function(){
+
+		var data = new Date();
+		var dmyList = data.getDate() + '-' + ( data.getMonth() + 1 ) + '-' + data.getFullYear();
+		$('#timeSlider').html(dmyList);
+
+		var dayTodo = {
+			dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
+		};
+		//console.log(dayTodo);
 		 $.ajax({
 		            url: '/mainList',
 		            type: 'GET',
-		            //data: obj,
+		            data: dayTodo,
 		            success: function(answer){
 		            	//console.log(answer);
 		            	$('#mainUL').html(answer);
@@ -96,6 +90,9 @@
 
 	 $('#main_content').each(function(){
 		//console.log(123);
+		
+
+
 		mainpage();
 	});
 
@@ -109,13 +106,15 @@
 				var $eventPoint = $(event).closest("li");
 				//console.log($eventPoint.find('.newPriority option:selected').text() + "Hello");		
 				//console.log($eventPoint.find('.editAdd').val());
+				var data = new Date();
 				var obj = {
 					button: $eventPoint.find('.editAdd').val(),
 					pTask : $eventPoint.find('.textContent').html(),
 					nTask: $eventPoint.find('.tastInput').val(),
 					nTime1: $eventPoint.find('.time1Pop').val(),
 					nTime2: $eventPoint.find('.time2Pop').val(),
-					priority: $eventPoint.find('.newPriority option:selected').text()
+					priority: $eventPoint.find('.newPriority option:selected').text(),
+					dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
 				};
 
 				 $.ajax({
@@ -135,8 +134,10 @@
 		var deleteTask = function(event){
 		
 			var $eventPoint = $(event).closest("li");
+			var data = new Date();
 			var obj = {
-					pTask : $eventPoint.find('.textContent').html()
+					pTask : $eventPoint.find('.textContent').html(),
+					dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
 				};
 			
 				 $.ajax({
