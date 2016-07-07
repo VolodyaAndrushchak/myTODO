@@ -74,21 +74,49 @@ display: table-cell;
 vertical-align: middle;
 }
 
+
 #timeSlider{
-	cursor: pointer;
+cursor: pointer;
 }
 
-#contentSlider{
-height: 220px;
+#statusSlider{
 width: 621px;
+height: 28px;
 
 position: relative;
 left: 39px;
 top: -251px;
 
-/*border: solid;
+border: solid;
 border-color: red;
-border-width: 1px;*/
+border-width: 1px;
+
+}
+#contentSlider{
+height: 195px;
+width: 621px;
+
+position: relative;
+left: 39px;
+top: -252px;
+
+border: solid;
+border-color: red;
+border-width: 1px;
+}
+
+#listSlider{
+height: 100%;
+width: 100%;
+}
+
+#listSlider li{
+width:100%;
+height: 38.8px;
+
+ border-bottom: solid;
+border-color: red;
+border-width: 1px;
 }
 
 #rightArrowSlider{
@@ -97,7 +125,7 @@ width: 40px;
 
 position: relative;
 left: 659px;
-top: -500px;
+top: -501px;
 
 border-left: solid;
 border-color: red;

@@ -18,7 +18,16 @@
 	<div class="wrapper">
 		<div id ='leftArrowSlider'><</div>
 		<div id = 'timeSlider'></div>
-		<div id='contentSlider'>asdasd</div>
+		<div id = 'statusSlider'>Status</div>
+		<div id='contentSlider'>
+			<ul id = 'listSlider'>
+				<!--<li>first</li>
+				<li>first</li>
+				<li>first</li>
+				<li>first</li>
+				<li>first</li> -->
+			</ul>
+		</div>
 		<div id ='rightArrowSlider'>></div>
 	</div>
 
@@ -52,7 +61,8 @@
             type: 'GET',
             data: dayTodo,
             success: function(answer){
- 		        $('#mainUL').html(answer);
+ 		        $('#mainUL').html(answer.mainContent);
+ 		        $('#listSlider').html(answer.shortContent);
             }
 		});
 	}
@@ -118,7 +128,7 @@
 		            success: function(answer){
 		            	console.log(answer);
 		            	$('#mainUL').empty();
-		            	$('#mainUL').html(answer);
+		            	$('#mainUL').html(answer.mainContent);
 		            }
 		        });
 		}
