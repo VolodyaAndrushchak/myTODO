@@ -1,38 +1,31 @@
 module.exports = function(model, view){
 	return {
-		editAdd: function(req, res){
-			//console.log(req.query.button);
-			if (req.query.button == 'add')
+		add: function(req, res){
+			model.Add(req.body.dmy, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
+				res.json('Done');
+			});			
+		},
+		
+		edit: function(req, res){		
+
 			{
-				model.Add(req.query.dmy, req.query.nTask, req.query.nTime1, req.query.nTime2, req.query.priority, function(){
+				model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
 					res.json('Done');
-				});			
-			}
-				
-			else 
-			{
-				if (req.query.button == 'edit')
-				{
-					model.Edit(req.query.dmy, req.query.pTask, req.query.nTask, req.query.nTime1, req.query.nTime2, req.query.priority, function(){
-						res.json('Done');
-					});
-				}
-					
+				});		
 			}
 
 		},
 		mainList: function(req, res){
-			//console.log(req.query.dmy);
 			model.list(req.query.dmy, function(err, answerDB){
-				console.log(answerDB + "controller");
 				view.viewMainList(answerDB, function(htmlContent){
 					res.json(htmlContent);
 				});
 			});
 		},
 		deleteList: function(req, res){
-			model.deleteList(req.query.dmy, req.query.pTask, function(){ 
-				model.list( function(err, answerDB){
+			console.log(req.body.dmy + "delete");
+			model.deleteList(req.body.dmy, req.body.pTask, function(){ 
+				model.list(req.body.dmy, function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
 					});

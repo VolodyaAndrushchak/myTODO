@@ -1,5 +1,4 @@
 var viewMainList = function(content, callback){
-	console.log(content.length);
 	var htmlContent = '';
 	for(var i = 0; i < content.length; i++)
 	{

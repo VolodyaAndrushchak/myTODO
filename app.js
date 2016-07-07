@@ -37,9 +37,10 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
-app.get('/editAdd', controller.editAdd);
+app.post('/editAdd', controller.add);
 app.get('/mainList', controller.mainList);
-app.get('/delete', controller.deleteList);
+app.put('/editAdd', controller.edit);
+app.delete('/delete', controller.deleteList);
 
 app.listen(8080);
 console.log('Listening 8080...');

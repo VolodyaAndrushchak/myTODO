@@ -74,6 +74,10 @@ display: table-cell;
 vertical-align: middle;
 }
 
+#timeSlider{
+	cursor: pointer;
+}
+
 #contentSlider{
 height: 220px;
 width: 621px;

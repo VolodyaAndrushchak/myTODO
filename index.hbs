@@ -2,8 +2,10 @@
 
 
 <head>
+	
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 </head>
 
 
@@ -22,36 +24,7 @@
 
 	<div id="main_content">
 		<ul id='mainUL'>
-			<!--<li class="liTodo">
-				<div class="TaskContent">
-					<div class="textContent">sasadasdasdasdasdasdasdasdasdasdasdassdassdasdasdasd  asdsdsdasdasdasasdasda</div> <div class="time1">10:00</div> <div class="time2">12:00</div> 
-					<div class="rating">
-					    <input type="radio" name="star" id="star1" checked="checked" />
-					    <label for="star1"><div class="star"></div></label>
-					    <input type="radio" name="star" id="star2" />
-					    <label for="star2"><div class="star"></div></label>
-					    <input type="radio" name="star" id="star3" />
-					    <label for="star3"><div class="star"></div></label>
-					    <input type="radio" name="star" id="star4" />
-					    <label for="star4"><div class="star"></div></label>
-					    <input type="radio" name="star" id="star5" />
-					    <label for="star5"><div class="star"></div></label>
-					</div>
-					<input value = 'delete' type='button' class='delete'> 
-					<input value = 'done' type='button' class='done'> 
-				</div>
-				
-				<div class = "popUpGRUD" >
-					<input class="tastInput">time 
-					<input class = 'time1Pop'>
-					to
-					<input class = 'time2Pop'>
-					<input class = 'editBut' value = 'edit' type='button'> 
-					
-				</div>
-			</li>-->
-
-			<!--<li class='liTodo'><div class='TaskContent'> <div class='textContent'>Task 1 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div> <input value = 'delete' type='button' class='delete'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'><select><option>A</option><option>B</option><option>C</option></select><input class = 'editAdd' onclick= "editADD(this);" value ='add' type='button'> </div> </li> -->
+		
 		</ul>
 	</div>
 
@@ -59,40 +32,32 @@
 			<input type='button' id="add_button" value='Add new task'>
 	</div>
 
-
-
-
-
-
-
 <script type="text/javascript">
 	
+	var OBJDATA = new Date();
+
 	var mainpage = function(){
 
-		var data = new Date();
-		var dmyList = data.getDate() + '-' + ( data.getMonth() + 1 ) + '-' + data.getFullYear();
+		var localDate = newDate || OBJDATA;
+
+		var dmyList = '' + localDate.getDate() + '-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear();
 		$('#timeSlider').html(dmyList);
 
 		var dayTodo = {
-			dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
+			dmy: dmyList
 		};
-		//console.log(dayTodo);
-		 $.ajax({
-		            url: '/mainList',
-		            type: 'GET',
-		            data: dayTodo,
-		            success: function(answer){
-		            	//console.log(answer);
-		            	$('#mainUL').html(answer);
-		            }
-		        });
+
+		$.ajax({
+            url: '/mainList',
+            type: 'GET',
+            data: dayTodo,
+            success: function(answer){
+ 		        $('#mainUL').html(answer);
+            }
+		});
 	}
 
 	 $('#main_content').each(function(){
-		//console.log(123);
-		
-
-
 		mainpage();
 	});
 
@@ -103,103 +68,68 @@
 
 		var editADD = function(event){
 
-				var $eventPoint = $(event).closest("li");
-				//console.log($eventPoint.find('.newPriority option:selected').text() + "Hello");		
-				//console.log($eventPoint.find('.editAdd').val());
-				var data = new Date();
-				var obj = {
-					button: $eventPoint.find('.editAdd').val(),
-					pTask : $eventPoint.find('.textContent').html(),
-					nTask: $eventPoint.find('.tastInput').val(),
-					nTime1: $eventPoint.find('.time1Pop').val(),
-					nTime2: $eventPoint.find('.time2Pop').val(),
-					priority: $eventPoint.find('.newPriority option:selected').text(),
-					dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
-				};
+			var localDate = newDate || OBJDATA;
+			var $eventPoint = $(event).closest("li");
 
-				 $.ajax({
-		            url: '/editAdd',
-		            type: 'GET',
-		            data: obj,
-		            success: function(answer){
-		            	console.log(answer);
-		            	//$eventPoint.find('.editAdd').val('edit');
-		            	mainpage();
-		            	/*$('#mainUL').empty();
-		            	$('#mainUL').html(answer);*/
-		            }
-		        });
+			var obj = {
+				button: $eventPoint.find('.editAdd').val(),
+				pTask : $eventPoint.find('.textContent').html(),
+				nTask: $eventPoint.find('.tastInput').val(),
+				nTime1: $eventPoint.find('.time1Pop').val(),
+				nTime2: $eventPoint.find('.time2Pop').val(),
+				priority: $eventPoint.find('.newPriority option:selected').text(),
+				dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
+			};
+
+			var typeReqAjax =''; 
+			if ($eventPoint.find('.editAdd').val() === 'add')
+			{
+				typeReqAjax = 'POST';
+			}
+			else
+			{
+				typeReqAjax = 'PUT';
+			}
+
+			 $.ajax({
+	            url: '/editAdd',
+	            type: typeReqAjax,
+	            data: obj,
+	            success: function(answer){           
+	            	mainpage();
+	            }
+	        });
 		}
 
 		var deleteTask = function(event){
-		
+			
+			var localDate = newDate || OBJDATA;
 			var $eventPoint = $(event).closest("li");
-			var data = new Date();
+
 			var obj = {
 					pTask : $eventPoint.find('.textContent').html(),
-					dmy : "" + data.getDate() +  ( data.getMonth() + 1 ) + data.getFullYear()
+					dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
 				};
 			
 				 $.ajax({
 		            url: '/delete',
-		            type: 'GET',
+		            type: 'DELETE',
 		            data: obj,
 		            success: function(answer){
-		            	//console.log(answer);
-		            	$eventPoint.find('.editAdd').val(answer);
+		            	console.log(answer);
 		            	$('#mainUL').empty();
-		            	//mainpage();
 		            	$('#mainUL').html(answer);
 		            }
 		        });
 		}
 
-		/*$('.editAdd').click(function(event){
-				console.log(1);
+	var clickList = function(event){
 
-				var $eventPoint = $(event.target).closest("li");
-
-				var obj = {
-					pTask : $eventPoint.find('.textContent').html(),
-					nTask: $eventPoint.find('.tastInput').html(),
-					nTime1: $eventPoint.find('.time1Pop').html(),
-					nTime2: $eventPoint.find('.time2Pop').html()
-				};
-
-				 $.ajax({
-		            url: '/editAdd',
-		            type: 'GET',
-		            data: obj,
-		            success: function(answer){
-		            	$eventPoint.find('.editAdd').val('edit');
-		            	$('#mainUL').empty();
-		            	$('#mainUL').html(answer);
-		            }
-		        });
-
-
-			});*/
-
-	//$('#main_content').click(function(event){
-	var clickList = function(event){	
-		 //var $evTar1 = $(event.target);
 		 var $eventPoint = $(event).closest("li");
 
-		//console.log(event.target.nodeName.toUpperCase());
-
-		/*var $valTask = $eventPoint.find('.textContent').html();
-		var $valTime1 = $eventPoint.find('.time1').html();
-		var $valTime2 = $eventPoint.find('.time2').html();*/
-
-		//console.log($valTask);
 		$eventPoint.find('.tastInput').val( $eventPoint.find('.textContent').html() );
 		$eventPoint.find('.time1Pop').val( $eventPoint.find('.time1').html() );
 		$eventPoint.find('.time2Pop').val( $eventPoint.find('.time2').html() );
-		//$eventPoint.find('.newPriority').val( $eventPoint.find('.time2').html() );
-
-
-		/*if(event.target.nodeName.toUpperCase() != 'INPUT' && event.target.nodeName.toUpperCase() != 'OPTION' &&  event.target.nodeName.toUpperCase() != 'SELECT')
-		{*/
 	
 			if ($eventPoint.find('.popUpGRUD').css('display') == 'none')
 			{
@@ -209,16 +139,29 @@
 			{
 				$eventPoint.find('.popUpGRUD').hide(300);	
 			}
-		//}
 	}
-	//);
-	
-	
-	
 
+	
+	var counterData = 0; 
+	var newDate;
 
+	$('#rightArrowSlider').click(function(){
+		++counterData;
+
+		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
+		mainpage();
+
+	});
+
+		$('#leftArrowSlider').click(function(){
+		--counterData;
+
+		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
+		mainpage();
+
+	});
+	
 </script>
 
 </body>
-
 </html>
