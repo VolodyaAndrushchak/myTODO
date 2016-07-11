@@ -1,0 +1,211 @@
+<html>
+
+
+<head>
+	
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+	<div id="header">
+		<h3>TODO list of Volodymyr Andrushchak</h3>
+	</div>
+
+	<div class="wrapper">
+		<div id ='leftArrowSlider'><</div>
+		<div id = 'timeSlider'></div>
+		<div id = 'statusSlider'>Status</div>
+		<div id='contentSlider'>
+			<ul id = 'listSlider'>
+			</ul>
+		</div>
+		<div id ='rightArrowSlider'>></div>
+	</div>
+
+	<div id = 'wheatherSide'>
+		<div id="timeWheather"></div>
+		<div id="dayWeek"></div>
+		<img id="imgWheather" src="">
+		<div id= "mainTemp"></div>
+		<table id = 'addParamWeath'>
+			<tr><td style="text-align: left">Humidity</td> <td style="text-align: center" id="humidity">12</td></tr>
+			<tr><td style="text-align: left">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
+		</table>
+	</div>
+
+	<div id="main_content">
+		<ul id='mainUL'>
+		
+		</ul>
+	</div>
+
+	<div id="Add_task">
+			<input type='button' id="add_button" value='Add new task'>
+	</div>
+
+
+
+
+
+<script type="text/javascript">
+	
+	var OBJDATA = new Date();
+
+	var mainpage = function(){
+
+		var localDate = newDate || OBJDATA;
+
+		var dmyList = '' + localDate.getDate() + '-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear();
+		$('#timeSlider').html(dmyList);
+
+		var dayTodo = {
+			dmy: dmyList
+		};
+
+		$.ajax({
+            url: '/mainList',
+            type: 'GET',
+            data: dayTodo,
+            success: function(answer){
+ 		        $('#mainUL').html(answer.mainContent);
+ 		        $('#listSlider').html(answer.shortContent);
+ 		        $('#statusSlider').html(answer.statusDay);
+            }
+		});
+	}
+
+	var wheather = function(){
+
+		$('#timeWheather').html(''+ OBJDATA.getDate() + '-' + ( OBJDATA.getMonth() + 1 ) + '-' + OBJDATA.getFullYear());
+
+		var objWheather = {
+			city: 'Lviv'
+		};
+		$.ajax({
+            url: '/wheather',
+            type: 'GET',
+            data: objWheather,
+            success: function(answer){
+            	console.log(answer.listWheather);
+            	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][OBJDATA.getDay()]);
+            	$('#imgWheather').attr('src', 'iconWeather/' + answer.icon + '.gif');
+            	$('#mainTemp').html(answer.temperature);
+            	$('#wind').html(answer.wind + " m/s");
+ 		        $('#humidity').html(answer.listWheather.main.humidity + " %");
+            }
+		});
+	}
+
+	 $('#main_content').each(function(){
+		mainpage();
+		wheather();
+	});
+
+	$('#add_button').click(function(){
+		
+		$('#mainUL').append("<li class='liTodo'><div class='TaskContent' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div><input value = 'delete' type='button' class='delete' onclick= 'deleteTask(this);'> <input value = 'done' type='button' class='done'> </div> <div class = 'popUpGRUD'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select><input class = 'editAdd' onclick= 'editADD(this)' value ='add' type='button'> </div> </li> ");
+	});
+
+		var editADD = function(event){
+
+			var localDate = newDate || OBJDATA;
+			var $eventPoint = $(event).closest("li");
+
+			var obj = {
+				button: $eventPoint.find('.editAdd').val(),
+				pTask : $eventPoint.find('.textContent').html(),
+				nTask: $eventPoint.find('.tastInput').val(),
+				nTime1: $eventPoint.find('.time1Pop').val(),
+				nTime2: $eventPoint.find('.time2Pop').val(),
+				priority: $eventPoint.find('.newPriority option:selected').text(),
+				dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
+			};
+
+			var typeReqAjax =''; 
+			if ($eventPoint.find('.editAdd').val() === 'add')
+			{
+				typeReqAjax = 'POST';
+			}
+			else
+			{
+				typeReqAjax = 'PUT';
+			}
+
+			 $.ajax({
+	            url: '/editAdd',
+	            type: typeReqAjax,
+	            data: obj,
+	            success: function(answer){           
+	            	mainpage();
+	            }
+	        });
+		}
+
+		var deleteTask = function(event){
+			
+			var localDate = newDate || OBJDATA;
+			var $eventPoint = $(event).closest("li");
+
+			var obj = {
+					pTask : $eventPoint.find('.textContent').html(),
+					dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
+				};
+			
+				 $.ajax({
+		            url: '/delete',
+		            type: 'DELETE',
+		            data: obj,
+		            success: function(answer){
+		            	console.log(answer);
+		            	$('#mainUL').empty();
+		            	$('#mainUL').html(answer.mainContent);
+		            }
+		        });
+		}
+
+	var clickList = function(event){
+
+		 var $eventPoint = $(event).closest("li");
+
+		$eventPoint.find('.tastInput').val( $eventPoint.find('.textContent').html() );
+		$eventPoint.find('.time1Pop').val( $eventPoint.find('.time1').html() );
+		$eventPoint.find('.time2Pop').val( $eventPoint.find('.time2').html() );
+	
+			if ($eventPoint.find('.popUpGRUD').css('display') == 'none')
+			{
+				$eventPoint.find('.popUpGRUD').show("fast");
+			}
+			else
+			{
+				$eventPoint.find('.popUpGRUD').hide(300);	
+			}
+	}
+
+	
+	var counterData = 0; 
+	var newDate;
+
+	$('#rightArrowSlider').click(function(){
+		++counterData;
+
+		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
+		mainpage();
+
+	});
+
+		$('#leftArrowSlider').click(function(){
+		--counterData;
+
+		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
+		mainpage();
+
+	});
+	
+</script>
+
+</body>
+</html>

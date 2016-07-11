@@ -1,0 +1,55 @@
+module.exports = function(model, view, request){
+	return {
+		add: function(req, res){
+			model.Add(req.body.dmy, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
+				res.json('Done');
+			});			
+		},
+		
+		edit: function(req, res){		
+
+			{
+				model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
+					res.json('Done');
+				});		
+			}
+
+		},
+		mainList: function(req, res){
+			model.list(req.query.dmy, function(err, answerDB){
+				view.viewMainList(answerDB, function(htmlContent){
+					res.json(htmlContent);
+				});
+			});
+		},
+		deleteList: function(req, res){
+			model.deleteList(req.body.dmy, req.body.pTask, function(){ 
+				model.list(req.body.dmy, function(err, answerDB){
+					view.viewMainList(answerDB, function(htmlContent){
+						res.json(htmlContent);
+					});
+				}); 
+			});		
+		},
+		wheather: function(req, res){
+
+			request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + req.query.city + 
+						'&units=metric&APPID=286ff9ff4dfbca6883247c211e36349c', function(error, response, body){
+				var bodyObj = JSON.parse(body);
+				//console.log(bodyObj.list[0].weather[0].icon);
+
+				var temperature = '';
+				if(Math.sign(bodyObj.list[0].main.temp) === 1)
+				{
+					temperature = '+';
+				}
+
+				res.json({ 	listWheather: bodyObj.list[0], 
+							icon: bodyObj.list[0].weather[0].icon, 
+							temperature: temperature + bodyObj.list[0].main.temp + '<sup>o</sup> C',
+							wind: bodyObj.list[0].wind.speed
+						});
+			});		
+		}
+	}
+}
