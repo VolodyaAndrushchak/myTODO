@@ -8,7 +8,8 @@
 }
 
 body {
-	background-image: url(http://habrastorage.org/files/996/d76/d04/996d76d0410d422fa54cc433ce7ead2a.png);
+	/*background-image: url(http://habrastorage.org/files/996/d76/d04/996d76d0410d422fa54cc433ce7ead2a.png);*/
+	background-color: #234062;
 }
 
 input {
@@ -19,26 +20,37 @@ input[type='button'], select{
 }
 #header{
 position: relative;
-height: 25px;
+height: 20px;
 width: auto;
+background-color: #687D95;
 
-border: solid;
+/*border: solid;
 border-width: 2px;
-border-color: red;
+border-color: red;*/
 
 text-align: center;
 }
 
 /*---  Slider ---*/
+#beforeWrapper{
+	width: 1356px;
+	height: 270px;
+	background-color: #687D95;
+}
+
 .wrapper {
 height: 250px;
-margin: 30px auto 0;
+margin: 0px auto 0;
 position: relative;
 width: 700px;
 
-border: solid;
-border-color: red;
-border-width: 1px;
+border-radius: 5px;
+
+/*border: solid;
+border-color: black;
+border-width: 1px;*/
+
+background-color: #687D95;
 }
 
 #leftArrowSlider{
@@ -46,32 +58,40 @@ height: 100%;
 width: 40px;
 
 border-right: solid;
-border-color: red;
-border-width: 1px;
+border-color: #687D95;
+border-width: 3px;
 
 font-size: 30px;
 padding-top: 105px;
 text-align: center;
+background-color: #234062;
+font-weight: bolder;
+color: #9DB2CB;
 }
 #leftArrowSlider:hover{
 	cursor: pointer;
 }
 
 #timeSlider{
-width: 619px; 
+width: 617px; 
 height: 30px;
 
 position: relative;
 left: 39px;
 top: -250px;
+color: black;
+font-weight: bolder;
+/*border-top: solid;
+border-left: solid;
+border-right: solid;*/
 
-border-bottom: solid;
-border-color: red;
+border-color: black;
 border-width: 1px;
 
 text-align: center;
 display: table-cell; 
 vertical-align: middle;
+background-color: #576370;
 }
 
 
@@ -80,31 +100,40 @@ cursor: pointer;
 }
 
 #statusSlider{
-width: 621px;
+width: 617px;
 height: 28px;
 
 position: relative;
 left: 39px;
 top: -251px;
-
-border: solid;
-border-color: red;
+color: black;
+font-weight: bolder;
+/*border-right: solid;
+border-left: solid;
+border-color: black;*/
 border-width: 1px;
+background-color: #576370;
 
 text-align: center;
 padding: 2px 0px 1px 0px;
 }
 #contentSlider{
-height: 195px;
-width: 621px;
+height: 193px;
+width: 617px;
 
 position: relative;
 left: 39px;
-top: -252px;
-
-border: solid;
-border-color: red;
+top: -251px;
+/*font-weight: bolder;*/
+color: black;
+/*border-right: solid;
+border-left: solid;
+border-bottom: solid;*/
+border-color: black;
 border-width: 1px;
+
+background-color: #576370;
+
 }
 
 #listSlider{
@@ -121,9 +150,9 @@ font-size: 14px;
 width:100%;
 height: 38.8px;
 
- border-bottom: solid;
+/* border-bottom: solid;
 border-color: red;
-border-width: 1px;
+border-width: 1px;*/
 }
 
 #rightArrowSlider{
@@ -135,12 +164,16 @@ left: 659px;
 top: -501px;
 
 border-left: solid;
-border-color: red;
-border-width: 1px;
+border-color: #687D95;
+border-width: 3px;
 
 font-size: 30px;
 padding-top: 105px;
 text-align: center;
+
+font-weight: bolder;
+color: #9DB2CB;
+background-color: #234062;
 }
 #rightArrowSlider:hover{
 	cursor: pointer;
@@ -150,15 +183,17 @@ text-align: center;
 #wheatherSide{
 position: absolute;
 left: 1100px;
-top: 55px;
+top: 20px;
 height: 250px;
 width: 150px;
 
 padding: 10px 0px 10px 0px;
 
-border: solid;
-border-color: red;
-border-width: 1px;
+/*border: solid;
+border-color: black;
+border-width: 1px;*/
+
+background-color: #576370;
 }
 
 #timeWheather{
@@ -204,13 +239,17 @@ width: 700px;
 height:  90px;
 
 border: solid;
-border-color: red;
-border-width: 2px;
+border-color: black;
+border-width: 1px;
 
 font-size: 15px;
+
+background-color: #234062;
 }
 .TaskContent:hover{
 	cursor: pointer;
+	background-color: #687D95;
+	color: black;
 }
 
 .textContent{
@@ -221,10 +260,12 @@ margin: 0px 0px 0px 0px;
 width: 350px;
 height: 30px;
 
-
+color: white;
 }
 
-
+/*.liTodo{
+	background-color: #234062;
+}*/
 #Add_task{
 height: auto;
 margin: 10px auto 0;
@@ -239,79 +280,107 @@ position: relative;
 
 .popUpGRUD{
 width: 700px;
-height: auto ;
+height: 35px;
+/*padding: 2px 3px 2px 3px;*/
 
 border: solid;
-border-color: red;
+border-color: black;
 border-width: 2px;
-
+background-color: #687D95;
 font-size: 15px;
 display: none;
-
+}
+.popInput{
+	padding: 5px 2px 3px 2px;
 }
 
 li {
-   list-style-type: none; 
+list-style-type: none; 
 }
 
 .time1{
-	position: relative;
-	width: 100px;
-	height: 20px;
-	left: 430px;
-	top: -10px;
+position: relative;
+width: 100px;
+height: 20px;
+left: 430px;
+top: -10px;
+color: #A9B9CB;
+font-weight: bold;
 }
 
 .time2{
-	position: relative;
-	width: 100px;
-	height: 20px;
-	left: 430px;
-	top: -10px;
+position: relative;
+width: 100px;
+height: 20px;
+left: 430px;
+top: -10px;
+color: #A9B9CB;
+font-weight: bold;
 }
 .priority{
-	position: relative;
-	width: 50px;
-	height: 50px;
-	left: 530px;
-	top: -39px;
-
-	color: red;
+position: relative;
+width: 50px;
+height: 50px;
+left: 540px;
+top: -39px;
+color: #A9B9CB;
+font-weight: bold;
 }
 
 .done{
-	position: relative;
-	left: 570px;
-	top: -110px;
+position: relative;
+left: 620px;
+top: -132px;
+background-color: #9DB2CB;
+width: 60px;
+height: 25px;
+padding: 4px 2px 2px 16px;
+border-radius: 4px;
+/*color: #234062;*/
 }
 
 .delete{
-	position: relative;
-	left: 620px;
-	top: -75px;
+position: relative;
+left: 620px;
+top: -75px;
+background-color: #9DB2CB;
+width: 60px;
+height: 25px;
+padding: 4px 2px 2px 13px;
+border-radius: 4px;
+/*color: #234062;*/
 }
 
 
 .tastInput{
-	width: 350px;
-	height: 20px;
-	margin: 0px 10px 0px 0px;
+width: 350px;
+height: 20px;
+margin: 0px 10px 0px 0px;
 }
 
 .time1Pop{
-	margin: 0px 7px 0px 0px;
+margin: 0px 7px 0px 0px;
 }
 .time1Pop, .time2Pop{
-	width: 40px;
-}
-.time2Pop{
-	margin: 0px 23px 0px 3px;
-}
-.done, .delete, .editAdd{
 width: 40px;
 }
+.time2Pop{
+margin: 0px 23px 0px 3px;
+}
+.editAdd{
+position: relative;
+left: 618px;
+top: -25px;
+background-color: #9DB2CB;
+width: 60px;
+height: 25px;
+padding: 3px 2px 2px 18px;
+border-radius: 4px;
+cursor: pointer;
+
+}
 .newPriority{
-	margin: 0px 34px 0px 3px;
+margin: 0px 34px 0px 3px;
 }
 
 
