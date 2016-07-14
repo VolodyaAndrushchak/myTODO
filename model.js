@@ -16,11 +16,15 @@ module.exports = function(pool){
 						"time1 varchar(10) DEFAULT NULL," + 
 						"time2 varchar(10) DEFAULT NULL," +  
 						"priority varchar(1) DEFAULT NULL," +
+						"done varchar(1) DEFAULT NULL," +
 						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [dmy], function(){
 
 							pool.query("SELECT * FROM ??", [dmy], callback);
 
 			});
+		},
+		doneTask: function(dmy, task){
+			pool.query("UPDATE ?? SET done = ? WHERE taskName = ?", [dmy, 1, task]);
 		},
 		deleteList: function(dmy, pTask, callback){
 			pool.query("DELETE FROM ?? WHERE taskName = ?", [dmy, pTask], callback);

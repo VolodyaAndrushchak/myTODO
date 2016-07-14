@@ -11,30 +11,37 @@
 
 <body>
 
-	<div id="header">
+	<div id="header"><p>&#171</p>
 	</div>
 	<div  id = 'beforeWrapper'>
 		<div class="wrapper">
-			<div id ='leftArrowSlider'><</div>
+			<div id ='leftArrowSlider'>&#171</div>
 			<div id = 'timeSlider'></div>
 			<div id = 'statusSlider'>Status</div>
 			<div id='contentSlider'>
 				<ul id = 'listSlider'>
 				</ul>
 			</div>
-			<div id ='rightArrowSlider'>></div>
+			<div id ='rightArrowSlider'>&#187</div>
 		</div>
+
+		<div id = 'wheatherSide'>
+				<div id="timeWheather"></div>
+				<div id="dayWeek"></div>
+				<img id="imgWheather" src="">
+				<div id= "mainTemp"></div>
+				<table id = 'addParamWeath'>
+					<tr><td style="text-align: left">Humidity</td> <td style="text-align: center" id="humidity">12</td></tr>
+					<tr><td style="text-align: left">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
+				</table>
+		</div>
+
 	</div>
 
-	<div id = 'wheatherSide'>
-		<div id="timeWheather"></div>
-		<div id="dayWeek"></div>
-		<img id="imgWheather" src="">
-		<div id= "mainTemp"></div>
-		<table id = 'addParamWeath'>
-			<tr><td style="text-align: left">Humidity</td> <td style="text-align: center" id="humidity">12</td></tr>
-			<tr><td style="text-align: left">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
-		</table>
+	
+
+	<div id="showHideBut">
+		<div id="animButSH">show/hide</div>
 	</div>
 
 	<div id="main_content">
@@ -44,7 +51,7 @@
 	</div>
 
 	<div id="Add_task">
-			<input type='button' id="add_button" value='Add new task'>
+			<div  id="add_button">Add new task</div>
 	</div>
 
 
@@ -52,6 +59,30 @@
 
 
 <script type="text/javascript">
+	/*--- click on header(show slideMenu)---*/
+
+	$('#header').click(function(){
+		$('#beforeWrapper').slideDown('slow');
+		$('#wheatherSide').slideDown('slow');
+	});
+	
+	/*--- button show/hide---*/ 
+	$('#animButSH').click(function(){
+		//if( $('#beforeWrapper').css("dispaly") )
+		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') )
+		{
+			$('#main_content').slideToggle('slow');
+			$('#Add_task').slideToggle('slow');
+		}
+		else
+		{
+			$('#beforeWrapper').slideToggle('slow');
+			$('#wheatherSide').slideToggle('slow');
+			$('#main_content').slideToggle('slow');
+			$('#Add_task').slideToggle('slow');
+		} 
+	});
+
 	
 	var OBJDATA = new Date();
 
@@ -90,7 +121,7 @@
             type: 'GET',
             data: objWheather,
             success: function(answer){
-            	console.log(answer.listWheather);
+            	console.log(answer.icon);
             	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][OBJDATA.getDay()]);
             	$('#imgWheather').attr('src', 'iconWeather/' + answer.icon + '.gif');
             	$('#mainTemp').html(answer.temperature);
@@ -103,13 +134,14 @@
 	 $('#main_content').each(function(){
 		mainpage();
 		wheather();
+
 	});
 
 	$('#add_button').click(function(){
 		
-		$('#mainUL').append("<li class='liTodo'><div class='TaskContent' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div><div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div class='done'>done</div> </div> <div class = 'popUpGRUD'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> </div><div class = 'editAdd' onclick= 'editADD(this)'>add</div></div> </li> ");
+		$('#mainUL').append("<li class='liTodo'><div class='TaskContent' ><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> </div> <div class = 'popUpGRUD'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> </div><div class = 'editAdd' onclick= 'editADD(this)'>add</div></div> </li> ");
 	});
-
+ 
 		var editADD = function(event){
 
 			var localDate = newDate || OBJDATA;
@@ -167,6 +199,32 @@
 		        });
 		}
 
+
+
+		var doneTask = function(event){
+			
+			var localDate = newDate || OBJDATA;
+			var $eventPoint = $(event).closest("li");
+
+			var obj = {
+					pTask : $eventPoint.find('.textContent').html(),
+					dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
+				};
+			
+				 $.ajax({
+		            url: '/donetask',
+		            type: 'PUT',
+		            data: obj,
+		            success: function(answer){
+		            	console.log(answer);
+		            	$('#mainUL').empty();
+		            	$('#mainUL').html(answer.mainContent);
+		            }
+		        });
+		}
+
+
+
 	var clickList = function(event){
 
 		 var $eventPoint = $(event).closest("li");
@@ -174,7 +232,8 @@
 		$eventPoint.find('.tastInput').val( $eventPoint.find('.textContent').html() );
 		$eventPoint.find('.time1Pop').val( $eventPoint.find('.time1').html() );
 		$eventPoint.find('.time2Pop').val( $eventPoint.find('.time2').html() );
-	
+		console.log($(event).attr('class'));
+
 			if ($eventPoint.find('.popUpGRUD').css('display') == 'none')
 			{
 				$eventPoint.find('.popUpGRUD').show("fast");
@@ -204,6 +263,41 @@
 		mainpage();
 
 	});
+
+	//checkActualTask(setInterval(checkActualTask, 60000));
+
+	//setInterval(checkActualTask, 60000);
+	
+		if(1)
+		{
+			checkActualTask();
+			
+		}
+
+		{
+			setInterval(checkActualTask, 2000);
+		}
+	//setInterval(checkActualTask, 1000);
+
+	 function checkActualTask(){
+
+			$('.liTodo').each(function(){
+					$time1 = $(this).find('.time1').html().split(':');
+					$time2 = $(this).find('.time2').html().split(':');
+					var dataForCheck = new Date();
+
+					if( ($time1[0] <= dataForCheck.getHours()) && ($time1[1] <= dataForCheck.getMinutes()) )
+					{
+						if( $time2[0] > dataForCheck.getHours() || ( ($time2[0] == dataForCheck.getHours()) && ($time2[1] > dataForCheck.getMinutes()) ) )
+						{
+							//return $(this);
+							$(this).find('.TaskContent').css('background-color', '#3C4670');
+						}
+					}
+
+				});
+			//console.log(1);
+		}
 	
 </script>
 

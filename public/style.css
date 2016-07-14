@@ -23,19 +23,31 @@ position: relative;
 height: 20px;
 width: auto;
 background-color: #687D95;
-
-/*border: solid;
-border-width: 2px;
-border-color: red;*/
-
+}
+#header p{
+height: 20px;
+width: 20px;
 text-align: center;
+transform: rotate(-90deg);
+margin: 0px auto 0;
+color: #234062;
+font-size: 31px;
+font-weight: bold;
+cursor: pointer;
+}
+
+#header p:hover{
+color: #355F98;
 }
 
 /*---  Slider ---*/
 #beforeWrapper{
-	width: 1356px;
-	height: 270px;
-	background-color: #687D95;
+width: 100%;
+height: 270px;
+background-color: #687D95;
+display: block;
+margin:  auto 0;
+position: relative;
 }
 
 .wrapper {
@@ -64,12 +76,38 @@ border-width: 3px;
 font-size: 30px;
 padding-top: 105px;
 text-align: center;
-background-color: #234062;
+background-color: #466892;
 font-weight: bolder;
-color: #9DB2CB;
+color: #B3BBCD;
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+/*Тень*/
+-webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+
+/*Градиент*/
+background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
 }
 #leftArrowSlider:hover{
-	cursor: pointer;
+cursor: pointer;
+margin-top: 0px;  
+/*Тень*/
+-webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.8);
+/*Градиент*/
+background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
 
 #timeSlider{
@@ -81,17 +119,14 @@ left: 39px;
 top: -250px;
 color: black;
 font-weight: bolder;
-/*border-top: solid;
-border-left: solid;
-border-right: solid;*/
 
-border-color: black;
-border-width: 1px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 
 text-align: center;
 display: table-cell; 
 vertical-align: middle;
-background-color: #576370;
+background-color: #B3BBCD;
 }
 
 
@@ -112,7 +147,7 @@ font-weight: bolder;
 border-left: solid;
 border-color: black;*/
 border-width: 1px;
-background-color: #576370;
+background-color: #B3BBCD;
 
 text-align: center;
 padding: 2px 0px 1px 0px;
@@ -124,16 +159,11 @@ width: 617px;
 position: relative;
 left: 39px;
 top: -251px;
-/*font-weight: bolder;*/
 color: black;
-/*border-right: solid;
-border-left: solid;
-border-bottom: solid;*/
-border-color: black;
-border-width: 1px;
 
-background-color: #576370;
-
+background-color: #B3BBCD;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 #listSlider{
@@ -172,28 +202,50 @@ padding-top: 105px;
 text-align: center;
 
 font-weight: bolder;
-color: #9DB2CB;
-background-color: #234062;
+color: #B3BBCD;
+background-color: #466892;
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+/*Тень*/
+-webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+
+/*Градиент*/
+background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
 }
 #rightArrowSlider:hover{
 	cursor: pointer;
-}
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.8);*/
+/*Градиент*/
+background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 
+}
 /*--- Wheather ---*/
 #wheatherSide{
 position: absolute;
 left: 1100px;
-top: 20px;
+top: 0px;
 height: 250px;
 width: 150px;
 
 padding: 10px 0px 10px 0px;
-
+border-radius: 5px;
 /*border: solid;
 border-color: black;
 border-width: 1px;*/
 
-background-color: #576370;
+background-color: #B3BBCD;
 }
 
 #timeWheather{
@@ -225,6 +277,27 @@ font-size: 25px;
 text-align: center;
 }
 
+/*--- button show/hide---*/
+#showHideBut{
+height: 20px;
+margin: 10px auto 0;
+position: relative;
+width: 50px;
+}
+
+#animButSH{
+background-color: #9DB2CB;
+width: 70px;
+height: 25px;
+padding: 2px 2px 2px 4px;
+border-radius: 4px;
+}
+#animButSH:hover{
+background-color: #B3BBCD;	
+cursor: pointer;
+
+}
+
 /*--- TODO list---*/ 
 
 #main_content{
@@ -232,6 +305,7 @@ height: auto;
 margin: 70px auto 0;
 position: relative;
 width: 700px;
+display: none;
 }
 
 .TaskContent{
@@ -247,11 +321,14 @@ font-size: 15px;
 background-color: #234062;
 }
 .TaskContent:hover{
-	cursor: pointer;
-	background-color: #687D95;
-	color: black;
+cursor: pointer;
+background-color: #687D95;
+color: black;
 }
-
+.helpDivTC{
+width: 600px;
+height:  90px;
+}
 .textContent{
 position: relative;
 top: 20px;
@@ -263,19 +340,27 @@ height: 30px;
 color: white;
 }
 
-/*.liTodo{
-	background-color: #234062;
-}*/
 #Add_task{
 height: auto;
 margin: 10px auto 0;
 position: relative;
 width: 700px;
+display: none;
 }
 
 #add_button{
 margin: 10px 0px 20px 300px;
 position: relative;
+background-color: #9DB2CB;
+width: 120px;
+height: 25px;
+padding: 2px 2px 2px 18px;
+border-radius: 4px;
+}
+#add_button:hover{
+background-color: #B3BBCD;	
+/*color: 	#687D95;*/
+cursor: pointer;
 }
 
 .popUpGRUD{
@@ -284,8 +369,8 @@ height: 35px;
 /*padding: 2px 3px 2px 3px;*/
 
 border: solid;
-border-color: black;
-border-width: 2px;
+bo*rder-color: black;
+border-width: 1px;
 background-color: #687D95;
 font-size: 15px;
 display: none;
@@ -330,7 +415,7 @@ font-weight: bold;
 .done{
 position: relative;
 left: 620px;
-top: -132px;
+top: -102px;
 background-color: #9DB2CB;
 width: 60px;
 height: 25px;
@@ -338,11 +423,14 @@ padding: 4px 2px 2px 16px;
 border-radius: 4px;
 /*color: #234062;*/
 }
-
+.done:hover{
+background-color: #234062;
+color: 	#687D95;
+}
 .delete{
 position: relative;
 left: 620px;
-top: -75px;
+top: -45px;
 background-color: #9DB2CB;
 width: 60px;
 height: 25px;
@@ -350,7 +438,10 @@ padding: 4px 2px 2px 13px;
 border-radius: 4px;
 /*color: #234062;*/
 }
-
+.delete:hover{
+background-color: #234062;	
+color: 	#687D95;
+}
 
 .tastInput{
 width: 350px;
@@ -369,16 +460,21 @@ margin: 0px 23px 0px 3px;
 }
 .editAdd{
 position: relative;
-left: 618px;
+left: 620px;
 top: -25px;
 background-color: #9DB2CB;
 width: 60px;
 height: 25px;
 padding: 3px 2px 2px 18px;
 border-radius: 4px;
-cursor: pointer;
 
 }
+.editAdd:hover{
+background-color: #234062;
+color: 	#687D95;
+cursor: pointer;
+}
+
 .newPriority{
 margin: 0px 34px 0px 3px;
 }

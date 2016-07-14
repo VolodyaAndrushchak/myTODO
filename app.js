@@ -43,6 +43,7 @@ app.get('/wheather', controller.wheather);
 app.post('/editAdd', controller.add);
 app.get('/mainList', controller.mainList);
 app.put('/editAdd', controller.edit);
+app.put('/donetask', controller.doneTask);
 app.delete('/delete', controller.deleteList);
 
 app.listen(8080);

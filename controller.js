@@ -22,6 +22,9 @@ module.exports = function(model, view, request){
 				});
 			});
 		},
+		doneTask: function(req, res){
+			model.doneTask(req.body.dmy, req.body.pTask);
+		},
 		deleteList: function(req, res){
 			model.deleteList(req.body.dmy, req.body.pTask, function(){ 
 				model.list(req.body.dmy, function(err, answerDB){
@@ -43,7 +46,6 @@ module.exports = function(model, view, request){
 				{
 					temperature = '+';
 				}
-
 				res.json({ 	listWheather: bodyObj.list[0], 
 							icon: bodyObj.list[0].weather[0].icon, 
 							temperature: temperature + bodyObj.list[0].main.temp + '<sup>o</sup> C',
