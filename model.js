@@ -23,8 +23,9 @@ module.exports = function(pool){
 
 			});
 		},
-		doneTask: function(dmy, task){
-			pool.query("UPDATE ?? SET done = ? WHERE taskName = ?", [dmy, 1, task]);
+		doneTask: function(dmy, task, callback){
+			pool.query("UPDATE ?? SET done = ? WHERE taskName = ?", [dmy, 1, task], callback);
+
 		},
 		deleteList: function(dmy, pTask, callback){
 			pool.query("DELETE FROM ?? WHERE taskName = ?", [dmy, pTask], callback);

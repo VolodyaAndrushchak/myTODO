@@ -1,16 +1,40 @@
 module.exports = function(model, view, request){
 	return {
 		add: function(req, res){
+			var localDay = req.body.dmy;
 			model.Add(req.body.dmy, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
-				res.json('Done');
-			});			
+				if(req.body.previousDate)
+				{
+					model.deleteList(req.body.previousDate, req.body.nTask, function(){
+						model.list(req.body.previousDate, function(err, answerDB){
+							view.viewMainList(answerDB, function(htmlContent){
+								res.json(htmlContent);
+							});
+						}); 
+					});
+				}
+				else 
+				{	
+					model.list(localDay, function(err, answerDB){
+						view.viewMainList(answerDB, function(htmlContent){
+							res.json(htmlContent);
+						});
+					}); 
+				}
+			});
+		
+			console.log(req.body.previousDate);			
 		},
 		
 		edit: function(req, res){		
 
 			{
 				model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
-					res.json('Done');
+				model.list(req.body.dmy, function(err, answerDB){
+					view.viewMainList(answerDB, function(htmlContent){
+						res.json(htmlContent);
+					});
+				}); 
 				});		
 			}
 
@@ -23,7 +47,13 @@ module.exports = function(model, view, request){
 			});
 		},
 		doneTask: function(req, res){
-			model.doneTask(req.body.dmy, req.body.pTask);
+			model.doneTask(req.body.dmy, req.body.pTask, function(){ 
+				model.list(req.body.dmy, function(err, answerDB){
+					view.viewMainList(answerDB, function(htmlContent){
+						res.json(htmlContent);
+					});
+				}); 
+			});
 		},
 		deleteList: function(req, res){
 			model.deleteList(req.body.dmy, req.body.pTask, function(){ 

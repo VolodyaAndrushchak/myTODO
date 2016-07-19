@@ -308,6 +308,9 @@ width: 700px;
 display: none;
 }
 
+.liTodo{
+	width: 750px;
+}
 .TaskContent{
 width: 700px;
 height:  90px;
@@ -318,7 +321,7 @@ border-width: 1px;
 
 font-size: 15px;
 
-background-color: #234062;
+background-color: #687D95;
 }
 .TaskContent:hover{
 cursor: pointer;
@@ -339,6 +342,23 @@ height: 30px;
 
 color: white;
 }
+
+.arrowForNextDay{
+position: relative;
+left: 703px;
+top:-140px;
+display: none;
+
+height: 90px;
+width: 30px;
+
+/*text-align: center;*/
+padding: 17px 0px 40px 5px;
+font-size: 35px;
+font-weight: bolder;
+color: #687D95;
+}
+
 
 #Add_task{
 height: auto;
@@ -369,7 +389,7 @@ height: 35px;
 /*padding: 2px 3px 2px 3px;*/
 
 border: solid;
-bo*rder-color: black;
+border-color: black;
 border-width: 1px;
 background-color: #687D95;
 font-size: 15px;
@@ -417,9 +437,9 @@ position: relative;
 left: 620px;
 top: -102px;
 background-color: #9DB2CB;
-width: 60px;
+width: 65px;
 height: 25px;
-padding: 4px 2px 2px 16px;
+padding: 4px 2px 2px 18px;
 border-radius: 4px;
 /*color: #234062;*/
 }
@@ -432,9 +452,9 @@ position: relative;
 left: 620px;
 top: -45px;
 background-color: #9DB2CB;
-width: 60px;
+width: 65px;
 height: 25px;
-padding: 4px 2px 2px 13px;
+padding: 4px 2px 2px 15px;
 border-radius: 4px;
 /*color: #234062;*/
 }
@@ -463,9 +483,9 @@ position: relative;
 left: 620px;
 top: -25px;
 background-color: #9DB2CB;
-width: 60px;
+width: 65px;
 height: 25px;
-padding: 3px 2px 2px 18px;
+padding: 3px 2px 2px 20px;
 border-radius: 4px;
 
 }
