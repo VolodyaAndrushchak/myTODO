@@ -70,7 +70,7 @@ module.exports = function(model, view, request){
 						'&units=metric&APPID=286ff9ff4dfbca6883247c211e36349c', function(error, response, body){
 				var bodyObj = JSON.parse(body);
 				//console.log(bodyObj.list[0].weather[0].icon);
-
+				//console.log(bodyObj.list[0]);
 				var temperature = '';
 				if(Math.sign(bodyObj.list[0].main.temp) === 1)
 				{
@@ -79,7 +79,7 @@ module.exports = function(model, view, request){
 				res.json({ 	listWheather: bodyObj.list[0], 
 							icon: bodyObj.list[0].weather[0].icon, 
 							temperature: temperature + bodyObj.list[0].main.temp + '<sup>o</sup> C',
-							wind: bodyObj.list[0].wind.speed
+							wind: bodyObj.list[0].wind.speed.toFixed(1)
 						});
 			});		
 		}

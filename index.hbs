@@ -31,8 +31,8 @@
 				<img id="imgWheather" src="">
 				<div id= "mainTemp"></div>
 				<table id = 'addParamWeath'>
-					<tr><td style="text-align: left">Humidity</td> <td style="text-align: center" id="humidity">12</td></tr>
-					<tr><td style="text-align: left">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
+					<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Humidity</td> <td style="text-align: center; " id="humidity">12</td></tr>
+					<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
 				</table>
 		</div>
 
@@ -89,7 +89,7 @@
 	
 	var OBJDATA = new Date();
 
-	var mainpage = function(){
+	var mainpage = function(callback){
 
 		var localDate = newDate || OBJDATA;
 
@@ -106,8 +106,20 @@
             data: dayTodo,
             success: function(answer){
  		        $('#mainUL').html(answer.mainContent);
- 		        $('#listSlider').html(answer.shortContent);
  		        $('#statusSlider').html(answer.statusDay);
+
+ 		   		if(callback)
+ 		   		{
+ 		   			//callback(answer.mainContent);
+ 		   			//callback(answer.shortContent);
+ 		   			callback(answer);
+ 		   			
+ 		   		}
+ 		   		else
+ 		   		{
+ 		   			$('#listSlider').html(answer.shortContent);
+ 		   			$('#mainUL').html(answer.mainContent);
+ 		   		}
             }
 		});
 	}
@@ -142,7 +154,8 @@
 
 	$('#add_button').click(function(){
 		
-		$('#mainUL').append("<div class = 'wrapperLI'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
+		$('#mainUL').append("<div class = 'wrapperLI' style='display: none;'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' style = 'top: -22px;' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
+		$('.wrapperLI').last().show('fast');
 	});
  //
  		//var counterForTime = 0;
@@ -206,13 +219,13 @@
 			var localDate = newDate || OBJDATA;
 			var $eventPoint = $(event).closest("li");
 
-
-
 			var obj = {
 					pTask : $eventPoint.find('.textContent').html(),
 					dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
 				};
-			
+
+			$eventPoint.slideToggle("slow", function(){
+
 				 $.ajax({
 		            url: '/delete',
 		            type: 'DELETE',
@@ -223,6 +236,8 @@
 		            	$('#mainUL').html(answer.mainContent);
 		            }
 		        });
+			});
+			
 		}
 
 
@@ -272,22 +287,52 @@
 	var counterData = 0; 
 	var newDate;
 
+
+	/*---Arrows - this is rigth arrows ---*/
 	$('#rightArrowSlider').click(function(){
+
 		++counterData;
-
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-		mainpage();
+	
+		$('#mainUL').slideToggle("slow", function(){
+			mainpage(function(content){
+				$('#mainUL').html(content.mainContent);
+				$('#mainUL').slideToggle('slow');
+			});
+		});
 
+		$('#listSlider').slideToggle("slow", function(){
+			mainpage(function(content){
+				$('#listSlider').html(content.shortContent);
+				$('#listSlider').slideToggle('slow');
+			});
+		});
+		
 	});
+	/*--- this is left arrows ---*/
+	$('#leftArrowSlider').click(function(){
 
-		$('#leftArrowSlider').click(function(){
 		--counterData;
-
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-		mainpage();
+		
+		$('#mainUL').slideToggle("slow", function(){
+			mainpage(function(content){
+				$('#mainUL').html(content.mainContent);
+				$('#mainUL').slideToggle('slow');
+			});
+		});
+
+		$('#listSlider').slideToggle("slow", function(){
+			mainpage(function(content){
+				$('#listSlider').html(content.shortContent);
+				$('#listSlider').slideToggle('slow');
+			});
+		});
 
 	});
 
+
+	/*function which check the actual task in this time*/
 	setInterval(checkActualTask, 5000);
 
 	 function checkActualTask(){
