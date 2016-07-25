@@ -12,8 +12,6 @@ var session = require('cookie-session');
 var passport = require('passport');
 var request = require('request');
 
-
-
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -38,10 +36,10 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
-
 app.get('/wheather', controller.wheather);
-app.post('/editAdd', controller.add);
 app.get('/mainList', controller.mainList);
+app.get('/efficiency', controller.efficiency);
+app.post('/editAdd', controller.add);
 app.put('/editAdd', controller.edit);
 app.put('/donetask', controller.doneTask);
 app.delete('/delete', controller.deleteList);

@@ -50,6 +50,27 @@ margin:  auto 0;
 position: relative;
 }
 
+
+/* graph efficiency*/
+#tegEfficiency{
+	position: absolute;
+	left: 120px;
+	top: 5px;
+	width: 200px;
+	font-family: Georgia;
+	font-weight: bold;
+
+}
+#efficiency{
+	padding: 21px 0px 0px 0px;
+	position: absolute;
+	left: -12px;
+	top: 0px;
+	height: 320px;
+	width: 320px;
+}
+
+
 .wrapper {
 height: 250px;
 margin: 0px auto 0;

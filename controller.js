@@ -82,6 +82,18 @@ module.exports = function(model, view, request){
 							wind: bodyObj.list[0].wind.speed.toFixed(1)
 						});
 			});		
+		},
+		efficiency: function(req, res){
+			model.getEfficiency(req.query.dmy, function(err, answerDB){
+				//console.log(answerDB);
+				view.viewEfficiency(answerDB, function(graphCotent){
+					res.json(graphCotent);
+				});
+				if(answerDB.length > 30)
+				{
+					model.delFirstRow();
+				}
+			});
 		}
 	}
 }

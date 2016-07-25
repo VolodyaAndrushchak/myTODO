@@ -1,19 +1,25 @@
 <html>
 
-
 <head>
 	
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	 <link rel="stylesheet" href="dist/chartist.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="dist/chartist.min.js"> </script>
 
 </head>
-
 
 <body>
 
 	<div id="header"><p>&#171</p>
 	</div>
 	<div  id = 'beforeWrapper'>
+
+		<div id='efficiency'>
+			<div id='tegEfficiency'>Your efficiency</div>
+			<div class="ct-chart ct-perfect-fourth"></div>
+		</div>
+
 		<div class="wrapper">
 			<div id ='leftArrowSlider'>&#171</div>
 			<div id = 'timeSlider'></div>
@@ -36,9 +42,7 @@
 				</table>
 		</div>
 
-	</div>
-
-	
+	</div>	
 
 	<div id="showHideBut">
 		<div id="animButSH">show/hide</div>
@@ -55,13 +59,9 @@
 	</div>
 
 
-
-
-
 <script type="text/javascript">
 
 //$( window ).load(function() {
-
 
 	/*--- click on header(show slideMenu)---*/
 	$('#header').click(function(){
@@ -146,9 +146,51 @@
 		});
 	}
 
+	function efficiency(){
+
+		var dmyToday = '' + OBJDATA.getDate() + '-' + ( OBJDATA.getMonth() + 1 ) + '-' + OBJDATA.getFullYear();
+		var obj = {
+			dmy: dmyToday
+		}
+		$.ajax({
+            url: '/efficiency',
+            type: 'GET',
+            data: obj,
+            success: function(answer){
+
+            		var VisX = [];
+            		VisX[0] = answer.x[0];
+            		for(var i = 1; i < answer.localLength - 2; i++)
+            		{
+            			VisX[i] = '';
+            		}
+            		VisX.push(answer.x[1]);
+
+            	 	var data = {
+  						labels: VisX,
+						series: [answer.y]
+					};
+
+					var options = {
+						// Don't draw the line chart points
+  						axisY: {
+    						offset: 60,
+
+							labelInterpolationFnc: function(value) {
+      							return '' + value + "%";
+    						}
+    					}
+					}
+
+					new Chartist.Line('.ct-chart', data, options);
+            }
+        });
+	}
+
 	 $('#main_content').each(function(){
 		mainpage();
 		wheather();
+		efficiency();
 
 	});
 
