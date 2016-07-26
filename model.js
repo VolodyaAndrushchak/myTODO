@@ -65,6 +65,9 @@ module.exports = function(pool){
 		},
 		delFirstRow: function(){
 			pool.query('DELETE FROM efficiency WHERE 1 LIMIT 1');
+		},
+		checkUser: function(username, callback){
+			pool.query("SELECT ?? FROM ?? WHERE name = ? LIMIT 1", ['pass','users', username], callback);
 		}
 	}
 }

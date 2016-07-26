@@ -101,7 +101,7 @@
 		};
 
 		$.ajax({
-            url: '/mainList',
+            url: '/tasks/mainList',
             type: 'GET',
             data: dayTodo,
             success: function(answer){
@@ -132,7 +132,7 @@
 			city: 'Lviv'
 		};
 		$.ajax({
-            url: '/wheather',
+            url: '/header/wheather',
             type: 'GET',
             data: objWheather,
             success: function(answer){
@@ -153,7 +153,7 @@
 			dmy: dmyToday
 		}
 		$.ajax({
-            url: '/efficiency',
+            url: '/header/efficiency',
             type: 'GET',
             data: obj,
             success: function(answer){
@@ -241,7 +241,7 @@
 			};
 			console.log(obj);
 			 $.ajax({
-	            url: '/editAdd',
+	            url: '/tasks/editAdd',
 	            type: typeReqAjax,
 	            data: obj,
 	            success: function(answer){           
@@ -269,7 +269,7 @@
 			$eventPoint.slideToggle("slow", function(){
 
 				 $.ajax({
-		            url: '/delete',
+		            url: '/tasks/delete',
 		            type: 'DELETE',
 		            data: obj,
 		            success: function(answer){
@@ -295,7 +295,7 @@
 				};
 			
 				 $.ajax({
-		            url: '/donetask',
+		            url: '/tasks/donetask',
 		            type: 'PUT',
 		            data: obj,
 		            success: function(answer){
