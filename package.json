@@ -17,10 +17,14 @@
     "express": "^4.14.0",
     "handlebars": "^4.0.5",
     "mysql": "^2.11.1",
+    "nodemailer": "^2.5.0",
+    "nodemailer-smtp-transport": "^2.6.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "passport-remember-me": "0.0.1",
     "path": "^0.12.7",
     "request": "^2.73.0",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "util": "^0.10.3"
   }
 }

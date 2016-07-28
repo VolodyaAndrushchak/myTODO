@@ -10,3 +10,14 @@ box-sizing: border-box;
 body{
 background-image: url(background.png);
 }
+
+#statusAuthRegist{
+	width: 250px;
+	position: absolute;
+	left: 170px;
+	top:7px;
+	display: block;
+	visibility: visible;
+	color: #8A0000;
+	text-align: center;
+}

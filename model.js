@@ -42,23 +42,25 @@ module.exports = function(pool){
 			});
 
 		},
-		deleteList: function(dmy, pTask, callback){
-			pool.query('SELECT totalNumbTasks, doneNumbTasks FROM efficiency WHERE data = ?', [dmy], function(err, answerDB){
-				pool.query('SELECT done FROM ?? WHERE taskName = ?', [dmy, pTask], function(err, answerSecondDB){
-					var localtotalNumbTasks = answerDB[0].totalNumbTasks - 1;
-					var localdoneNumbTasks = answerDB[0].doneNumbTasks - 1;
-					if(answerSecondDB[0].done == 1)
-					{
-						pool.query('UPDATE efficiency SET totalNumbTasks = ?, doneNumbTasks = ? WHERE data = ?', [localtotalNumbTasks, localdoneNumbTasks, dmy]);
-					}
-					else
-					{
-						pool.query('UPDATE efficiency SET totalNumbTasks = ? WHERE data = ?', [localtotalNumbTasks, dmy]);
-					}
-
-					pool.query("DELETE FROM ?? WHERE taskName = ?", [dmy, pTask], callback);
+		deleteList: function(dmy, pTask, includeEfficiency, callback){
+			if(includeEfficiency)
+			{
+				pool.query('SELECT totalNumbTasks, doneNumbTasks FROM efficiency WHERE data = ?', [dmy], function(err, answerDB){
+					pool.query('SELECT done FROM ?? WHERE taskName = ?', [dmy, pTask], function(err, answerSecondDB){
+						var localtotalNumbTasks = answerDB[0].totalNumbTasks - 1;
+						var localdoneNumbTasks = answerDB[0].doneNumbTasks - 1;
+						if(answerSecondDB[0].done == 1)
+						{
+							pool.query('UPDATE efficiency SET totalNumbTasks = ?, doneNumbTasks = ? WHERE data = ?', [localtotalNumbTasks, localdoneNumbTasks, dmy]);
+						}
+						else
+						{
+							pool.query('UPDATE efficiency SET totalNumbTasks = ? WHERE data = ?', [localtotalNumbTasks, dmy]);
+						}				
+					});
 				});
-			});
+			}
+			pool.query("DELETE FROM ?? WHERE taskName = ?", [dmy, pTask], callback);
 		},
 		getEfficiency: function(dmy, callback){
 			pool.query("SELECT data, totalNumbTasks, doneNumbTasks  FROM efficiency WHERE data <= ?", [dmy], callback); 
@@ -66,8 +68,35 @@ module.exports = function(pool){
 		delFirstRow: function(){
 			pool.query('DELETE FROM efficiency WHERE 1 LIMIT 1');
 		},
+		findUserById: function(id, callback){
+			pool.query("SELECT * FROM users WHERE id = ?", [id], function(err, answeDB){
+				if(answeDB.length != 0)
+				{
+					callback(null, answeDB);
+				}
+				else
+				{
+					callback(new Error('User ' + id + ' does not exist'));
+				}
+			});
+		},
+		findUserByToken: function(token, callback){
+			pool.query("SELECT id FROM users WHERE token = ?", [token], callback);
+		},
+		setUserToken: function(token, userId, callback){
+			pool.query("UPDATE users SET token = ? WHERE id = ?", [token, userId], callback);
+		},
 		checkUser: function(username, callback){
-			pool.query("SELECT ?? FROM ?? WHERE name = ? LIMIT 1", ['pass','users', username], callback);
+			pool.query("SELECT ?? FROM ?? WHERE email = ? LIMIT 1", ['pass','users', username], callback);
+		},
+		chekUserEmail: function(email, callback){
+			pool.query("SELECT name FROM users WHERE email = ?", [email], callback);
+		},
+		createAccount: function(username, town, email, password, callback){
+			pool.query("INSERT INTO users (name, town, email, pass) VALUES (?, ?, ?, ?)", [username, town, email, password], callback);
+		},
+		getPassword: function(email, callback){
+			pool.query("SELECT pass FROM users WHERE email = ?", [email], callback);
 		}
 	}
 }

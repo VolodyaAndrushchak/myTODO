@@ -1,11 +1,14 @@
 module.exports = function(model, view, request){
 	return {
 		add: function(req, res){
-			var localDay = req.body.dmy;
+			var localDay = req.body.dmy,
+			includeEfficiency;
+
 			model.Add(req.body.dmy, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
 				if(req.body.previousDate)
 				{
-					model.deleteList(req.body.previousDate, req.body.nTask, function(){
+					includeEfficiency = false;
+					model.deleteList(req.body.previousDate, req.body.nTask, includeEfficiency, function(){
 						model.list(req.body.previousDate, function(err, answerDB){
 							view.viewMainList(answerDB, function(htmlContent){
 								res.json(htmlContent);
@@ -56,7 +59,7 @@ module.exports = function(model, view, request){
 			});
 		},
 		deleteList: function(req, res){
-			model.deleteList(req.body.dmy, req.body.pTask, function(){ 
+			model.deleteList(req.body.dmy, req.body.pTask, true, function(){ 
 				model.list(req.body.dmy, function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
@@ -69,8 +72,6 @@ module.exports = function(model, view, request){
 			request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + req.query.city + 
 						'&units=metric&APPID=286ff9ff4dfbca6883247c211e36349c', function(error, response, body){
 				var bodyObj = JSON.parse(body);
-				//console.log(bodyObj.list[0].weather[0].icon);
-				//console.log(bodyObj.list[0]);
 				var temperature = '';
 				if(Math.sign(bodyObj.list[0].main.temp) === 1)
 				{
@@ -85,7 +86,6 @@ module.exports = function(model, view, request){
 		},
 		efficiency: function(req, res){
 			model.getEfficiency(req.query.dmy, function(err, answerDB){
-				//console.log(answerDB);
 				view.viewEfficiency(answerDB, function(graphCotent){
 					res.json(graphCotent);
 				});

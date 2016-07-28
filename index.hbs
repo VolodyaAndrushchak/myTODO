@@ -110,10 +110,7 @@
 
  		   		if(callback)
  		   		{
- 		   			//callback(answer.mainContent);
- 		   			//callback(answer.shortContent);
  		   			callback(answer);
- 		   			
  		   		}
  		   		else
  		   		{
@@ -239,7 +236,7 @@
 				dmy :  localDate.getDate() + '-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear() + "",
 				previousDate: previousDate
 			};
-			console.log(obj);
+
 			 $.ajax({
 	            url: '/tasks/editAdd',
 	            type: typeReqAjax,

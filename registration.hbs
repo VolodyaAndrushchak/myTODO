@@ -29,13 +29,13 @@
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password" name="password">
+						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password" name="password">
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
-						<input type="checkbox" id="remember-me" checked>
+						<input type="checkbox" name="remember_me"  id="remember-me" checked>
 						<label for="remember-me">remember me</label>
 					</p>
 
@@ -49,29 +49,29 @@
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- форма регистрации -->
-				<form class="cd-form">
+				<form class="cd-form"  method="POST" action = "/registration">
 					<p class="fieldset">
-						<label class="image-replace cd-username" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+						<label class="image-replace cd-username" for="signup-username">First and second name</label>
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="First and second name" name="username">
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Town</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text"  placeholder="Town">
+						<input class="full-width has-padding has-border" id="signup-username" type="text"  placeholder="Town" name="town">
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" name="email">
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Password" name="password">
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
 					</p>
@@ -90,12 +90,12 @@
 			</div> <!-- cd-signup -->
 
 			<div id="cd-reset-password"> <!-- форма восстановления пароля -->
-				<p class="cd-form-message">Forgot your password? Please enter your email address. You will receive a link to create a new password.</p>
+				<p class="cd-form-message">Forgot your password? Please enter your email address. You will receive a letter with your password.</p>
 
-				<form class="cd-form">
+				<form class="cd-form" method="POST" action="/getPassword">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="reset-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail" name = "email">
 						<span class="cd-error-message">error</span>
 					</p>
 
@@ -107,7 +107,9 @@
 				<p class="cd-form-bottom-message"><a href="#0">Back to the entrance</a></p>
 			</div> <!-- cd-reset-password -->
 			<a href="#0" class="cd-close-form">Close</a>
+			<div id="statusAuthRegist"><h3>{{{status}}}</h3></div>
 		</div> <!-- cd-user-modal-container -->
+
 	</div> <!-- cd-user-modal -->
 
 
@@ -115,6 +117,10 @@
 	function hello(){
 		console.log('Hello');
 	}
+	$('.cd-switcher').click(function(){
+		$('#statusAuthRegist').find('h3').empty();
+		console.log('Empty');
+	});
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/main.js"></script> 
