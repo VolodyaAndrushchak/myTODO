@@ -13,7 +13,8 @@ module.exports = function(pool){
 			pool.query("UPDATE ?? SET taskName= ?, time1 = ?, time2 = ?, priority = ? WHERE taskName = ?", [dmy, nTask, nTime1, nTime2, priority, pTask ], callback);
 		},
 
-		list: function(dmy, callback){
+		list: function(dmy, token, callback){
+			
 			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
 						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
 						"taskName varchar(200) DEFAULT NULL," +  
@@ -23,7 +24,7 @@ module.exports = function(pool){
 						"done varchar(1) DEFAULT NULL," +
 						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [dmy], function(err, answerDB){
 
-						if(answerDB.warningCount == 0)
+						if(answerDB.warningCount == 0 && token === '+')
 						{
 							pool.query('INSERT INTO efficiency  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [dmy, 0, 0, 0]);
 						}
@@ -63,7 +64,7 @@ module.exports = function(pool){
 			pool.query("DELETE FROM ?? WHERE taskName = ?", [dmy, pTask], callback);
 		},
 		getEfficiency: function(dmy, callback){
-			pool.query("SELECT data, totalNumbTasks, doneNumbTasks  FROM efficiency WHERE data <= ?", [dmy], callback); 
+			pool.query("SELECT data, totalNumbTasks, doneNumbTasks  FROM efficiency", [dmy], callback); 
 		},
 		delFirstRow: function(){
 			pool.query('DELETE FROM efficiency WHERE 1 LIMIT 1');
@@ -96,7 +97,7 @@ module.exports = function(pool){
 			pool.query("INSERT INTO users (name, town, email, pass) VALUES (?, ?, ?, ?)", [username, town, email, password], callback);
 		},
 		getPassword: function(email, callback){
-			pool.query("SELECT pass FROM users WHERE email = ?", [email], callback);
+			pool.query("SELECT pass, name FROM users WHERE email = ?", [email], callback);
 		}
 	}
 }

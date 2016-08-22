@@ -38,7 +38,10 @@ module.exports = function(model, nodemailer, smtpTransport){
       					from: 'todoforstudent@ukr.net', 
      					to: req.body.email, 
       					subject: 'Hi, body!',
-      					text: answerDB[0].pass
+      					text: "Hello " + answerDB[0].name + "!\n\n" + 
+      						  "You sent a request for getting password. \n" + 
+      						  "Your password: " + answerDB[0].pass + ".\n\n" + 
+      						  "Thank you, support service accounts SoftForStudent!"
     				};
 
     				transport.sendMail(params, function (err, res) {

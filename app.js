@@ -128,6 +128,9 @@ app.get('/logout', function(req, res){
 	//res.clearCookie('remember_me');
 	res.redirect('/login');
 });
+app.get('/joinTeam', function(req, res){
+	res.render('joinTeam');
+});
 
 app.get('/header/*', mustBeAuthenticated);
 app.get('/tasks/*', mustBeAuthenticated);

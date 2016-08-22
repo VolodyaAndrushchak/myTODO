@@ -9,7 +9,7 @@ module.exports = function(model, view, request){
 				{
 					includeEfficiency = false;
 					model.deleteList(req.body.previousDate, req.body.nTask, includeEfficiency, function(){
-						model.list(req.body.previousDate, function(err, answerDB){
+						model.list(req.body.previousDate, '+', function(err, answerDB){
 							view.viewMainList(answerDB, function(htmlContent){
 								res.json(htmlContent);
 							});
@@ -18,7 +18,7 @@ module.exports = function(model, view, request){
 				}
 				else 
 				{	
-					model.list(localDay, function(err, answerDB){
+					model.list(localDay, '+', function(err, answerDB){
 						view.viewMainList(answerDB, function(htmlContent){
 							res.json(htmlContent);
 						});
@@ -33,7 +33,7 @@ module.exports = function(model, view, request){
 
 			{
 				model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
-				model.list(req.body.dmy, function(err, answerDB){
+				model.list(req.body.dmy, '+',  function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
 					});
@@ -43,7 +43,7 @@ module.exports = function(model, view, request){
 
 		},
 		mainList: function(req, res){
-			model.list(req.query.dmy, function(err, answerDB){
+			model.list(req.query.dmy, req.query.token, function(err, answerDB){
 				view.viewMainList(answerDB, function(htmlContent){
 					res.json(htmlContent);
 				});
@@ -51,7 +51,7 @@ module.exports = function(model, view, request){
 		},
 		doneTask: function(req, res){
 			model.doneTask(req.body.dmy, req.body.pTask, function(){ 
-				model.list(req.body.dmy, function(err, answerDB){
+				model.list(req.body.dmy, '+',  function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
 					});
@@ -60,7 +60,7 @@ module.exports = function(model, view, request){
 		},
 		deleteList: function(req, res){
 			model.deleteList(req.body.dmy, req.body.pTask, true, function(){ 
-				model.list(req.body.dmy, function(err, answerDB){
+				model.list(req.body.dmy, '+', function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
 					});
@@ -95,6 +95,5 @@ module.exports = function(model, view, request){
 				}
 			});
 		}
-
 	}
 }

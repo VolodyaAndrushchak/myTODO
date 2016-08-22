@@ -6,40 +6,43 @@
 	 <link rel="stylesheet" href="dist/chartist.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="dist/chartist.min.js"> </script>
-
+	<script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251"></script>
 </head>
 
 <body>
-
+<div id = "mainWrapper">
 	<div id="header"><p>&#171</p>
 	</div>
 	<div  id = 'beforeWrapper'>
+		<div id = 'wrapperForSlider'>
+			<div id = 'blockWrapSlider' >
+				<div id='efficiency'>
+					<div id='tegEfficiency'>Your efficiency</div>
+					<div class="ct-chart ct-perfect-fourth"></div>
+				</div>
 
-		<div id='efficiency'>
-			<div id='tegEfficiency'>Your efficiency</div>
-			<div class="ct-chart ct-perfect-fourth"></div>
-		</div>
+				<div class="wrapper">
+					<div id ='leftArrowSlider'>&#171</div>
+					<div id = 'timeSlider'></div>
+					<div id = 'statusSlider'>Status</div>
+					<div id='contentSlider'>
+						<ul id = 'listSlider'>
+						</ul>
+					</div>
+					<div id ='rightArrowSlider'>&#187</div>
+				</div>
 
-		<div class="wrapper">
-			<div id ='leftArrowSlider'>&#171</div>
-			<div id = 'timeSlider'></div>
-			<div id = 'statusSlider'>Status</div>
-			<div id='contentSlider'>
-				<ul id = 'listSlider'>
-				</ul>
+				<div id = 'wheatherSide'>
+						<div id="timeWheather"></div>
+						<div id="dayWeek"></div>
+						<img id="imgWheather" src="">
+						<div id= "mainTemp"></div>
+						<table id = 'addParamWeath'>
+							<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Humidity</td> <td style="text-align: center; " id="humidity">12</td></tr>
+							<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
+						</table>
+				</div>
 			</div>
-			<div id ='rightArrowSlider'>&#187</div>
-		</div>
-
-		<div id = 'wheatherSide'>
-				<div id="timeWheather"></div>
-				<div id="dayWeek"></div>
-				<img id="imgWheather" src="">
-				<div id= "mainTemp"></div>
-				<table id = 'addParamWeath'>
-					<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Humidity</td> <td style="text-align: center; " id="humidity">12</td></tr>
-					<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
-				</table>
 		</div>
 
 	</div>	
@@ -58,15 +61,106 @@
 			<div  id="add_button">Add new task</div>
 	</div>
 
+</div>
+
+<div id="footer">
+	<div id= "wrapperFotter">
+		<div id="maintContFot">
+			<ul>
+				<li>
+					<div id = "imgDiv">
+						<img src="sfs.png">
+					</div>
+				</li>
+
+				<li>
+					<div id="comFoot">
+						<a href="joinTeam"><p>Join to our team</p></a>
+					</div>
+				</li>
+
+				<li>
+					<div id="aboutUs">
+						<a href="joinTeam"><p>About us</p></a>
+					</div>
+				</li>
+
+				<li>
+					<div id="amountUser"> 
+						<a href="/"><p>Us already <b>12</b> -  join to the fans planning time</p></a>
+					</div>
+				</li>
+
+				<!--<li>	
+					<div id = 'socialNet'>
+
+					</div>
+				</li>
+
+				<li>
+					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="icon" data-mobile-iframe="false" data-size="large"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"></a></div>
+				</li>-->
+
+				<li>
+					<div id="ourPartners">
+						<p>Our partners</p>
+					</div>
+				</li>
+
+
+				<li>
+					<div id = "contFooter">
+						<p>feedback:  todoforstudent@ukr.net</p>
+					</div>
+				</li>
+			</ul>
+				
+		</div>
+	</div>
+</div>
+
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>
+	document.getElementById('socialNet').innerHTML = VK.Share.button({
+		url: 'https://localhost:8080',
+	  title: 'Хороший сайт',
+	  description: 'My site',
+	  image: 'https://localhost:8080/sfs.png',
+	  noparse: true
+	},{type: "custom", text: "<img src=\"http://vk.com/images/share_32.png\" width=\"24\" height=\"24\" />"});
+
+	--></script>
 
 <script type="text/javascript">
 
 //$( window ).load(function() {
 
 	/*--- click on header(show slideMenu)---*/
+
+	/* if user clicked more then 1 time - prohibit moving upper main menu*/
+	var counterHeader = 0;
+
 	$('#header').click(function(){
 		$('#beforeWrapper').slideDown('slow');
 		$('#wheatherSide').slideDown('slow');
+
+		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') && counterHeader == 0 )
+		{
+			$('#showHideBut').animate({"top": "+=260px"}, "slow");
+			$('#main_content').animate({"top": "+=260px"}, "fast");
+			$('#Add_task').animate({"top": "+=260px"}, "fast");
+			counterHeader++;
+		}
+
+		
 	});
 	
 	/*--- button show/hide---*/ 
@@ -76,28 +170,48 @@
 		{
 			$('#main_content').slideToggle('slow');
 			$('#Add_task').slideToggle('slow');
+
 		}
 		else
 		{
+			if ( $('#beforeWrapper').css('display') == 'block') 
+			{
+				$('#showHideBut').animate({"top": "-=260px"}, "slow");
+				$('#main_content').animate({"top": "-=260px"}, "fast");
+				$('#Add_task').animate({"top": "-=260px"}, "fast");
+				
+			}
+			else
+			{
+				$('#showHideBut').animate({"top": "+=260px"}, "slow");
+				$('#main_content').animate({"top": "+=260px"}, "fast");
+				$('#Add_task').animate({"top": "+=260px"}, "fast");
+			}
+
 			$('#beforeWrapper').slideToggle('slow');
 			$('#wheatherSide').slideToggle('slow');
 			$('#main_content').slideToggle('slow');
 			$('#Add_task').slideToggle('slow');
+
+			/* allow moving upper main menu*/
+			counterHeader = 0;
 		} 
 	});
 
 	
 	var OBJDATA = new Date();
 
-	var mainpage = function(callback){
+	var mainpage = function(token, callback){
 
 		var localDate = newDate || OBJDATA;
+		var token = token || "+"; 
 
 		var dmyList = '' + localDate.getDate() + '-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear();
 		$('#timeSlider').html(dmyList);
 
 		var dayTodo = {
-			dmy: dmyList
+			dmy: dmyList,
+			token: token
 		};
 
 		$.ajax({
@@ -193,7 +307,7 @@
 
 	$('#add_button').click(function(){
 		
-		$('#mainUL').append("<div class = 'wrapperLI' style='display: none;'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>Task 2 </div><div class='time1'>10:00</div> <div class='time2'>12:00</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' style = 'top: -22px;' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
+		$('#mainUL').append("<div class = 'wrapperLI' style='display: none;'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>New Tasks</div><div class='time1'>HH:mm</div> <div class='time2'>HH:mm</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'  onclick = 'checkTime1(this);'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop' >to<input class = 'time2Pop'  >priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' style = 'top: -22px;' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
 		$('.wrapperLI').last().show('fast');
 	});
  //
@@ -334,14 +448,14 @@
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
 	
 		$('#mainUL').slideToggle("slow", function(){
-			mainpage(function(content){
+			mainpage('+', function(content){
 				$('#mainUL').html(content.mainContent);
 				$('#mainUL').slideToggle('slow');
 			});
 		});
 
 		$('#listSlider').slideToggle("slow", function(){
-			mainpage(function(content){
+			mainpage('+', function(content){
 				$('#listSlider').html(content.shortContent);
 				$('#listSlider').slideToggle('slow');
 			});
@@ -355,14 +469,14 @@
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
 		
 		$('#mainUL').slideToggle("slow", function(){
-			mainpage(function(content){
+			mainpage('-', function(content){
 				$('#mainUL').html(content.mainContent);
 				$('#mainUL').slideToggle('slow');
 			});
 		});
 
 		$('#listSlider').slideToggle("slow", function(){
-			mainpage(function(content){
+			mainpage('-', function(content){
 				$('#listSlider').html(content.shortContent);
 				$('#listSlider').slideToggle('slow');
 			});
@@ -370,6 +484,38 @@
 
 	});
 
+
+	function checkTime1(event){
+		$eventPoint = $(event).closest('li');
+		var objClass = ['.time1Pop', '.time2Pop'];
+		//var regExp = /^\d{2}:\d{2}$/;
+
+		objClass.forEach(function(item, i, arr){
+			var locObj = {
+				locStrTime : $eventPoint.find(item).val(),
+				resultRegExp: $eventPoint.find(item).val().match(/^\d{2}:\d{2}$/)
+			};
+
+			if(locObj.locStrTime === 'HH:mm' || locObj.resultRegExp != null)
+			{
+				console.log($eventPoint.find(item).css('borderTopColor'));
+				if($eventPoint.find(item).css('borderTopColor') == 'rgb(255, 255, 255)')
+				{
+					console.log(1);
+				}
+				else
+				{
+					console.log(2);
+					$eventPoint.find(item).css({'border-color': 'white'});
+				}
+			}
+			else
+			{
+				console.log(3);
+				$eventPoint.find(item).css({'border-color': 'red', 'border-width': '1px'});
+			}
+		});		
+	}
 
 	/*function which check the actual task in this time*/
 	setInterval(checkActualTask, 5000);

@@ -66,8 +66,15 @@ function viewEfficiency(answerDB, callback){
 	var obj = {};
 	obj.x = [];
 	obj.y = [];
+
 	obj.x[0] = answerDB[0].data;
 	obj.x[1] = answerDB[answerDB.length - 1].data;
+
+	obj.x.forEach(function(item, i, arr){
+		var localTime = obj.x[i].split('-');
+		obj.x[i] = localTime[0] + "." + localTime[1];
+	});
+
 	obj.localLength = 0;
 
 	if(answerDB.length <= 30)
@@ -76,21 +83,24 @@ function viewEfficiency(answerDB, callback){
 	}
 	else
 	{
-		obj.localLength = 30
+		obj.localLength = 30;
 	}
-
+	console.log(obj.localLength);
+	var counter = 0;
 	for(var i = 0; i < obj.localLength; i++)
 	{
-		if(!answerDB[i])
+		if(answerDB[i].totalNumbTasks == 0)
 		{
-			obj.y[i] = 0;
+			counter++;
+			continue;
 		}
 		else
 		{
-			obj.y[i] = ((parseFloat(answerDB[i].doneNumbTasks) / parseFloat(answerDB[i].totalNumbTasks))*100).toFixed(1);
-		}
+			obj.y.push(((parseFloat(answerDB[i].doneNumbTasks) / parseFloat(answerDB[i].totalNumbTasks))*100).toFixed(1)) ;
+		}	
 	}
-
+	obj.localLength = obj.localLength - counter;
+	
 	callback(obj);
 }
 
