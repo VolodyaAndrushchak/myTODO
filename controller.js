@@ -30,17 +30,13 @@ module.exports = function(model, view, request){
 		},
 		
 		edit: function(req, res){		
-
-			{
-				model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
+			model.Edit(req.body.dmy, req.body.pTask, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
 				model.list(req.body.dmy, '+',  function(err, answerDB){
 					view.viewMainList(answerDB, function(htmlContent){
 						res.json(htmlContent);
 					});
 				}); 
-				});		
-			}
-
+			});		
 		},
 		mainList: function(req, res){
 			model.list(req.query.dmy, req.query.token, function(err, answerDB){

@@ -91,16 +91,6 @@
 					</div>
 				</li>
 
-				<!--<li>	
-					<div id = 'socialNet'>
-
-					</div>
-				</li>
-
-				<li>
-					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="icon" data-mobile-iframe="false" data-size="large"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"></a></div>
-				</li>-->
-
 				<li>
 					<div id="ourPartners">
 						<p>Our partners</p>
@@ -119,26 +109,6 @@
 	</div>
 </div>
 
-
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.7";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<script>
-	document.getElementById('socialNet').innerHTML = VK.Share.button({
-		url: 'https://localhost:8080',
-	  title: 'Хороший сайт',
-	  description: 'My site',
-	  image: 'https://localhost:8080/sfs.png',
-	  noparse: true
-	},{type: "custom", text: "<img src=\"http://vk.com/images/share_32.png\" width=\"24\" height=\"24\" />"});
-
-	--></script>
-
 <script type="text/javascript">
 
 //$( window ).load(function() {
@@ -148,44 +118,35 @@
 	/* if user clicked more then 1 time - prohibit moving upper main menu*/
 	var counterHeader = 0;
 
+	/*--- click on header arrow---*/
 	$('#header').click(function(){
-		$('#beforeWrapper').slideDown('slow');
-		$('#wheatherSide').slideDown('slow');
+		firstSlideDown();
 
+		/*if header menu is none - display*/
 		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') && counterHeader == 0 )
 		{
-			$('#showHideBut').animate({"top": "+=260px"}, "slow");
-			$('#main_content').animate({"top": "+=260px"}, "fast");
-			$('#Add_task').animate({"top": "+=260px"}, "fast");
+			animateMainContent('+');
 			counterHeader++;
 		}
-
-		
 	});
 	
 	/*--- button show/hide---*/ 
 	$('#animButSH').click(function(){
-		//if( $('#beforeWrapper').css("dispaly") )
+		/*--- check if header menu is block ---*/
 		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') )
 		{
-			$('#main_content').slideToggle('slow');
-			$('#Add_task').slideToggle('slow');
 
+			secondSlideDown();
 		}
 		else
 		{
 			if ( $('#beforeWrapper').css('display') == 'block') 
 			{
-				$('#showHideBut').animate({"top": "-=260px"}, "slow");
-				$('#main_content').animate({"top": "-=260px"}, "fast");
-				$('#Add_task').animate({"top": "-=260px"}, "fast");
-				
+				animateMainContent('-');
 			}
 			else
 			{
-				$('#showHideBut').animate({"top": "+=260px"}, "slow");
-				$('#main_content').animate({"top": "+=260px"}, "fast");
-				$('#Add_task').animate({"top": "+=260px"}, "fast");
+				animateMainContent('+');
 			}
 
 			$('#beforeWrapper').slideToggle('slow');
@@ -198,7 +159,22 @@
 		} 
 	});
 
-	
+	/*--- help functions for main animates (#header) and (#animButSH) ---*/
+	function firstSlideDown(){
+		$('#beforeWrapper').slideDown('slow');
+		$('#wheatherSide').slideDown('slow');
+	}
+	function secondSlideDown(){
+		$('#main_content').slideToggle('slow');
+		$('#Add_task').slideToggle('slow');
+	}
+	function animateMainContent(token){
+		$('#showHideBut').animate({"top":  token + "=260px"}, "slow");
+		$('#main_content').animate({"top": token + "=260px"}, "fast");
+		$('#Add_task').animate({"top": token + "=260px"}, "fast");
+	}
+	/*--- end help functions ---*/
+
 	var OBJDATA = new Date();
 
 	var mainpage = function(token, callback){
@@ -310,11 +286,8 @@
 		$('#mainUL').append("<div class = 'wrapperLI' style='display: none;'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>New Tasks</div><div class='time1'>HH:mm</div> <div class='time2'>HH:mm</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'  onclick = 'checkTime1(this);'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop' >to<input class = 'time2Pop'  >priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' style = 'top: -22px;' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
 		$('.wrapperLI').last().show('fast');
 	});
- //
- 		//var counterForTime = 0;
+ 
 		var editADD = function(event, method, next){
-
-			//var dayForAdmit = 
 
 			var localDate = newDate || OBJDATA;
 			var $eventPoint = $(event).closest("li");
@@ -338,7 +311,6 @@
 				localDate.setDate(localDate.getDate() + 1);
 				typeReqAjax = method;
 				iter = 1;
-				
 			}
 
 			var obj = {
@@ -362,7 +334,6 @@
 		            {
 		            	localDate.setDate(localDate.getDate() - 1);
 		            }
-
 	            }
 	        });
 		}
@@ -389,11 +360,8 @@
 		            	$('#mainUL').html(answer.mainContent);
 		            }
 		        });
-			});
-			
+			});		
 		}
-
-
 
 		var doneTask = function(event){
 			
@@ -440,26 +408,13 @@
 	var counterData = 0; 
 	var newDate;
 
-
 	/*---Arrows - this is rigth arrows ---*/
 	$('#rightArrowSlider').click(function(){
 
 		++counterData;
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-	
-		$('#mainUL').slideToggle("slow", function(){
-			mainpage('+', function(content){
-				$('#mainUL').html(content.mainContent);
-				$('#mainUL').slideToggle('slow');
-			});
-		});
 
-		$('#listSlider').slideToggle("slow", function(){
-			mainpage('+', function(content){
-				$('#listSlider').html(content.shortContent);
-				$('#listSlider').slideToggle('slow');
-			});
-		});
+		actionArrow('+');
 		
 	});
 	/*--- this is left arrows ---*/
@@ -467,28 +422,31 @@
 
 		--counterData;
 		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-		
-		$('#mainUL').slideToggle("slow", function(){
-			mainpage('-', function(content){
-				$('#mainUL').html(content.mainContent);
-				$('#mainUL').slideToggle('slow');
-			});
-		});
 
-		$('#listSlider').slideToggle("slow", function(){
-			mainpage('-', function(content){
-				$('#listSlider').html(content.shortContent);
-				$('#listSlider').slideToggle('slow');
-			});
-		});
-
+		actionArrow('-');
 	});
+
+	/*--- help function for right and left arrows---*/
+		function actionArrow(token){
+			$('#mainUL').slideToggle("slow", function(){
+				mainpage(token, function(content){
+					$('#mainUL').html(content.mainContent);
+					$('#mainUL').slideToggle('slow');
+				});
+			});
+
+			$('#listSlider').slideToggle("slow", function(){
+				mainpage(token, function(content){
+					$('#listSlider').html(content.shortContent);
+					$('#listSlider').slideToggle('slow');
+				});
+			});
+		}
 
 
 	function checkTime1(event){
 		$eventPoint = $(event).closest('li');
 		var objClass = ['.time1Pop', '.time2Pop'];
-		//var regExp = /^\d{2}:\d{2}$/;
 
 		objClass.forEach(function(item, i, arr){
 			var locObj = {
@@ -539,8 +497,9 @@
 					}
 
 				});
-			//console.log(1);
 		}
+
+		/*--- help function---*/
 
 		function evMOverList(event){
 			$(event).find('.arrowForNextDay').css('display', 'block');
@@ -552,16 +511,13 @@
 
 		function taskOnTomorrow(event){
 			var $eventPoint = $(event).closest('li');
-			//console.log();
 			$(event).animate({"left": "+=200px", opacity: "hide"  }, "slow", function(){
 				$(event).closest('li').hide(500, function(){
 					editADD(event, 'POST', 1);
-					//deleteTask(event);
 				});
 				
 			});
 		}
-	
 //});
 
 </script>

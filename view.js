@@ -1,12 +1,14 @@
 var viewMainList = function(content, callback){
 
 	var htmlContent = '';
+	
 	for(var i = 0; i < content.length; i++)
 	{
 		var colorBlock = '';
 		var addButDone = '';
 		var styleBut = '';
 		var styleForNextDay ='';
+
 		if(content[i].done == 1)
 		{
 			colorBlock = 'background-color' + ':' + '#4C7C35;';
@@ -25,6 +27,7 @@ var viewMainList = function(content, callback){
 			" <input class='tastInput'>time <input class = 'time1Pop'>to<input class = 'time2Pop'>priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select></div> "
 			+ " <div class = 'editAdd' onclick= 'editADD(this)'>edit</div> </li> "
 	}
+
 	var statusDay = '';
 	if(content.length <= 3)
 	{
