@@ -7,7 +7,7 @@ module.exports = function(model, view, request){
 			model.Add(req.body.dmy, req.body.nTask, req.body.nTime1, req.body.nTime2, req.body.priority, function(){
 				if(req.body.previousDate)
 				{
-					includeEfficiency = false;
+					includeEfficiency = true;
 					model.deleteList(req.body.previousDate, req.body.nTask, includeEfficiency, function(){
 						model.list(req.body.previousDate, '+', function(err, answerDB){
 							view.viewMainList(answerDB, function(htmlContent){

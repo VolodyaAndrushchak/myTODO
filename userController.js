@@ -1,4 +1,4 @@
-module.exports = function(model, nodemailer, smtpTransport){
+module.exports = function(model, nodemailer, smtpTransport, md5){
 	return{
 		createAccount: function(req, res){
 			model.chekUserEmail(req.body.email, function(err, answerDB){
@@ -11,7 +11,8 @@ module.exports = function(model, nodemailer, smtpTransport){
 				}
 				else
 				{
-					model.createAccount(req.body.username, req.body.town, req.body.email, req.body.password, function(err, answerDB){
+					var md5Code = md5(req.body.username + req.body.password);
+					model.createAccount(req.body.username, req.body.town, req.body.email, req.body.password, md5Code, function(err, answerDB){
 						res.render('registration', {status: "Congratulations, you successfully registered!"});
 						console.log(22);
 					});

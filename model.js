@@ -1,11 +1,40 @@
 module.exports = function(pool){
 	return {
 		Add: function(dmy, nTask, nTime1, nTime2, priority, callback){
-			pool.query('INSERT INTO ?? (taskName, time1, time2, priority) VALUES (?, ?, ?, ?)' , [dmy, nTask, nTime1, nTime2, priority], callback);
 
-			pool.query('SELECT totalNumbTasks FROM efficiency WHERE data = ?', [dmy], function(err, answerDB){
-				var localTotalNumbTasks = answerDB[0].totalNumbTasks + 1;
-				pool.query('UPDATE efficiency SET totalNumbTasks = ? WHERE data = ?', [localTotalNumbTasks, dmy]);
+			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
+						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
+						"taskName varchar(200) DEFAULT NULL," +  
+						"time1 varchar(10) DEFAULT NULL," + 
+						"time2 varchar(10) DEFAULT NULL," +  
+						"priority varchar(1) DEFAULT NULL," +
+						"done varchar(1) DEFAULT NULL," +
+						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [dmy], function(err, answerDB){
+
+						if(answerDB.warningCount == 0)
+						{
+							console.log(dmy);
+							pool.query('INSERT INTO efficiency  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [dmy, 0, 0, 0], function(err, answerDB2){
+								pool.query('INSERT INTO ?? (taskName, time1, time2, priority) VALUES (?, ?, ?, ?)' , [dmy, nTask, nTime1, nTime2, priority], callback);
+
+								pool.query('SELECT totalNumbTasks FROM efficiency WHERE data = ?', [dmy], function(err, answerDB){
+									var localTotalNumbTasks = answerDB[0].totalNumbTasks + 1;
+									pool.query('UPDATE efficiency SET totalNumbTasks = ? WHERE data = ?', [localTotalNumbTasks, dmy]);
+								});
+							});
+
+							//console.log(answerDB.warningCount);
+						}
+						else
+						{
+							pool.query('INSERT INTO ?? (taskName, time1, time2, priority) VALUES (?, ?, ?, ?)' , [dmy, nTask, nTime1, nTime2, priority], callback);
+
+							pool.query('SELECT totalNumbTasks FROM efficiency WHERE data = ?', [dmy], function(err, answerDB){
+								var localTotalNumbTasks = answerDB[0].totalNumbTasks + 1;
+								pool.query('UPDATE efficiency SET totalNumbTasks = ? WHERE data = ?', [localTotalNumbTasks, dmy]);
+							});
+						}
+						
 			});
 		},
 
@@ -88,13 +117,13 @@ module.exports = function(pool){
 			pool.query("UPDATE users SET token = ? WHERE id = ?", [token, userId], callback);
 		},
 		checkUser: function(username, callback){
-			pool.query("SELECT ?? FROM ?? WHERE email = ? LIMIT 1", ['pass','users', username], callback);
+			pool.query("SELECT ??, ?? FROM ?? WHERE email = ? LIMIT 1", ['pass', 'hesh', 'users', username], callback);
 		},
 		chekUserEmail: function(email, callback){
 			pool.query("SELECT name FROM users WHERE email = ?", [email], callback);
 		},
-		createAccount: function(username, town, email, password, callback){
-			pool.query("INSERT INTO users (name, town, email, pass) VALUES (?, ?, ?, ?)", [username, town, email, password], callback);
+		createAccount: function(username, town, email, password, md5Code, callback){
+			pool.query("INSERT INTO users (name, town, email, pass, hesh) VALUES (?, ?, ?, ?, ?)", [username, town, email, password, md5Code], callback);
 		},
 		getPassword: function(email, callback){
 			pool.query("SELECT pass, name FROM users WHERE email = ?", [email], callback);

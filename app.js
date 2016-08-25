@@ -7,6 +7,7 @@ var templating = require('consolidate');
 var request = require('request');
 var urlutils = require('url');
 var cheerio = require('cheerio');
+var cookie = require('cookie');
 var cookieParser = require('cookie-parser');
 var session = require('cookie-session');
 var passport = require('passport');
@@ -14,6 +15,7 @@ var request = require('request');
 var utils = require('./utils');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
+var md5 = require('md5');
 
 var session = require('cookie-session');
 app.use(session({keys : ['secret']}));
@@ -31,12 +33,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var config = require('./config');
-var pool = mysql.createPool(config);
+//var pool = mysql.createPool(config);
+var pool = mysql.createPool({
+	connectionLimit : 10,
+	host: '127.0.0.1',
+	database: "mybase",
+	user: 'root',
+	password: '',
+	port: '3306'
+	//socketPath: '/var/run/mysqld/mysqld.sock'
+});
 
 var taskModel = require('./model')(pool);
 var view = require('./view')
 var controller = require('./controller')(taskModel, view, request);
-var userController = require('./userController')(taskModel, nodemailer, smtpTransport);
+var userController = require('./userController')(taskModel, nodemailer, smtpTransport, md5);
 
 var LocalStrategy = require('passport-local').Strategy;
 	passport.use(new LocalStrategy(
@@ -46,7 +57,7 @@ var LocalStrategy = require('passport-local').Strategy;
 				if (ansQuery.length != 0){
 					if (password != ansQuery[0].pass)
 						return done(null, false, {message: 'Неправильний пароль'});
-					return done(null, {username: username});
+					return done(null, ansQuery[0]);
 				}
 				return done(null, false, {message: 'Неправильний логін'});
 			});
@@ -54,7 +65,7 @@ var LocalStrategy = require('passport-local').Strategy;
 	));
 
 passport.serializeUser(function(user, done){
-	done(null, user.username);
+	done(null, user.hesh);
 });
 
 passport.deserializeUser(function(id, done){
@@ -77,6 +88,8 @@ app.get('/login', function(req, res){
 
 app.get('/', mustBeAuthenticated);
 app.get('/', function(req, res){
+	console.log(req.session.passport.user );
+	//var cookies = cookie.parse(req.headers.cookie || '');
 	res.render('index');
 });
 
