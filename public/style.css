@@ -66,6 +66,13 @@ cursor: pointer;
 color: #355F98;
 }
 
+#imgHeader{
+	width: 17px;
+	height: 17px;
+	position: relative;
+	top: 0px;
+	left: 40px;
+}
 /*---  Slider ---*/
 #beforeWrapper{
 width: 100%;
@@ -662,13 +669,29 @@ margin: 0 0 0 5px;
 
 #ourPartners{
 color: #234062;
-margin: 0 0 0 65px;
+margin: 0 0 0 55px;
 }
 
 #contFooter{
 color: #234062;
 font-size: 14px;
-margin: 2px 0 0 65px;
+margin: 2px 0 0 55px;
+}
+
+#imgUser{
+	width: 24px;
+	height: 24px;
+	margin: 0px 0 0 30px;
+}
+#imgLogout{
+	width: 24px;
+	height: 24px;
+	margin: 0px 0 0 45px;
+}
+#imgLogout img{
+	position: relative;
+	top: -17px;
+	left: 25px;
 }
 
 

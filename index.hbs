@@ -35,7 +35,7 @@
 				<div id = 'wheatherSide'>
 						<div id="timeWheather"></div>
 						<div id="dayWeek"></div>
-						<img id="imgWheather" src="">
+						<img id="imgWheather" >
 						<div id= "mainTemp"></div>
 						<table id = 'addParamWeath'>
 							<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Humidity</td> <td style="text-align: center; " id="humidity">12</td></tr>
@@ -87,7 +87,7 @@
 
 				<li>
 					<div id="amountUser"> 
-						<a href="/"><p>Us already <b>12</b> -  join to the fans planning time</p></a>
+						<a href="/" id = 'numberUsers' ><p id = 'numberUsers'></p></a>
 					</div>
 				</li>
 
@@ -103,6 +103,11 @@
 						<p>feedback:  todoforstudent@ukr.net</p>
 					</div>
 				</li>
+				<li>
+					<div id='imgLogout'>
+						<a href="/logout"><p>exit</p><!--<img src="exit.png">--></a>
+					</div>
+				</li>
 			</ul>
 				
 		</div>
@@ -113,6 +118,8 @@
 
 //$( window ).load(function() {
 
+
+	/****************************************/
 	/*--- click on header(show slideMenu)---*/
 
 	/* if user clicked more then 1 time - prohibit moving upper main menu*/
@@ -174,6 +181,9 @@
 		$('#Add_task').animate({"top": token + "=260px"}, "fast");
 	}
 	/*--- end help functions ---*/
+	/****************************************/
+
+
 
 	var OBJDATA = new Date();
 
@@ -216,19 +226,33 @@
 		$('#timeWheather').html(''+ OBJDATA.getDate() + '-' + ( OBJDATA.getMonth() + 1 ) + '-' + OBJDATA.getFullYear());
 
 		var objWheather = {
-			city: 'Lviv'
+			//city: 'Lviv'
 		};
 		$.ajax({
             url: '/header/wheather',
             type: 'GET',
             data: objWheather,
             success: function(answer){
-            	console.log(answer.icon);
-            	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][OBJDATA.getDay()]);
-            	$('#imgWheather').attr('src', 'iconWeather/' + answer.icon + '.gif');
-            	$('#mainTemp').html(answer.temperature);
-            	$('#wind').html(answer.wind + " m/s");
- 		        $('#humidity').html(answer.listWheather.main.humidity + " %");
+            	if(typeof answer == 'object')
+            	{
+	            	console.log(typeof answer);
+	            	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][OBJDATA.getDay()]);
+	            	$('#imgWheather').attr('src', 'iconWeather/' + answer.icon + '.gif');
+	            	$('#mainTemp').html(answer.temperature);
+	            	$('#wind').html(answer.wind + " m/s");
+	 		        $('#humidity').html(answer.listWheather.main.humidity + " %");
+ 		    	}
+ 		    	else
+ 		    	{
+ 		    		$('#dayWeek').empty();
+ 		    		$('#imgWheather').empty();
+ 		    		$('#addParamWeath').empty();
+ 		    		$('#imgWheather').empty();
+ 		    		$('#mainTemp').css({
+ 		    			'font-size': '18px'
+ 		    		});
+ 		    		$('#mainTemp').html(answer);
+ 		    	}
             }
 		});
 	}
@@ -274,10 +298,23 @@
         });
 	}
 
+	function getNumberUser(){
+		$.ajax({
+            url: '/numberUsers',
+            type: 'GET',
+            success: function(answer){
+            	console.log(answer);
+            	$('#numberUsers').html('Us already <b>' + answer + '</b> join to the fans planning time');
+            }
+        });
+	}
+
+
 	 $('#main_content').each(function(){
 		mainpage();
 		wheather();
 		efficiency();
+		getNumberUser();
 
 	});
 
@@ -456,14 +493,11 @@
 
 			if(locObj.locStrTime === 'HH:mm' || locObj.resultRegExp != null)
 			{
-				console.log($eventPoint.find(item).css('borderTopColor'));
 				if($eventPoint.find(item).css('borderTopColor') == 'rgb(255, 255, 255)')
 				{
-					console.log(1);
 				}
 				else
 				{
-					console.log(2);
 					$eventPoint.find(item).css({'border-color': 'white'});
 				}
 			}

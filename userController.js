@@ -2,19 +2,18 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 	return{
 		createAccount: function(req, res){
 			model.chekUserEmail(req.body.email, function(err, answerDB){
-				//console.log(answerDB);
 				if(answerDB.length != 0)
 				{
-					//res.redirect('/login');
 					res.render('registration', {status: "There is user with this e-mail!"});
-					console.log(11);
 				}
 				else
 				{
+					var objData = new Date();
+					var dmy = '' + objData.getDate() + '-' + ( objData.getMonth() + 1 ) + '-' + objData.getFullYear();
+
 					var md5Code = md5(req.body.username + req.body.password);
-					model.createAccount(req.body.username, req.body.town, req.body.email, req.body.password, md5Code, function(err, answerDB){
-						res.render('registration', {status: "Congratulations, you successfully registered!"});
-						console.log(22);
+					model.createAccount(dmy, req.body.username, req.body.town, req.body.email, req.body.password, md5Code, function(err, answerDB){
+					res.render('registration', {status: "Congratulations, you successfully registered!"});
 					});
 				}
 			});
@@ -47,7 +46,7 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 
     				transport.sendMail(params, function (err, res) {
      		 			if (err) {
-         					console.error(err);
+         					//console.error(err);
       					}
     				});
 
@@ -57,6 +56,11 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 				{
 					res.render('registration', {status: "This e-mail is absent in base - please, check form of your email address"});
 				}
+			});
+		},
+		getNumberUsers: function(req, res){
+			model.getNumberUsers(function(err, answer){
+				res.json(answer.length + 35);
 			});
 		}
 	}

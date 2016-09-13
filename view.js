@@ -70,41 +70,45 @@ function viewEfficiency(answerDB, callback){
 	obj.x = [];
 	obj.y = [];
 
-	obj.x[0] = answerDB[0].data;
-	obj.x[1] = answerDB[answerDB.length - 1].data;
-
-	obj.x.forEach(function(item, i, arr){
-		var localTime = obj.x[i].split('-');
-		obj.x[i] = localTime[0] + "." + localTime[1];
-	});
-
-	obj.localLength = 0;
-
-	if(answerDB.length <= 30)
+	if(answerDB.length != 0)
 	{
-		obj.localLength = answerDB.length;
-	}
-	else
-	{
-		obj.localLength = 30;
-	}
-	console.log(obj.localLength);
-	var counter = 0;
-	for(var i = 0; i < obj.localLength; i++)
-	{
-		if(answerDB[i].totalNumbTasks == 0)
+		obj.x[0] = answerDB[0].data;
+		obj.x[1] = answerDB[answerDB.length - 1].data;
+
+		obj.x.forEach(function(item, i, arr){
+			var localTime = obj.x[i].split('-');
+			obj.x[i] = localTime[0] + "." + localTime[1];
+		});
+
+		obj.localLength = 0;
+
+		if(answerDB.length <= 30)
 		{
-			counter++;
-			continue;
+			obj.localLength = answerDB.length;
 		}
 		else
 		{
-			obj.y.push(((parseFloat(answerDB[i].doneNumbTasks) / parseFloat(answerDB[i].totalNumbTasks))*100).toFixed(1)) ;
-		}	
+			obj.localLength = 30;
+		}
+		var counter = 0;
+		for(var i = 0; i < obj.localLength; i++)
+		{
+			if(answerDB[i].totalNumbTasks == 0)
+			{
+				counter++;
+				continue;
+			}
+			else
+			{
+				obj.y.push(((parseFloat(answerDB[i].doneNumbTasks) / parseFloat(answerDB[i].totalNumbTasks))*100).toFixed(1));
+			}	
+		}
+		console.log(obj.y.length);
+		obj.localLength = obj.localLength - counter;
+		console.log(obj);
+		callback(obj);
 	}
-	obj.localLength = obj.localLength - counter;
 	
-	callback(obj);
 }
 
 module.exports = {

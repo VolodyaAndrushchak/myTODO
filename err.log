@@ -1,0 +1,68 @@
+C:\TODO\node_modules\mysql\lib\protocol\Parser.js:78
+        throw err; // Rethrow non-MySQL errors
+        ^
+
+TypeError: Cannot read property 'length' of undefined
+    at Query._callback (C:\TODO\app.js:57:17)
+    at Query.Sequence.end (C:\TODO\node_modules\mysql\lib\protocol\sequences\Sequence.js:85:24)
+    at Query.ErrorPacket (C:\TODO\node_modules\mysql\lib\protocol\sequences\Query.js:94:8)
+    at Protocol._parsePacket (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:280:23)
+    at Parser.write (C:\TODO\node_modules\mysql\lib\protocol\Parser.js:74:12)
+    at Protocol.write (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\TODO\node_modules\mysql\lib\Connection.js:109:28)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at readableAddChunk (_stream_readable.js:153:18)
+    at Socket.Readable.push (_stream_readable.js:111:10)
+    at TCP.onread (net.js:531:20)
+C:\TODO\node_modules\mysql\lib\protocol\Parser.js:78
+        throw err; // Rethrow non-MySQL errors
+        ^
+
+TypeError: Cannot read property 'length' of undefined
+    at Query._callback (C:\TODO\app.js:57:17)
+    at Query.Sequence.end (C:\TODO\node_modules\mysql\lib\protocol\sequences\Sequence.js:85:24)
+    at Query.ErrorPacket (C:\TODO\node_modules\mysql\lib\protocol\sequences\Query.js:94:8)
+    at Protocol._parsePacket (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:280:23)
+    at Parser.write (C:\TODO\node_modules\mysql\lib\protocol\Parser.js:74:12)
+    at Protocol.write (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\TODO\node_modules\mysql\lib\Connection.js:109:28)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at readableAddChunk (_stream_readable.js:153:18)
+    at Socket.Readable.push (_stream_readable.js:111:10)
+    at TCP.onread (net.js:531:20)
+C:\TODO\node_modules\mysql\lib\protocol\Parser.js:78
+        throw err; // Rethrow non-MySQL errors
+        ^
+
+TypeError: Cannot read property 'length' of undefined
+    at Query._callback (C:\TODO\app.js:57:17)
+    at Query.Sequence.end (C:\TODO\node_modules\mysql\lib\protocol\sequences\Sequence.js:85:24)
+    at Query.ErrorPacket (C:\TODO\node_modules\mysql\lib\protocol\sequences\Query.js:94:8)
+    at Protocol._parsePacket (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:280:23)
+    at Parser.write (C:\TODO\node_modules\mysql\lib\protocol\Parser.js:74:12)
+    at Protocol.write (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\TODO\node_modules\mysql\lib\Connection.js:109:28)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at readableAddChunk (_stream_readable.js:153:18)
+    at Socket.Readable.push (_stream_readable.js:111:10)
+    at TCP.onread (net.js:531:20)
+C:\TODO\node_modules\mysql\lib\protocol\Parser.js:78
+        throw err; // Rethrow non-MySQL errors
+        ^
+
+TypeError: Cannot read property 'length' of undefined
+    at Query._callback (C:\TODO\app.js:57:17)
+    at Query.Sequence.end (C:\TODO\node_modules\mysql\lib\protocol\sequences\Sequence.js:85:24)
+    at Query.ErrorPacket (C:\TODO\node_modules\mysql\lib\protocol\sequences\Query.js:94:8)
+    at Protocol._parsePacket (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:280:23)
+    at Parser.write (C:\TODO\node_modules\mysql\lib\protocol\Parser.js:74:12)
+    at Protocol.write (C:\TODO\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\TODO\node_modules\mysql\lib\Connection.js:109:28)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at readableAddChunk (_stream_readable.js:153:18)
+    at Socket.Readable.push (_stream_readable.js:111:10)
+    at TCP.onread (net.js:531:20)

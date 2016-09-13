@@ -11,7 +11,7 @@ body{
 background-image: url(background.png);
 }
  p {
-    text-indent: 20px; /* Отступ первой строки в пикселах */
+    /*text-indent: 20px; /* Отступ первой строки в пикселах */
     line-height: 1.5em;
     font-family: Georgia;
    }

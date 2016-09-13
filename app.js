@@ -54,10 +54,11 @@ var LocalStrategy = require('passport-local').Strategy;
 		
 		function(username, password, done){
 			taskModel.checkUser(username, function(err, ansQuery){
+				console.log(ansQuery);
 				if (ansQuery.length != 0){
 					if (password != ansQuery[0].pass)
 						return done(null, false, {message: 'Неправильний пароль'});
-					return done(null, ansQuery[0]);
+					return done(null, ansQuery[0])
 				}
 				return done(null, false, {message: 'Неправильний логін'});
 			});
@@ -88,7 +89,7 @@ app.get('/login', function(req, res){
 
 app.get('/', mustBeAuthenticated);
 app.get('/', function(req, res){
-	console.log(req.session.passport.user );
+	//console.log(req.session.passport.user );
 	//var cookies = cookie.parse(req.headers.cookie || '');
 	res.render('index');
 });
@@ -97,8 +98,8 @@ app.post('/login', auth);
 
 app.get('/logout', function(req, res){
 	req.logout();
+	res.render('registration');
 	//res.clearCookie('remember_me');
-	res.redirect('/login');
 });
 app.get('/joinTeam', function(req, res){
 	res.render('joinTeam');
@@ -107,15 +108,18 @@ app.get('/joinTeam', function(req, res){
 app.get('/header/*', mustBeAuthenticated);
 app.get('/tasks/*', mustBeAuthenticated);
 
+
 app.post('/registration', userController.createAccount);
 app.post('/getPassword', userController.getPassword);
 app.get('/header/wheather', controller.wheather);
 app.get('/header/efficiency', controller.efficiency);
 app.get('/tasks/mainList', controller.mainList);
+app.get('/numberUsers', userController.getNumberUsers);
 app.post('/tasks/editAdd', controller.add);
 app.put('/tasks/editAdd', controller.edit);
 app.put('/tasks/donetask', controller.doneTask);
 app.delete('/tasks/delete', controller.deleteList);
+
 
 app.listen(8080);
 console.log('Listening 8080...');
