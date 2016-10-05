@@ -103,9 +103,9 @@ function viewEfficiency(answerDB, callback){
 				obj.y.push(((parseFloat(answerDB[i].doneNumbTasks) / parseFloat(answerDB[i].totalNumbTasks))*100).toFixed(1));
 			}	
 		}
-		console.log(obj.y.length);
+		//console.log(obj.y.length);
 		obj.localLength = obj.localLength - counter;
-		console.log(obj);
+		//console.log(obj);
 		callback(obj);
 	}
 	

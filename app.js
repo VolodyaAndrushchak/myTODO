@@ -33,8 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var config = require('./config');
-//var pool = mysql.createPool(config);
-var pool = mysql.createPool({
+var pool = mysql.createPool(config);
+/*var pool = mysql.createPool({
 	connectionLimit : 10,
 	host: '127.0.0.1',
 	database: "mybase",
@@ -42,11 +42,11 @@ var pool = mysql.createPool({
 	password: '',
 	port: '3306'
 	//socketPath: '/var/run/mysqld/mysqld.sock'
-});
+});*/
 
 var taskModel = require('./model')(pool);
 var view = require('./view')
-var controller = require('./controller')(taskModel, view, request);
+var controller = require('./controller')(taskModel, view, request, cheerio);
 var userController = require('./userController')(taskModel, nodemailer, smtpTransport, md5);
 
 var LocalStrategy = require('passport-local').Strategy;
@@ -115,6 +115,10 @@ app.get('/header/wheather', controller.wheather);
 app.get('/header/efficiency', controller.efficiency);
 app.get('/tasks/mainList', controller.mainList);
 app.get('/numberUsers', userController.getNumberUsers);
+app.get('/getNewsStudway', controller.getNews);
+app.get('/getNewsNULP', controller.getNews);
+app.get('/getNewsTerytorija', controller.getNews);
+app.get('/getNewsZaxid', controller.getNews);
 app.post('/tasks/editAdd', controller.add);
 app.put('/tasks/editAdd', controller.edit);
 app.put('/tasks/donetask', controller.doneTask);

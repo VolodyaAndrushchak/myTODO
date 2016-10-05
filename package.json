@@ -18,6 +18,8 @@
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.14.0",
     "handlebars": "^4.0.5",
+    "jQuery": "^1.7.4",
+    "jsdom": "^9.5.0",
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
     "nodemailer-smtp-transport": "^2.6.0",

@@ -1,4 +1,4 @@
-module.exports = function(model, view, request){
+module.exports = function(model, view, request, cheerio){
 	return {
 		add: function(req, res){
 			var localDay = req.body.dmy,
@@ -76,10 +76,54 @@ module.exports = function(model, view, request){
 					{
 						temperature = '+';
 					}
-					res.json({ 	listWheather: bodyObj.list[0], 
-							icon: bodyObj.list[0].weather[0].icon, 
-							temperature: temperature + bodyObj.list[0].main.temp + '<sup>o</sup> C',
-							wind: bodyObj.list[0].wind.speed.toFixed(1)
+
+					var reg = {
+						clock: /[0-2]{1}[0-9]{1}:00/,
+						date: /20\d{2}-[0-1]{1}\d{1}-[0-3]{1}\d{1}/
+					};
+
+					var i = 0;
+
+					
+					//console.log(req.query.timeWheather);
+
+					if ( (req.query.countDateWheatre != 0) && (req.query.countHourWheather != 0) ) {
+						//console.log(bodyObj.list[i]);
+
+						while( (bodyObj.list[i].dt_txt ) != (req.query.timeWheather + ' 03:00:00') ) {
+							i++;
+
+						}
+
+						i = i + Number(req.query.countHourWheather) + 1;
+						console.log(i);
+					} else {
+						//console.log(bodyObj.list[i].dt_txt );	
+						if (req.query.countDateWheatre != 0) {
+
+							//var result = bodyObj.list[i].dt_txt;
+							//console.log( bodyObj.list[2].dt_txt /*==  req.query.timeWheather + ' 03:00:00'*/);
+							//console.log( req.query.timeWheather + ' 03:00:00' );
+							while( ( bodyObj.list[i].dt_txt ) != (req.query.timeWheather + ' 03:00:00') ) {
+								//console.log('1+2');
+								i++;
+								/*console.log(req.query.timeWheather + ' 03:00:00');
+								result = bodyObj.list[i].dt_txt;*/
+								
+							}
+
+							i++;
+						} else {
+							i =  Number(req.query.countHourWheather) ;
+						}
+					}
+
+					res.json({ 	listWheather: bodyObj.list[i], 
+							icon: bodyObj.list[i].weather[0].icon, 
+							temperature: temperature + bodyObj.list[i].main.temp + '<sup>o</sup> C',
+							wind: bodyObj.list[i].wind.speed.toFixed(1),
+							timeClock: reg.clock.exec(bodyObj.list[i].dt_txt),
+							timeDate: reg.date.exec(bodyObj.list[i].dt_txt)
 						});
 				}
 				catch(errTry)
@@ -102,6 +146,153 @@ module.exports = function(model, view, request){
 					model.delFirstRow();
 				}
 			});
+		},
+
+		getNews: function(req, res) {
+			function ConstrGetNews() {
+				this.request = function() {
+					var picture = '';
+
+					var objSubNewsStudway = { 'News' : [4, 'http://studway.com.ua/category/news/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Inside' : [4, 'http://studway.com.ua/category/inside/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Lifehack' : [4, 'http://studway.com.ua/category/lifehack/','.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Tests' : [4, 'http://studway.com.ua/category/test/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Travel' : [4, 'http://studway.com.ua/category/travel/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Blogs' : [4, 'http://studway.com.ua/category/columns/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'NewsNulp': [8, 'http://www.lp.edu.ua/news/', '.views-row', '.field-content', '.field-content'],
+											'Students' : [8, 'http://www.lp.edu.ua/students', '.col-md-3', '.field-content', '.field-content'],
+											'Graduares': [8, 'http://www.lp.edu.ua/alumni', '.col-md-3', '.field-content', '.field-content'],
+											'Employees': [8, 'http://www.lp.edu.ua/faculty', '.col-md-3', '.field-content', '.field-content'],
+											'NewsTerytorija': [4, 'http://terytoriya.com.ua/index.php/category/novini/', '.post-block-item', '.post-image', '.img-responsive', '.post-block-name', '.post-block-name'],
+											'Reach': [4, 'http://terytoriya.com.ua/index.php/category/dosyagay/', '.post-block-item', '.post-image', '.img-responsive', '.post-block-name', '.post-block-name'],
+											'Travel': [4, 'http://terytoriya.com.ua/index.php/category/mandruy/', '.post-block-item', '.post-image', '.img-responsive', '.post-block-name', '.post-block-name'],
+											'Visit': [4, 'http://terytoriya.com.ua/index.php/category/vidviduy/', '.post-block-item', '.post-image', '.img-responsive', '.post-block-name', '.post-block-name'],
+											'Listen': [4, 'http://terytoriya.com.ua/index.php/category/sluhay/', '.post-block-item', '.post-image', '.img-responsive', '.post-block-name', '.post-block-name'],
+											'NewsZaxid': [8, 'http://zaxid.net/news/showList.do', '.default-news-list', '.default-news-list', '.news-title'],
+											'Lviv': [8, 'http://zaxid.net/news/showList.do?novini_lvova&tagId=50956', '.default-news-list', '.default-news-list', '.news-title'],
+											'Society': [8, 'http://zaxid.net/news/showList.do?suspilstvo&tagId=52456', '.default-news-list', '.default-news-list', '.news-title'],
+											'Economy': [8, 'http://zaxid.net/news/showList.do', '.default-news-list', '.default-news-list', '.news-title'],
+											'IQ': [4, 'http://zaxid.net/news/showList.do?iq&tagId=52457', '.b_video', '.b_photo', '.photo_inner', '.title'],
+											'World': [8, 'http://zaxid.net/news/showList.do?novini_svitu&tagId=50962', '.default-news-list', '.default-news-list', '.news-title']
+
+					};
+					//console.log(req.query.subNewStud);
+					request.get(objSubNewsStudway[req.query.subNewStud][1], function(err, response, body){
+						var $ = cheerio.load(body);
+
+						//console.log(req.query.counter);
+
+						$(objSubNewsStudway[req.query.subNewStud][2]).each(function(i, element){
+
+							
+								//if (objSubNewsStudway[req.query.subNewStud].length == 6)
+								//{
+								if ( (i < ((Number(req.query.counter) + 1) * objSubNewsStudway[req.query.subNewStud][0] )) && (i >= (req.query.counter * objSubNewsStudway[req.query.subNewStud][0] )) )
+								{
+									if (req.query.doman == 'http://terytoriya.com.ua' ) 
+									{
+										//if ( (i < ((Number(req.query.counter) + 1) * 4)) && (i >= (req.query.counter * 4)) )
+										{
+											var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+												$(this).find(objSubNewsStudway[req.query.subNewStud][5]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).html() + "</p> </a> </div> </article>";
+											picture = picture + article;
+										}
+									}
+									if (req.query.doman == 'http://studway.com.ua') 
+									{
+										//if ( (i < ((Number(req.query.counter) + 1) * 4)) && (i >= (req.query.counter * 4)) )
+										{
+											var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+												$(this).find(objSubNewsStudway[req.query.subNewStud][5]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).find('a').html() + "</p> </a> </div> </article>";
+											picture = picture + article;
+										}
+									}	
+								//}
+									if (req.query.doman == 'http://www.lp.edu.ua')
+									{	
+										//if ( (i < ((Number(req.query.counter) + 1) * 8)) && (i >= (req.query.counter * 8)) )
+										{
+											var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://www.lp.edu.ua/" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('a').html() + "</p></div> </article>";
+											picture = picture + article;
+										}
+									}
+
+									if (req.query.doman == 'http://zaxid.net')
+									{	
+										//if ( (i < ((Number(req.query.counter) + 1) * 8)) && (i >= (req.query.counter * 8)) )
+										{
+											//console.log($(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('img')['0']);
+											var tmp;
+											if ($(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img')['0']) 
+											{
+												if (req.query.subNewStud == 'IQ') 
+												{
+													var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+												$(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][5]).html() + "</p> </a> </div> </article>";
+												}
+												else
+												{
+													var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find('.title').html() + "</p></div> </article>";
+												}
+												
+												
+												//tmp = $(this).find('.title').html();
+											}
+											else
+											{
+												var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).html() + "</p></div> </article>";
+												//tmp = $(this).find(objSubNewsStudway[req.query.subNewStud][3]).html();
+											}
+
+											
+											picture = picture + article;
+										}
+										//console.log(picture);
+									}
+								}
+ 
+						});
+
+						res.json(picture);
+					});
+				};
+			}
+
+			var objReqNew = new ConstrGetNews();
+			objReqNew.request();
+		},
+
+
+		getNewsStudway: function(req, res){
+			var picture = '';
+
+			var objSubNewsStudway = { 'News' : 'http://studway.com.ua/category/news/',
+										'Inside' : 'http://studway.com.ua/category/inside/',
+										'Lifehack' : 'http://studway.com.ua/category/lifehack/',
+										'Tests' : 'http://studway.com.ua/category/test/',
+										'Travel' : 'http://studway.com.ua/category/travel/',
+										'Blogs' : 'http://studway.com.ua/category/columns/'
+			};
+
+				request.get(objSubNewsStudway[req.query.subNewStud], function(err, response, body){
+				var $ = cheerio.load(body);
+
+				$('.entry-wrap').each(function(i, element){
+
+					if ( (i < ((Number(req.query.counter) + 1) * 4)) && (i >= (req.query.counter * 4)) )
+					{
+						var tmp = $(this).find('.post-thumbnail').attr('href').toString();
+						var article = "<article> <div class = 'title-img'> <a href ='" + $(this).find('.post-thumbnail').attr('href') + "'> <img width = '220px' src ='" + $(this).find('.wp-post-image').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+								$(this).find('.entry-title').find('a').attr('href') + "'> <p>" + $(this).find('.entry-title').find('a').html() + "</p> </a> </div> </article>";
+						picture = picture + article;
+					}
+
+				});
+
+				res.json(picture);
+			});
+			
 		}
+
 	}
 }

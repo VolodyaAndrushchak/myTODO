@@ -33,8 +33,17 @@
 				</div>
 
 				<div id = 'wheatherSide'>
-						<div id="timeWheather"></div>
+						<div id = 'mainTimeWeather'>
+							<div class = 'leftArrowWeather'><img src="img/leftArrow.png" onclick = 'leftArrowDate()'></div>
+							<div id="timeWheather"></div>
+							<div class = 'rightArrowWeather'><img src="img/rightArrow.png" onclick = 'rightArrowDate()'></div>
+						</div>
 						<div id="dayWeek"></div>
+						<div id = 'clockWeather'>
+							<div class = 'leftArrowWeather'><img src="img/leftArrow.png" onclick = 'leftArrowClock()'></div>
+							<p id = 'clockWeather_p'>09:00</p>
+							<div class = 'rightArrowWeather'><img src="img/rightArrow.png" onclick = 'rightArrowClock()'></div>
+						</div>
 						<img id="imgWheather" >
 						<div id= "mainTemp"></div>
 						<table id = 'addParamWeath'>
@@ -50,6 +59,109 @@
 	<div id="showHideBut">
 		<div id="animButSH">show/hide</div>
 	</div>
+
+
+	<div id = 'contentNew'>
+		<div id = 'conNbeforeBlock'>
+			<div id = 'wrapperContentNew'>
+				<div class = 'contentNewDirectly'>
+					<ul>
+						<li class = 'liPartNews' id = 'Studway'>
+							<div class = 'titleContentNew'>
+								<img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png">
+								<p class ='logoContentNew'>Studway</p>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsStudway'  >News</li>
+										<li class = 'subNewsStudway' >Inside</li>
+										<li class = 'subNewsStudway' >Lifehack</li>
+										<li class = 'subNewsStudway' >Tests</li>
+										<li class = 'subNewsStudway' >Travel</li>
+										<li class = 'subNewsStudway' >Blogs</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'contentBetweenArrows Studway'>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+						<li class = 'liPartNews' id = 'NULP'>
+							<div class = 'titleContentNew'>
+								<img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png">
+								<p class ='logoContentNew'>Studway</p>
+									<div class = 'listStudwayOpportunity'>
+									<ul>
+										<li class = 'subNewsNULP' >Students</li>
+										<li class = 'subNewsNULP' >Graduares</li>
+										<li class = 'subNewsNULP' >Employees</li>
+										<li class = 'subNewsNULP' style="width:150px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
+										<li class = 'subNewsNULP' style="width:150px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew'>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)'>&#171</div>
+								<div class = 'contentBetweenArrows NULP'>Content</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+
+						<li class = 'liPartNews' id = 'Terytorija'>
+							<div class = 'titleContentNew'>
+								<img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png">
+								<p class ='logoContentNew'>Studway</p>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsTerytorija' >Reach</li>
+										<li class = 'subNewsTerytorija' >Travel</li>
+										<li class = 'subNewsTerytorija' >Visit</li>
+										<li class = 'subNewsTerytorija' >Listen</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'contentBetweenArrows Terytorija'>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+
+						<li class = 'liPartNews' id = 'Zaxid'>
+							<div class = 'titleContentNew'>
+								<img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png">
+								<p class ='logoContentNew'>Studway</p>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsZaxid' >Lviv</li>
+										<li class = 'subNewsZaxid' >Society</li>
+										<li class = 'subNewsZaxid' >Economy</li>
+										<li class = 'subNewsZaxid' >IQ</li>
+										<li class = 'subNewsZaxid' >World</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'contentBetweenArrows Zaxid'>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<div id="main_content">
 		<ul id='mainUL'>
@@ -155,11 +267,14 @@
 			{
 				animateMainContent('+');
 			}
+			$('#contentNew').slideToggle('fast', function(){
+				$('#main_content').slideToggle('slow');
+				$('#Add_task').slideToggle('slow');
+			});
 
 			$('#beforeWrapper').slideToggle('slow');
 			$('#wheatherSide').slideToggle('slow');
-			$('#main_content').slideToggle('slow');
-			$('#Add_task').slideToggle('slow');
+			
 
 			/* allow moving upper main menu*/
 			counterHeader = 0;
@@ -172,8 +287,11 @@
 		$('#wheatherSide').slideDown('slow');
 	}
 	function secondSlideDown(){
-		$('#main_content').slideToggle('slow');
+		$('#main_content').slideToggle('slow', function(){
+			$('#contentNew').slideToggle('slow');
+		});
 		$('#Add_task').slideToggle('slow');
+		
 	}
 	function animateMainContent(token){
 		$('#showHideBut').animate({"top":  token + "=260px"}, "slow");
@@ -221,13 +339,31 @@
 		});
 	}
 
+	var COUNTER_ARROW_WHEATHER_CLOCK = 0;
+	var COUNTER_ARROW_WHEATHER_DATE = 0;
+	var DATE_FOR_WEATHER = new Date();
 	var wheather = function(){
 
-		$('#timeWheather').html(''+ OBJDATA.getDate() + '-' + ( OBJDATA.getMonth() + 1 ) + '-' + OBJDATA.getFullYear());
+		/*$('#timeWheather').html(''+ DATE_FOR_WEATHER.getDate() + '-' + ( DATE_FOR_WEATHER.getMonth() + 1 ) + '-' + DATE_FOR_WEATHER.getFullYear());*/
 
 		var objWheather = {
-			//city: 'Lviv'
+			timeWheather: DATE_FOR_WEATHER.getFullYear() + '-' + ('0' + (DATE_FOR_WEATHER.getMonth() + 1 )).slice(-2) + '-' + ('0' + DATE_FOR_WEATHER.getDate()).slice(-2),
+			countHourWheather: COUNTER_ARROW_WHEATHER_CLOCK,
+			countDateWheatre: COUNTER_ARROW_WHEATHER_DATE
 		};
+
+		
+      		$("#dayWeek").fadeToggle("fast");
+      		$('#imgWheather').fadeToggle("fast");
+        	$('#mainTemp').fadeToggle("fast");
+        	$('#wind').fadeToggle("fast");
+	        $('#humidity').fadeToggle("fast");
+	        $('#clockWeather_p').fadeToggle("fast");
+	        $('#timeWheather').fadeToggle("fast");
+	        $('#addParamWeath').fadeToggle("fast");
+
+
+
 		$.ajax({
             url: '/header/wheather',
             type: 'GET',
@@ -235,12 +371,23 @@
             success: function(answer){
             	if(typeof answer == 'object')
             	{
-	            	console.log(typeof answer);
-	            	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][OBJDATA.getDay()]);
+	            	$('#dayWeek').html(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturady"][DATE_FOR_WEATHER.getDay()]);
 	            	$('#imgWheather').attr('src', 'iconWeather/' + answer.icon + '.gif');
 	            	$('#mainTemp').html(answer.temperature);
 	            	$('#wind').html(answer.wind + " m/s");
 	 		        $('#humidity').html(answer.listWheather.main.humidity + " %");
+	 		        $('#clockWeather_p').html(answer.timeClock);
+	 		        $('#timeWheather').html(answer.timeDate);
+
+
+	 		        $("#dayWeek").fadeToggle("fast");
+			  		$('#imgWheather').fadeToggle("fast");
+			    	$('#mainTemp').fadeToggle("fast");
+			    	$('#wind').fadeToggle("fast");
+			        $('#humidity').fadeToggle("fast");
+			        $('#clockWeather_p').fadeToggle("fast");
+			        $('#timeWheather').fadeToggle("fast");
+			        $('#addParamWeath').fadeToggle("fast");
  		    	}
  		    	else
  		    	{
@@ -255,6 +402,30 @@
  		    	}
             }
 		});
+	}
+
+	function leftArrowDate() {
+		COUNTER_ARROW_WHEATHER_DATE--;
+		COUNTER_ARROW_WHEATHER_CLOCK = 0;
+		DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() - 1);
+		wheather();
+	}
+
+	function rightArrowDate() {
+		COUNTER_ARROW_WHEATHER_DATE++;
+		COUNTER_ARROW_WHEATHER_CLOCK = 0;
+		DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() + 1);
+		wheather();
+	}
+
+	function leftArrowClock() {
+		COUNTER_ARROW_WHEATHER_CLOCK--;
+		wheather();
+	}
+
+	function rightArrowClock() {
+		COUNTER_ARROW_WHEATHER_CLOCK++;
+		wheather();
 	}
 
 	function efficiency(){
@@ -310,11 +481,179 @@
 	}
 
 
+	function ConstrGetNews(url, doman ,id, subNews) {
+		this.url = url;
+		this.doman = doman;
+		this.idName = id;
+		this.counter = 0;
+		this.subNews = subNews || false;
+		this.rightClick = function() {
+			this.counter++;
+			this.getNews();
+		};
+		this.leftCLick = function() {
+			this.counter--;
+			this.getNews();
+
+		};
+		this.getNews = function() {
+			$(this.idName).fadeToggle("fast");
+			
+			if (this.subNews) {
+				var obj = {
+					subNewStud : this.subNews,
+					counter: this.counter,
+					doman: this.doman
+				};
+			} 
+			else {
+				var obj = {
+					subNewStud : "News",
+					counter: this.counter,
+					doman: this.doman
+				};
+			}
+		var that = this;
+		 $.ajax({
+            url: this.url,
+            type: 'GET',
+            data: obj,
+            success: function(answer){ 
+            	console.log(answer);
+            	$(that.idName).empty();
+            	$(that.idName).html(answer);
+            	$(that.idName).fadeToggle("fast");
+            }
+	     });
+		}
+
+	}
+
+
+
+
+	var objStudWay = new ConstrGetNews('/getNewsStudway', 'http://studway.com.ua','.Studway', 'News'); 
+	var objNULP = new ConstrGetNews('/getNewsNULP','http://www.lp.edu.ua' ,'.NULP', 'NewsNulp');
+	var objTerytorija = new ConstrGetNews('/getNewsTerytorija', 'http://terytoriya.com.ua','.Terytorija', 'NewsTerytorija');
+	var objZaxid = new ConstrGetNews('/getNewsZaxid', 'http://zaxid.net', '.Zaxid', 'NewsZaxid');
+
+	var objId = {
+		'Studway' : objStudWay,
+		'NULP' : objNULP,
+		'Terytorija': objTerytorija,
+		'Zaxid': objZaxid
+	};
+
+	//var COUNTER_NEWS_STUDWAY = 0;
+
+	function rightClickStudway(event){
+		objId[$(event).closest('li').attr('id')].rightClick();
+	}
+
+	function leftClickStudway(event){
+		objId[$(event).closest('li').attr('id')].leftCLick();
+	}
+
+	var SUB_NEWS_STUDWAY = '';
+
+
+	/*function clickSubNews(event) {
+		console.log(this);
+		console.log($(event.target));
+		objId[$(event).closest('li').attr('id')].subNews = $(event.target).html();
+
+		objId[$(event).closest('li').attr('id')].counter = 0;
+		objId[$(event).closest('li').attr('id')].getNews();
+		//	
+	}*/
+
+	$('.subNewsStudway').click(function(event){
+		//console.log($(event).closest('li').attr('id'));	
+		/**/
+		
+
+		objStudWay.subNews = $(event.target).html();
+		//console.log(objStudWay.subNews);
+		objStudWay.counter = 0;
+		objStudWay.getNews();
+		//getNewsStudway();*/
+
+	});
+
+
+	//subNewsNULP
+
+	$('.subNewsNULP').click(function(event){
+		//console.log($(event).closest('li').attr('id'));	
+		/**/
+		
+
+		objNULP.subNews = $(event.target).html();
+		//console.log(objStudWay.subNews);
+		objNULP.counter = 0;
+		objNULP.getNews();
+		//getNewsStudway();*/
+
+	});
+
+
+		$('.subNewsTerytorija').click(function(event){
+		//console.log($(event).closest('li').attr('id'));	
+		/**/
+		
+
+		objTerytorija.subNews = $(event.target).html();
+		//console.log(objStudWay.subNews);
+		objTerytorija.counter = 0;
+		objTerytorija.getNews();
+		//getNewsStudway();*/
+
+	});
+
+
+		$('.subNewsZaxid').click(function(event){
+		//console.log($(event).closest('li').attr('id'));	
+		/**/
+		
+
+		objZaxid.subNews = $(event.target).html();
+		//console.log(objStudWay.subNews);
+		objZaxid.counter = 0;
+		objZaxid.getNews();
+		//getNewsStudway();*/
+
+	});
+	/*function getNewsStudway(){
+
+		$('.Studway').fadeToggle("fast");
+		var obj = {
+			subNewStud : SUB_NEWS_STUDWAY || 'News',
+			counterStudway: COUNTER_NEWS_STUDWAY
+		};
+
+		 $.ajax({
+            url: '/getNewsStudway',
+            type: 'GET',
+            data: obj,
+            success: function(answer){          
+            	$('.Studway').empty();
+            	$('.Studway').html(answer);
+            	$('.Studway').fadeToggle("fast");
+            }
+	     });
+	}*/
+
+
 	 $('#main_content').each(function(){
 		mainpage();
 		wheather();
 		efficiency();
 		getNumberUser();
+		//getNewsStudway();
+		objStudWay.getNews();
+		objNULP.getNews();
+		objTerytorija.getNews();
+		objZaxid.getNews();
 
 	});
 
