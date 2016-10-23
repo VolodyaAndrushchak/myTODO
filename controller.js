@@ -84,32 +84,21 @@ module.exports = function(model, view, request, cheerio){
 
 					var i = 0;
 
-					
-					//console.log(req.query.timeWheather);
 
+					/*--- algorithm for changing the time and date in weather (start)---*/
 					if ( (req.query.countDateWheatre != 0) && (req.query.countHourWheather != 0) ) {
-						//console.log(bodyObj.list[i]);
-
 						while( (bodyObj.list[i].dt_txt ) != (req.query.timeWheather + ' 03:00:00') ) {
 							i++;
-
 						}
 
 						i = i + Number(req.query.countHourWheather) + 1;
 						console.log(i);
 					} else {
-						//console.log(bodyObj.list[i].dt_txt );	
+
 						if (req.query.countDateWheatre != 0) {
 
-							//var result = bodyObj.list[i].dt_txt;
-							//console.log( bodyObj.list[2].dt_txt /*==  req.query.timeWheather + ' 03:00:00'*/);
-							//console.log( req.query.timeWheather + ' 03:00:00' );
 							while( ( bodyObj.list[i].dt_txt ) != (req.query.timeWheather + ' 03:00:00') ) {
-								//console.log('1+2');
-								i++;
-								/*console.log(req.query.timeWheather + ' 03:00:00');
-								result = bodyObj.list[i].dt_txt;*/
-								
+								i++;				
 							}
 
 							i++;
@@ -117,6 +106,7 @@ module.exports = function(model, view, request, cheerio){
 							i =  Number(req.query.countHourWheather) ;
 						}
 					}
+					/*--- algorithm for changing the time and date in weather (end)---*/
 
 					res.json({ 	listWheather: bodyObj.list[i], 
 							icon: bodyObj.list[i].weather[0].icon, 
@@ -157,7 +147,7 @@ module.exports = function(model, view, request, cheerio){
 											'Inside' : [4, 'http://studway.com.ua/category/inside/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
 											'Lifehack' : [4, 'http://studway.com.ua/category/lifehack/','.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
 											'Tests' : [4, 'http://studway.com.ua/category/test/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
-											'Travel' : [4, 'http://studway.com.ua/category/travel/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
+											'Journey' : [4, 'http://studway.com.ua/category/travel/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
 											'Blogs' : [4, 'http://studway.com.ua/category/columns/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
 											'NewsNulp': [8, 'http://www.lp.edu.ua/news/', '.views-row', '.field-content', '.field-content'],
 											'Students' : [8, 'http://www.lp.edu.ua/students', '.col-md-3', '.field-content', '.field-content'],
@@ -176,80 +166,53 @@ module.exports = function(model, view, request, cheerio){
 											'World': [8, 'http://zaxid.net/news/showList.do?novini_svitu&tagId=50962', '.default-news-list', '.default-news-list', '.news-title']
 
 					};
-					//console.log(req.query.subNewStud);
 					request.get(objSubNewsStudway[req.query.subNewStud][1], function(err, response, body){
 						var $ = cheerio.load(body);
 
-						//console.log(req.query.counter);
-
 						$(objSubNewsStudway[req.query.subNewStud][2]).each(function(i, element){
 
-							
-								//if (objSubNewsStudway[req.query.subNewStud].length == 6)
-								//{
-								if ( (i < ((Number(req.query.counter) + 1) * objSubNewsStudway[req.query.subNewStud][0] )) && (i >= (req.query.counter * objSubNewsStudway[req.query.subNewStud][0] )) )
-								{
-									if (req.query.doman == 'http://terytoriya.com.ua' ) 
-									{
-										//if ( (i < ((Number(req.query.counter) + 1) * 4)) && (i >= (req.query.counter * 4)) )
-										{
-											var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-												$(this).find(objSubNewsStudway[req.query.subNewStud][5]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).html() + "</p> </a> </div> </article>";
-											picture = picture + article;
-										}
-									}
-									if (req.query.doman == 'http://studway.com.ua') 
-									{
-										//if ( (i < ((Number(req.query.counter) + 1) * 4)) && (i >= (req.query.counter * 4)) )
-										{
-											var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-												$(this).find(objSubNewsStudway[req.query.subNewStud][5]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).find('a').html() + "</p> </a> </div> </article>";
-											picture = picture + article;
-										}
-									}	
-								//}
-									if (req.query.doman == 'http://www.lp.edu.ua')
-									{	
-										//if ( (i < ((Number(req.query.counter) + 1) * 8)) && (i >= (req.query.counter * 8)) )
-										{
-											var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://www.lp.edu.ua/" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('a').html() + "</p></div> </article>";
-											picture = picture + article;
-										}
-									}
+							if ( (i < ((Number(req.query.counter) + 1) * objSubNewsStudway[req.query.subNewStud][0] )) && (i >= (req.query.counter * objSubNewsStudway[req.query.subNewStud][0] )) )
+							{
 
-									if (req.query.doman == 'http://zaxid.net')
-									{	
-										//if ( (i < ((Number(req.query.counter) + 1) * 8)) && (i >= (req.query.counter * 8)) )
+								switch (req.query.doman) 
+								{
+									case 'http://terytoriya.com.ua': 
+										var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' height = '150px;' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+											$(this).find(objSubNewsStudway[req.query.subNewStud][5]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).html() + "</p> </a> </div> </article>";
+										break;
+
+									case 'http://studway.com.ua':
+										var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+										$(this).find(objSubNewsStudway[req.query.subNewStud][5]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).find('a').html() + "</p> </a> </div> </article>";
+										break;
+
+									case 'http://www.lp.edu.ua':
+										var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://www.lp.edu.ua/" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('a').html() + "</p></div> </article>";
+										break;
+
+									case 'http://zaxid.net':
+										if ($(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img')['0']) 
 										{
-											//console.log($(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('img')['0']);
-											var tmp;
-											if ($(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img')['0']) 
+											if (req.query.subNewStud == 'IQ') 
 											{
-												if (req.query.subNewStud == 'IQ') 
-												{
-													var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-												$(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][5]).html() + "</p> </a> </div> </article>";
-												}
-												else
-												{
-													var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find('.title').html() + "</p></div> </article>";
-												}
-												
-												
-												//tmp = $(this).find('.title').html();
+												var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+											$(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][5]).html() + "</p> </a> </div> </article>";
 											}
 											else
 											{
-												var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).html() + "</p></div> </article>";
-												//tmp = $(this).find(objSubNewsStudway[req.query.subNewStud][3]).html();
+												var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find('.title').html() + "</p></div> </article>";
 											}
-
-											
-											picture = picture + article;
 										}
-										//console.log(picture);
-									}
+										else
+										{
+											var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).html() + "</p></div> </article>";
+										}
+
+									default: break;
 								}
+
+								picture = picture + article;									
+							}
  
 						});
 

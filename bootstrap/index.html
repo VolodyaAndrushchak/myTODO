@@ -1,0 +1,619 @@
+<html>
+
+<head>
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	
+
+	 <link rel="stylesheet" href="dist/chartist.min.css">
+	 <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	<script src="dist/chartist.min.js"> </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id = "mainWrapper">
+	<div class = 'container-fluid'>
+		<div class = 'row'>
+			<div id="header"><p>&#171</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class = 'container-fluid'>
+		<div class = 'row' id="beforeWrapper">
+			<div id='efficiency' class = 'col-lg-3  col-md-3'>
+				<div id='tegEfficiency'>Your efficiency</div>
+				<div class="ct-chart ct-perfect-fourth"><img src = 'efficiency.png'></div>
+			</div>
+
+			<div class="wrapper col-lg-6  col-md-6 " >
+				<div id ='leftArrowSlider'>&#171</div>
+				<div id = 'timeSlider'>17-12-2016</div>
+				<div id = 'statusSlider'>Status</div>
+				<div id='contentSlider'>
+					<ul id = 'listSlider'>
+						<li class="lisSlider">
+						<div class = 'container-fluid'> 
+							<div class = 'row'>
+								<div class="liSliderContent col-lg-8  col-md-8  col-sm-8 col-xs-8">Improving my ENglish</div>
+								<div class="liSliderTime col-lg-3 col-md-3  col-sm-3 col-xs-3">10:00 - 11:30</div> 
+								<div class="LiSliderStatus col-lg-1 col-md-1  col-sm-1 col-xs-1">A</div>
+							</div>
+						</div>
+						</li>
+
+						<li class="lisSlider"> 
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class="liSliderContent col-lg-8  col-md-8  col-sm-8 col-xs-8">Bootstrap my Page</div>
+									<div class="liSliderTime col-lg-3  col-md-3  col-sm-3 col-xs-3">11:30 - 14:00</div> 
+									<div class="LiSliderStatus col-lg-1  col-md-1  col-sm-1 col-xs-1">A</div>
+								</div>
+							</div>
+						</li>
+						<li class="lisSlider">
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class="liSliderContent col-lg-8  col-md-8  col-sm-8 col-xs-8">Simulation model</div>
+									<div class="liSliderTime col-lg-3  col-md-3  col-sm-3 col-xs-3">14:00 - 17:00</div> 
+									<div class="LiSliderStatus col-lg-1  col-md-1  col-sm-1 col-xs-1">A</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id ='rightArrowSlider'>&#187</div>
+			</div>
+
+			<div  class = 'col-lg-3  col-md-3 '>
+				<div class = 'row'>
+					<div class = 'col-lg-2  col-md-1  col-sm-0'></div>
+					<div class = 'col-lg-8  col-md-9 col-sm-12'>
+						<div id = 'wheatherSide' >
+							<div id = 'mainTimeWeather'>
+								<div class = 'container-fluid'> 
+									<div class = 'row'>
+										<div class = 'leftArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/leftArrow.png" onclick = 'leftArrowDate()'></div>
+										<div id="timeWheather" class = 'col-lg-10  col-md-10  col-sm-10'>2016-10-17</div>
+										<div class = 'rightArrowWeather col-lg-1  col-md-1 col-sm-1'><img src="img/rightArrow.png" onclick = 'rightArrowDate()'></div>
+									</div>
+								</div>
+							</div>
+
+							<div id="dayWeek">Monday</div>
+
+							<div id = 'clockWeather'>
+								<div class = 'container-fluid'> 
+									<div class = 'row'>
+										<div class = 'leftArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/leftArrow.png" onclick = 'leftArrowClock()'></div>
+										<p id = 'clockWeather_p' class = 'col-lg-10  col-md-10  col-sm-10'>09:00</p>
+										<div class = 'rightArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/rightArrow.png" onclick = 'rightArrowClock()'></div>
+									</div>
+								</div>
+							</div>
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'></div>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'>
+										<img id="imgWheather" src = '01d.gif'>
+									</div>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'></div>
+								</div>
+							</div>
+
+							<div id= "mainTemp">+8.98C</div>
+
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class = 'col-lg-12  col-md-12  col-sm-12'>
+										<table id = 'addParamWeath'>
+											<tr><td style="text-align: center; font-family: Georgia; font-size: 15.5px; width: 40%;">Humidity</td> <td style="text-align: center; width: 40%;" id="humidity">70 %</td></tr>
+											<tr><td style="text-align: center; font-family: Georgia; font-size: 15.5px; width: 40%; ">Wind</td> <td style="text-align: center; width: 40%;" id='wind'>9.2 m/s</td></tr>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class = 'col-lg-2  col-md-2  col-sm-0'></div>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+
+	<div class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-0  col-md-0  col-sm-12'>
+				<div class = 'subMenuForSmallSevices'></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="showHideBut">
+		<div id="animButSH"><img src="img/couple-arrows.png"></div>
+	</div>
+
+
+	<div id = 'contentNew' class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-1 col-md-0 col-sm-0'></div>
+			<div class = 'col-lg-10 col-md-12 col-sm-12'>
+				<div class = 'contentNewDirectly'>
+					<ul>
+						<li class = 'liPartNews' id = 'Studway'>
+							<div class = 'titleContentNew'>
+								<a href = "http://studway.com.ua/"><img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png"></a>
+								<a href = "http://studway.com.ua/"><p class ='logoContentNew'>Studway</p></a>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsStudway'  >News</li>
+										<li class = 'subNewsStudway' >Inside</li>
+										<li class = 'subNewsStudway' >Lifehack</li>
+										<li class = 'subNewsStudway' >Tests</li>
+										<li class = 'subNewsStudway' >Journey</li>
+										<li class = 'subNewsStudway' >Blogs</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+
+								<div class = 'contentBetweenArrows Studway'>
+									<div class = 'container-fluid'>
+										<div class = 'rows'>
+											<div class = 'col-lg-3 col-md-3 col-sm-3'>
+												<article class="imgText"> 
+													<div class="title-img"> 
+														<a href="http://studway.com.ua/u-kosmosi/"> <img src="http://s1.studway.com.ua/wp-content/uploads/2016/10/credit-400x266.jpg" width="100%"></a>
+													</div> 
+													<div class="title-text"> 
+														<a href="http://studway.com.ua/u-kosmosi/"> <p>У космосі приймають платежі кредитними картками</p> </a> 
+													</div> 
+												</article>
+											</div>
+											<div class = 'col-lg-3 col-md-3 col-sm-3'>
+												<article class="imgText"> 
+													<div class="title-img"> 
+														<a href="http://studway.com.ua/fotosesiya-uchenikh/"> <img src="http://s1.studway.com.ua/wp-content/uploads/2016/10/vintage-400x266.jpg" width="100%"></a>
+													</div> 
+													<div class="title-text"> 
+														<a href="http://studway.com.ua/fotosesiya-uchenikh/"> <p>Фотосесія вчених НМУ ім. Богомольця обійшлась у 60 тисяч гривень</p> </a> 
+													</div> 
+												</article>
+											</div>
+											<div class = 'col-lg-3 col-md-3 col-sm-3'>
+												<article class="imgText"> 
+													<div class="title-img">
+														<a href="http://studway.com.ua/nobelivsku-premiyu/"> <img src="http://s1.studway.com.ua/wp-content/uploads/2016/10/bob2-400x266.jpg" width="100%"></a>
+													</div> 
+													<div class="title-text"> 
+														<a href="http://studway.com.ua/nobelivsku-premiyu/"> <p>Нобелівську премію з літератури отримав Боб Ділан</p> </a> 
+													</div> 
+												</article>
+											</div>
+											<div class = 'col-lg-3 col-md-3 col-sm-3'>
+												<article class="imgText"> 
+													<div class="title-img"> 
+														<a href="http://studway.com.ua/rozumnu-tkaninu/"> <img src="http://s1.studway.com.ua/wp-content/uploads/2016/10/clo1-400x266.jpg" width="100%"></a>
+													</div> 
+													<div class="title-text"> 
+														<a href="http://studway.com.ua/rozumnu-tkaninu/"> <p>Учені розробили розумну тканину</p> </a> 
+													</div> 
+												</article>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+
+							</div>
+						</li>
+						
+						<!--<li class = 'liPartNews' id = 'NULP'>
+							<div class = 'titleContentNew'>
+								<a href='http://www.lp.edu.ua/'><img height = '23'  src="img/NULP2.png"></a>
+								<a href='http://www.lp.edu.ua/'><p class ='logoContentNew'>НУ "ЛП"</p></a>
+									<div class = 'listStudwayOpportunity'>
+									<ul>
+										<li class = 'subNewsNULP' >Students</li>
+										<li class = 'subNewsNULP' >Graduares</li>
+										<li class = 'subNewsNULP' >Employees</li>
+										<li class = 'subNewsNULP' style="width:160px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
+										<li class = 'subNewsNULP' style="width:170px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew'>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)'>&#171</div>
+								<div class = 'contentBetweenArrows NULP'>
+									<article class="onlyText"> <div class="title-onlyText"> <a href="http://www.lp.edu.ua//news/2016/studenty-ikni-lvivskoyi-politehniky-posily-druge-misce-u-konkursi-startapiv-vid-polskogo"> <p>Студенти ІКНІ Львівської політехніки посіли друге місце у конкурсі стартапів від Польського Кластеру Інтернету Речей</p></a></div><a href="http://www.lp.edu.ua//news/2016/studenty-ikni-lvivskoyi-politehniky-posily-druge-misce-u-konkursi-startapiv-vid-polskogo"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-ikni-lvivskoyi-politehniky-posily-druge-misce-u-konkursi-startapiv-vid-polskogo"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-ikni-lvivskoyi-politehniky-posily-druge-misce-u-konkursi-startapiv-vid-polskogo"> </a><a href="http://www.lp.edu.ua//news/2016/ogolosheno-konkurs-pidruchnykiv-na-zdobuttya-derzhavnyh-premiy-ukrayiny-v-galuzi-nauky-i"> <p>Оголошено конкурс підручників на здобуття Державних премій України в галузі науки і техніки 2017 року</p></a></div><a href="http://www.lp.edu.ua//news/2016/ogolosheno-konkurs-pidruchnykiv-na-zdobuttya-derzhavnyh-premiy-ukrayiny-v-galuzi-nauky-i"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/ogolosheno-konkurs-pidruchnykiv-na-zdobuttya-derzhavnyh-premiy-ukrayiny-v-galuzi-nauky-i"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/ogolosheno-konkurs-pidruchnykiv-na-zdobuttya-derzhavnyh-premiy-ukrayiny-v-galuzi-nauky-i"> </a><a href="http://www.lp.edu.ua//news/2016/studenty-i-vykladachi-zolochivskogo-koledzhu-lvivskoyi-politehniky-zdiysnyly-tradyciynu"> <p>Студенти і викладачі Золочівського коледжу Львівської політехніки здійснили традиційну подорож у Карпати</p></a></div><a href="http://www.lp.edu.ua//news/2016/studenty-i-vykladachi-zolochivskogo-koledzhu-lvivskoyi-politehniky-zdiysnyly-tradyciynu"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-i-vykladachi-zolochivskogo-koledzhu-lvivskoyi-politehniky-zdiysnyly-tradyciynu"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-i-vykladachi-zolochivskogo-koledzhu-lvivskoyi-politehniky-zdiysnyly-tradyciynu"> </a><a href="http://www.lp.edu.ua//news/2016/navchannya-yakogo-ne-buvaye-na-parah-u-lvivskiy-politehnici-vpyate-vidbuvsya-best-training"> <p>Навчання, якого не буває на парах: у Львівській політехніці вп’яте відбувся BEST Training Week</p></a></div><a href="http://www.lp.edu.ua//news/2016/navchannya-yakogo-ne-buvaye-na-parah-u-lvivskiy-politehnici-vpyate-vidbuvsya-best-training"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/navchannya-yakogo-ne-buvaye-na-parah-u-lvivskiy-politehnici-vpyate-vidbuvsya-best-training"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/navchannya-yakogo-ne-buvaye-na-parah-u-lvivskiy-politehnici-vpyate-vidbuvsya-best-training"> </a><a href="http://www.lp.edu.ua//event/2016/seminar-lekciya-yak-vlashtuvatys-na-robotu-v-it-osoblyvosti-hr-systemy-vid-norvezkoyi"> <p>Семінар-лекція «Як влаштуватись на роботу в ІТ. Особливості HR-системи» від норвезької компанії «Global IT Development AS»</p></a></div><a href="http://www.lp.edu.ua//event/2016/seminar-lekciya-yak-vlashtuvatys-na-robotu-v-it-osoblyvosti-hr-systemy-vid-norvezkoyi"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//event/2016/seminar-lekciya-yak-vlashtuvatys-na-robotu-v-it-osoblyvosti-hr-systemy-vid-norvezkoyi"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//event/2016/seminar-lekciya-yak-vlashtuvatys-na-robotu-v-it-osoblyvosti-hr-systemy-vid-norvezkoyi"> </a><a href="http://www.lp.edu.ua//news/2016/audytoriya-vid-ponedilka-do-pyatnyci-yak-i-chym-zhyve-redakciya-studentskoyi-gazety"> <p>«Аудиторія» – від понеділка до п’ятниці: як і чим живе редакція студентської газети впродовж тижня</p></a></div><a href="http://www.lp.edu.ua//news/2016/audytoriya-vid-ponedilka-do-pyatnyci-yak-i-chym-zhyve-redakciya-studentskoyi-gazety"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/audytoriya-vid-ponedilka-do-pyatnyci-yak-i-chym-zhyve-redakciya-studentskoyi-gazety"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/audytoriya-vid-ponedilka-do-pyatnyci-yak-i-chym-zhyve-redakciya-studentskoyi-gazety"> </a><a href="http://www.lp.edu.ua//news/2016/studenty-lvivskoyi-politehniky-prodovzhuyut-akciyu-zi-zboru-rechey-dlya-voyiniv-zbroynyh"> <p>Студенти Львівської політехніки продовжують акцію зі збору речей для воїнів Збройних сил України</p></a></div><a href="http://www.lp.edu.ua//news/2016/studenty-lvivskoyi-politehniky-prodovzhuyut-akciyu-zi-zboru-rechey-dlya-voyiniv-zbroynyh"> </a></article><article class="onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-lvivskoyi-politehniky-prodovzhuyut-akciyu-zi-zboru-rechey-dlya-voyiniv-zbroynyh"> </a><div class="title-onlyText"><a href="http://www.lp.edu.ua//news/2016/studenty-lvivskoyi-politehniky-prodovzhuyut-akciyu-zi-zboru-rechey-dlya-voyiniv-zbroynyh"> </a><a href="http://www.lp.edu.ua//event/2016/navchalnyy-seminar-modelyuvannya-dlya-rozbudovy-suchasnogo-suspilstva-vid-civic-ta-ifa"> <p>Навчальний семінар-моделювання для розбудови сучасного суспільства від CIVIC та IFA</p></a></div><a href="http://www.lp.edu.ua//event/2016/navchalnyy-seminar-modelyuvannya-dlya-rozbudovy-suchasnogo-suspilstva-vid-civic-ta-ifa"> </a></article>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+
+						<li class = 'liPartNews' id = 'Terytorija'>
+							<div class = 'titleContentNew'>
+								<a href = 'http://terytoriya.com.ua/'><img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png"></a>
+								<a href = 'http://terytoriya.com.ua/'><p class ='logoContentNew'>Територія твого розвитку</p></a>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsTerytorija' >Reach</li>
+										<li class = 'subNewsTerytorija' >Travel</li>
+										<li class = 'subNewsTerytorija' >Visit</li>
+										<li class = 'subNewsTerytorija' >Listen</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'contentBetweenArrows Terytorija'>
+									<article class="imgText"> <div class="title-img"> <a href="http://terytoriya.com.ua/index.php/novini/chitay-sluhay-divis-daydzhest-ukrayinskih-novinok-10-16-zhovtnya/"> <img src="http://terytoriya.com.ua/wp-content/uploads/2016/10/1234-300x200.jpg" width="220px" height="150px;"></a></div> <div class="title-text"> <a href="http://terytoriya.com.ua/index.php/novini/chitay-sluhay-divis-daydzhest-ukrayinskih-novinok-10-16-zhovtnya/"> <p>Читай, слухай, дивись. Дайджест українських новинок 10 – 16 жовтня</p> </a> </div> </article><article class="imgText"> <div class="title-img"> <a href="http://terytoriya.com.ua/index.php/lyudi/vkontakte/"> <img src="http://terytoriya.com.ua/wp-content/uploads/2016/10/Vkontakte_5-300x191.jpg" width="220px" height="150px;"></a></div> <div class="title-text"> <a href="http://terytoriya.com.ua/index.php/lyudi/vkontakte/"> <p>Павло Дуров про досвід, який отримав у процесі створення “ВКонтакті”</p> </a> </div> </article><article class="imgText"> <div class="title-img"> <a href="http://terytoriya.com.ua/index.php/novini/chitay-sluhay-divis-daydzhest-ukrayinskih-novinok-3-9-zhovtnya/"> <img src="http://terytoriya.com.ua/wp-content/uploads/2016/10/2222-300x225.jpg" width="220px" height="150px;"></a></div> <div class="title-text"> <a href="http://terytoriya.com.ua/index.php/novini/chitay-sluhay-divis-daydzhest-ukrayinskih-novinok-3-9-zhovtnya/"> <p>Читай, слухай, дивись. Дайджест українських новинок 3 – 9 жовтня</p> </a> </div> </article><article class="imgText"> <div class="title-img"> <a href="http://terytoriya.com.ua/index.php/novini/flybrix/"> <img src="http://terytoriya.com.ua/wp-content/uploads/2016/09/Flybrix-300x200.jpg" width="220px" height="150px;"></a></div> <div class="title-text"> <a href="http://terytoriya.com.ua/index.php/novini/flybrix/"> <p>Компанія Flybrix випустила набори для створення дронів з LEGO</p> </a> </div> </article>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>
+
+						<li class = 'liPartNews' id = 'Zaxid'>
+							<div class = 'titleContentNew'>
+								<a href = 'http://zaxid.net/'><img height = '23'  src="http://zaxid.net/images/logo.png?1413825604"></a>
+								<div class = 'listStudwayOpportunity' >
+									<ul>
+										<li class = 'subNewsZaxid' style = 'margin-left: 5px;'>Lviv</li>
+										<li class = 'subNewsZaxid' >Society</li>
+										<li class = 'subNewsZaxid' >Economy</li>
+										<li class = 'subNewsZaxid' >IQ</li>
+										<li class = 'subNewsZaxid' >World</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class = 'afterTitleContentNew '>
+								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'contentBetweenArrows Zaxid'>
+									<article class="onlyText"> <div class="title-onlyText"> <a href="http://zaxid.net/news/showNews.do?u_ternopoli_arhiyepiskop_uapts_rozvazhavsya_zi_svyashhennikami_u_nichnomu_klubi&amp;objectId=1406802"> <p>
+		                                        У Тернополі архієпископ УАПЦ розважався зі священниками у нічному клубі
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?u_ternopoli_arhiyepiskop_uapts_rozvazhavsya_zi_svyashhennikami_u_nichnomu_klubi&amp;objectId=1406802"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?u_ternopoli_arhiyepiskop_uapts_rozvazhavsya_zi_svyashhennikami_u_nichnomu_klubi&amp;objectId=1406802"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?u_ternopoli_arhiyepiskop_uapts_rozvazhavsya_zi_svyashhennikami_u_nichnomu_klubi&amp;objectId=1406802"> </a><a href="http://zaxid.net/news/showNews.do?u_lvivskomu_parku_kulturi_vstanovlyat_novi_italiyski_atraktsioni&amp;objectId=1406801"> <p>
+		                                        У львівському Парку культури встановлять нові італійські атракціони
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?u_lvivskomu_parku_kulturi_vstanovlyat_novi_italiyski_atraktsioni&amp;objectId=1406801"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?u_lvivskomu_parku_kulturi_vstanovlyat_novi_italiyski_atraktsioni&amp;objectId=1406801"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?u_lvivskomu_parku_kulturi_vstanovlyat_novi_italiyski_atraktsioni&amp;objectId=1406801"> </a><a href="http://zaxid.net/news/showNews.do?sposterigachi_obsye_led_ne_potrapili_pid_kulemetniy_obstril_poblizu_zolotogo&amp;objectId=1406800"> <p>
+		                                        Спостерігачі ОБСЄ ледь не потрапили під кулеметний обстріл поблизу Золотого
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?sposterigachi_obsye_led_ne_potrapili_pid_kulemetniy_obstril_poblizu_zolotogo&amp;objectId=1406800"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?sposterigachi_obsye_led_ne_potrapili_pid_kulemetniy_obstril_poblizu_zolotogo&amp;objectId=1406800"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?sposterigachi_obsye_led_ne_potrapili_pid_kulemetniy_obstril_poblizu_zolotogo&amp;objectId=1406800"> </a><a href="http://zaxid.net/news/showNews.do?lvivska_oblderzhadministratsiya_vidsvyatkuvala_mizhnarodniy_den_silskoyi_zhinki&amp;objectId=1406797"> <p>
+		                                        Львівська облдержадміністрація відсвяткувала Міжнародний день сільської жінки
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?lvivska_oblderzhadministratsiya_vidsvyatkuvala_mizhnarodniy_den_silskoyi_zhinki&amp;objectId=1406797"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?lvivska_oblderzhadministratsiya_vidsvyatkuvala_mizhnarodniy_den_silskoyi_zhinki&amp;objectId=1406797"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?lvivska_oblderzhadministratsiya_vidsvyatkuvala_mizhnarodniy_den_silskoyi_zhinki&amp;objectId=1406797"> </a><a href="http://zaxid.net/news/showNews.do?selyani_perekrili_trasu_kiyivchop_poblizu_lvova&amp;objectId=1406799"> <p>
+		                                        Селяни перекрили трасу Київ-Чоп поблизу Львова
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?selyani_perekrili_trasu_kiyivchop_poblizu_lvova&amp;objectId=1406799"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?selyani_perekrili_trasu_kiyivchop_poblizu_lvova&amp;objectId=1406799"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?selyani_perekrili_trasu_kiyivchop_poblizu_lvova&amp;objectId=1406799"> </a><a href="http://zaxid.net/news/showNews.do?dinamo_pokarali_zakrittyam_troh_sektoriv_na_olimpiyskomu_cherez_zaboronenu_simvoliku&amp;objectId=1406796"> <p>
+		                                        «Динамо» покарали закриттям трьох секторів на «Олімпійському» через заборонену символіку
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?dinamo_pokarali_zakrittyam_troh_sektoriv_na_olimpiyskomu_cherez_zaboronenu_simvoliku&amp;objectId=1406796"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?dinamo_pokarali_zakrittyam_troh_sektoriv_na_olimpiyskomu_cherez_zaboronenu_simvoliku&amp;objectId=1406796"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?dinamo_pokarali_zakrittyam_troh_sektoriv_na_olimpiyskomu_cherez_zaboronenu_simvoliku&amp;objectId=1406796"> </a><a href="http://zaxid.net/news/showNews.do?velikobritaniya_vibula_z_pyatirki_nayprivablivishih_dlya_investoriv_krayin_svitu_cherez_brexit&amp;objectId=1406798"> <p>
+		                                        Великобританія вибула з п’ятірки найпривабливіших для інвесторів країн світу через Brexit
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?velikobritaniya_vibula_z_pyatirki_nayprivablivishih_dlya_investoriv_krayin_svitu_cherez_brexit&amp;objectId=1406798"> </a></article><article class="onlyText"><a href="http://zaxid.net/news/showNews.do?velikobritaniya_vibula_z_pyatirki_nayprivablivishih_dlya_investoriv_krayin_svitu_cherez_brexit&amp;objectId=1406798"> </a><div class="title-onlyText"><a href="http://zaxid.net/news/showNews.do?velikobritaniya_vibula_z_pyatirki_nayprivablivishih_dlya_investoriv_krayin_svitu_cherez_brexit&amp;objectId=1406798"> </a><a href="http://zaxid.net/news/showNews.do?ministerstvo_infrastrukturi_initsiyuvalo_zmini_do_pravil_transliteratsiyi_v_aeroportah&amp;objectId=1406789"> <p>
+		                                        Міністерство інфраструктури ініціювало зміни до правил транслітерації в аеропортах
+	                                    </p></a></div><a href="http://zaxid.net/news/showNews.do?ministerstvo_infrastrukturi_initsiyuvalo_zmini_do_pravil_transliteratsiyi_v_aeroportah&amp;objectId=1406789"> </a></article>
+								</div>
+								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+							</div>
+						</li>-->
+
+					</ul>
+				</div>
+			</div>
+				
+			<div class = 'col-lg-1 col-md-0 col-sm-0'></div>
+		</div>
+	</div>
+
+	<div class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-2 col-md-1 col-sm-0 col-xs-0'></div>
+			<div class = 'col-lg-8 col-md-10 col-sm-12 col-xs-12'>
+				<div id="main_content">
+				<ul id='mainUL'>
+					<li class="liTodo" onmouseover="evMOverList(this);" onmouseout="evMOutList(this);">
+						<div class = 'container-fluid'> 
+							<div class = 'row'>
+								<div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'> </div>
+								<div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'>
+									<div class="TaskContent container-fluid" style="background-color:#4C7C35;"> 
+										
+										<div class = 'row'>
+											<div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'>
+												<div class="helpDivTC container-fluid" onclick="clickList(this);">
+														<div class = 'row'>
+															<div class = 'col-lg-9 col-md-9 col-sm-9 col-xs-9 textContent'>
+																<div>Improving my English</div>
+															</div>
+															<div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+																<div class="time1">10:00</div> 
+																<div class="time2">11:30</div>
+															</div>
+															<div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'>
+																<div class="priority">A</div> 
+															</div>
+														</div>																									
+												</div>
+											</div>
+											<div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+												<div class="done" onclick="deleteTask(this);"> done</div>
+												<div class="delete" onclick="deleteTask(this);"> delete</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+
+								<div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'>
+									<div class="arrowForNextDay" onclick="taskOnTomorrow(this);">»</div>   
+								</div>
+
+							</div>
+						</div>
+
+								
+								
+								<div class="popUpGRUD" style="background-color:#4C7C35;">
+									<div class="popInput">  
+										<input class="tastInput">time <input class="time1Pop">to<input class="time2Pop">priority<select class="newPriority"><option>A</option><option>B</option><option>C</option></select>
+									</div>  
+									<div class="editAdd" onclick="editADD(this)">edit</div>
+								</div>
+					</li> 
+
+					<!--<li class="liTodo" onmouseover="evMOverList(this);" onmouseout="evMOutList(this);">
+						<div class = 'container-fluid'> 
+							<div class = 'row'>
+								<div class = 'col-lg-1'> </div>
+								<div class = 'col-lg-10'>
+									<div class="TaskContent container-fluid" style="background-color:#4C7C35;"> 
+										
+										<div class = 'row'>
+											<div class = 'col-lg-10'>
+												<div class="helpDivTC container-fluid" onclick="clickList(this);">
+														<div class = 'row'>
+															<div class = 'col-lg-9 textContent'>
+																<div>Improving my English</div>
+															</div>
+															<div class = 'col-lg-2'>
+																<div class="time1">10:00</div> 
+																<div class="time2">11:30</div>
+															</div>
+															<div class = 'col-lg-1'>
+																<div class="priority">A</div> 
+															</div>
+														</div>																									
+												</div>
+											</div>
+											<div class = 'col-lg-2'>
+												<div class="done" onclick="deleteTask(this);"> done</div>
+												<div class="delete" onclick="deleteTask(this);"> delete</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+
+								<div class = 'col-lg-1'>
+									<div class="arrowForNextDay" onclick="taskOnTomorrow(this);">»</div>   
+								</div>
+
+							</div>
+						</div>
+
+								
+								
+								<div class="popUpGRUD" style="background-color:#4C7C35;">
+									<div class="popInput">  
+										<input class="tastInput">time <input class="time1Pop">to<input class="time2Pop">priority<select class="newPriority"><option>A</option><option>B</option><option>C</option></select>
+									</div>  
+									<div class="editAdd" onclick="editADD(this)">edit</div>
+								</div>
+					</li> 
+
+					<li class="liTodo" onmouseover="evMOverList(this);" onmouseout="evMOutList(this);">
+						<div class = 'container-fluid'> 
+							<div class = 'row'>
+								<div class = 'col-lg-1'> </div>
+								<div class = 'col-lg-10'>
+									<div class="TaskContent container-fluid" style="background-color:#4C7C35;"> 
+										
+										<div class = 'row'>
+											<div class = 'col-lg-10'>
+												<div class="helpDivTC container-fluid" onclick="clickList(this);">
+														<div class = 'row'>
+															<div class = 'col-lg-9 textContent'>
+																<div>Improving my English</div>
+															</div>
+															<div class = 'col-lg-2'>
+																<div class="time1">10:00</div> 
+																<div class="time2">11:30</div>
+															</div>
+															<div class = 'col-lg-1'>
+																<div class="priority">A</div> 
+															</div>
+														</div>																									
+												</div>
+											</div>
+											<div class = 'col-lg-2'>
+												<div class="done" onclick="deleteTask(this);"> done</div>
+												<div class="delete" onclick="deleteTask(this);"> delete</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+
+								<div class = 'col-lg-1'>
+									<div class="arrowForNextDay" onclick="taskOnTomorrow(this);">»</div>   
+								</div>
+
+							</div>
+						</div>
+
+								
+								
+								<div class="popUpGRUD" style="background-color:#4C7C35;">
+									<div class="popInput">  
+										<input class="tastInput">time <input class="time1Pop">to<input class="time2Pop">priority<select class="newPriority"><option>A</option><option>B</option><option>C</option></select>
+									</div>  
+									<div class="editAdd" onclick="editADD(this)">edit</div>
+								</div>
+					</li> -->
+
+
+				</ul>
+			</div>
+			</div>
+			<div class = 'col-lg-2 col-md-1 col-sm-0 col-xs-0'></div>
+
+		</div>
+	</div>
+			
+
+	<div id="Add_task">
+			<div  id="add_button">Add new task</div>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div id= "wrapperFotter">
+		<div id="maintContFot">
+			<ul>
+				<li>
+					<div id = "imgDiv">
+						<img src="sfs.png">
+					</div>
+				</li>
+
+				<li>
+					<div id="comFoot">
+						<a href="joinTeam"><p>Join to our team</p></a>
+					</div>
+				</li>
+
+				<li>
+					<div id="aboutUs">
+						<a href="joinTeam"><p>About us</p></a>
+					</div>
+				</li>
+
+				<li>
+					<div id="amountUser"> 
+						<a href="/" id = 'numberUsers' ><p id = 'numberUsers'></p></a>
+					</div>
+				</li>
+
+				<li>
+					<div id="ourPartners">
+						<p>Our partners</p>
+					</div>
+				</li>
+
+
+				<li>
+					<div id = "contFooter">
+						<p>feedback:  todoforstudent@ukr.net</p>
+					</div>
+				</li>
+				<li>
+					<div id='imgLogout'>
+						<a href="/logout"><p>exit</p><!--<img src="exit.png">--></a>
+					</div>
+				</li>
+			</ul>
+				
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$(window).resize(function(){
+
+		$('.leftArrowContent').css("height", $('.contentBetweenArrows').outerHeight());
+		$('.rightArrowContent').css("height", $('.contentBetweenArrows').outerHeight());
+	});
+
+
+
+		var counterHeader = 0;
+
+	/*--- click on header arrow---*/
+	$('#header').click(function(){
+		firstSlideDown();
+
+		/*if header menu is none - display*/
+		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') && counterHeader == 0 )
+		{
+			animateMainContent('+');
+			counterHeader++;
+		}
+	});
+
+	/*--- button show/hide---*/ 
+	$('#animButSH').click(function(){
+		console.log('Hello');
+		/*--- check if header menu is block ---*/
+		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') )
+		{
+
+			secondSlideDown();
+		}
+		else
+		{
+			if ( $('#beforeWrapper').css('display') == 'block') 
+			{
+				animateMainContent('-');
+			}
+			else
+			{
+				animateMainContent('+');
+			}
+			$('#contentNew').slideToggle('fast', function(){
+				$('#main_content').slideToggle('slow');
+				$('#Add_task').slideToggle('slow');
+			});
+
+			$('#beforeWrapper').slideToggle('slow');
+			//$('#wheatherSide').slideToggle('slow');
+			
+
+			/* allow moving upper main menu*/
+			counterHeader = 0;
+		} 
+	});
+
+	/*--- help functions for main animates (#header) and (#animButSH) ---*/
+	function firstSlideDown(){
+		$('#beforeWrapper').slideDown('slow');
+		//$('#wheatherSide').slideDown('slow');
+	}
+	function secondSlideDown(){
+		$('#main_content').slideToggle('slow', function(){
+			$('#contentNew').slideToggle('slow');
+		});
+		$('#Add_task').slideToggle('slow');
+		
+	}
+	function animateMainContent(token){
+		$('#showHideBut').animate({"top":  token + "=0px"}, "fast");
+		$('#main_content').animate({"top": token + "=0px"}, "fast");
+		$('#Add_task').animate({"top": token + "=0px"}, "fast");
+	}
+	/*--- end help functions ---*/
+	/****************************************/
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

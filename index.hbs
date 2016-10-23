@@ -57,7 +57,7 @@
 	</div>	
 
 	<div id="showHideBut">
-		<div id="animButSH">show/hide</div>
+		<div id="animButSH"><img src="img/couple-arrows.png"></div>
 	</div>
 
 
@@ -68,15 +68,15 @@
 					<ul>
 						<li class = 'liPartNews' id = 'Studway'>
 							<div class = 'titleContentNew'>
-								<img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png">
-								<p class ='logoContentNew'>Studway</p>
+								<a href = "http://studway.com.ua/"><img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png"></a>
+								<a href = "http://studway.com.ua/"><p class ='logoContentNew'>Studway</p></a>
 								<div class = 'listStudwayOpportunity' >
 									<ul>
 										<li class = 'subNewsStudway'  >News</li>
 										<li class = 'subNewsStudway' >Inside</li>
 										<li class = 'subNewsStudway' >Lifehack</li>
 										<li class = 'subNewsStudway' >Tests</li>
-										<li class = 'subNewsStudway' >Travel</li>
+										<li class = 'subNewsStudway' >Journey</li>
 										<li class = 'subNewsStudway' >Blogs</li>
 									</ul>
 								</div>
@@ -91,15 +91,15 @@
 						</li>
 						<li class = 'liPartNews' id = 'NULP'>
 							<div class = 'titleContentNew'>
-								<img height = '23'  src="http://s1.studway.com.ua/wp-content/uploads/2016/04/studway-mini-e1460851662648.png">
-								<p class ='logoContentNew'>Studway</p>
+								<a href='http://www.lp.edu.ua/'><img height = '23'  src="img/NULP2.png"></a>
+								<a href='http://www.lp.edu.ua/'><p class ='logoContentNew'>НУ "ЛП"</p></a>
 									<div class = 'listStudwayOpportunity'>
 									<ul>
 										<li class = 'subNewsNULP' >Students</li>
 										<li class = 'subNewsNULP' >Graduares</li>
 										<li class = 'subNewsNULP' >Employees</li>
-										<li class = 'subNewsNULP' style="width:150px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
-										<li class = 'subNewsNULP' style="width:150px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
+										<li class = 'subNewsNULP' style="width:160px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
+										<li class = 'subNewsNULP' style="width:170px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
 									</ul>
 								</div>
 							</div>
@@ -113,8 +113,8 @@
 
 						<li class = 'liPartNews' id = 'Terytorija'>
 							<div class = 'titleContentNew'>
-								<img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png">
-								<p class ='logoContentNew'>Studway</p>
+								<a href = 'http://terytoriya.com.ua/'><img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png"></a>
+								<a href = 'http://terytoriya.com.ua/'><p class ='logoContentNew'>Територія твого розвитку</p></a>
 								<div class = 'listStudwayOpportunity' >
 									<ul>
 										<li class = 'subNewsTerytorija' >Reach</li>
@@ -135,11 +135,11 @@
 
 						<li class = 'liPartNews' id = 'Zaxid'>
 							<div class = 'titleContentNew'>
-								<img height = '23'  src="http://terytoriya.com.ua/wp-content/uploads/2015/12/logos.png">
-								<p class ='logoContentNew'>Studway</p>
+								<a href = 'http://zaxid.net/'><img height = '23'  src="http://zaxid.net/images/logo.png?1413825604"></a>
+								<!--<p class ='logoContentNew'>Zaxid.net</p>-->
 								<div class = 'listStudwayOpportunity' >
 									<ul>
-										<li class = 'subNewsZaxid' >Lviv</li>
+										<li class = 'subNewsZaxid' style = 'margin-left: 5px;'>Lviv</li>
 										<li class = 'subNewsZaxid' >Society</li>
 										<li class = 'subNewsZaxid' >Economy</li>
 										<li class = 'subNewsZaxid' >IQ</li>
@@ -273,7 +273,7 @@
 			});
 
 			$('#beforeWrapper').slideToggle('slow');
-			$('#wheatherSide').slideToggle('slow');
+			//$('#wheatherSide').slideToggle('slow');
 			
 
 			/* allow moving upper main menu*/
@@ -284,7 +284,7 @@
 	/*--- help functions for main animates (#header) and (#animButSH) ---*/
 	function firstSlideDown(){
 		$('#beforeWrapper').slideDown('slow');
-		$('#wheatherSide').slideDown('slow');
+		//$('#wheatherSide').slideDown('slow');
 	}
 	function secondSlideDown(){
 		$('#main_content').slideToggle('slow', function(){
@@ -531,7 +531,6 @@
 
 
 
-
 	var objStudWay = new ConstrGetNews('/getNewsStudway', 'http://studway.com.ua','.Studway', 'News'); 
 	var objNULP = new ConstrGetNews('/getNewsNULP','http://www.lp.edu.ua' ,'.NULP', 'NewsNulp');
 	var objTerytorija = new ConstrGetNews('/getNewsTerytorija', 'http://terytoriya.com.ua','.Terytorija', 'NewsTerytorija');
@@ -551,32 +550,18 @@
 	}
 
 	function leftClickStudway(event){
+	if ( objId[$(event).closest('li').attr('id')].counter != 0 )
 		objId[$(event).closest('li').attr('id')].leftCLick();
 	}
 
 	var SUB_NEWS_STUDWAY = '';
 
 
-	/*function clickSubNews(event) {
-		console.log(this);
-		console.log($(event.target));
-		objId[$(event).closest('li').attr('id')].subNews = $(event.target).html();
-
-		objId[$(event).closest('li').attr('id')].counter = 0;
-		objId[$(event).closest('li').attr('id')].getNews();
-		//	
-	}*/
-
 	$('.subNewsStudway').click(function(event){
-		//console.log($(event).closest('li').attr('id'));	
-		/**/
-		
-
+	
 		objStudWay.subNews = $(event.target).html();
-		//console.log(objStudWay.subNews);
 		objStudWay.counter = 0;
 		objStudWay.getNews();
-		//getNewsStudway();*/
 
 	});
 
@@ -584,65 +569,30 @@
 	//subNewsNULP
 
 	$('.subNewsNULP').click(function(event){
-		//console.log($(event).closest('li').attr('id'));	
-		/**/
 		
-
 		objNULP.subNews = $(event.target).html();
-		//console.log(objStudWay.subNews);
 		objNULP.counter = 0;
 		objNULP.getNews();
-		//getNewsStudway();*/
 
 	});
 
 
 		$('.subNewsTerytorija').click(function(event){
-		//console.log($(event).closest('li').attr('id'));	
-		/**/
-		
 
 		objTerytorija.subNews = $(event.target).html();
-		//console.log(objStudWay.subNews);
 		objTerytorija.counter = 0;
 		objTerytorija.getNews();
-		//getNewsStudway();*/
 
 	});
 
 
 		$('.subNewsZaxid').click(function(event){
-		//console.log($(event).closest('li').attr('id'));	
-		/**/
 		
-
 		objZaxid.subNews = $(event.target).html();
-		//console.log(objStudWay.subNews);
 		objZaxid.counter = 0;
 		objZaxid.getNews();
-		//getNewsStudway();*/
 
 	});
-	/*function getNewsStudway(){
-
-		$('.Studway').fadeToggle("fast");
-		var obj = {
-			subNewStud : SUB_NEWS_STUDWAY || 'News',
-			counterStudway: COUNTER_NEWS_STUDWAY
-		};
-
-		 $.ajax({
-            url: '/getNewsStudway',
-            type: 'GET',
-            data: obj,
-            success: function(answer){          
-            	$('.Studway').empty();
-            	$('.Studway').html(answer);
-            	$('.Studway').fadeToggle("fast");
-            }
-	     });
-	}*/
-
 
 	 $('#main_content').each(function(){
 		mainpage();
