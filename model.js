@@ -1,70 +1,42 @@
 module.exports = function(pool){
 	return {
-		Add: function(sessHesh, dmy, nTask, nTime1, nTime2, priority, callback){
 
-			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
-						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
-						"taskName varchar(200) DEFAULT NULL," +  
-						"time1 varchar(10) DEFAULT NULL," + 
-						"time2 varchar(10) DEFAULT NULL," +  
-						"priority varchar(1) DEFAULT NULL," +
-						"done varchar(1) DEFAULT NULL," +
-						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [sessHesh+dmy], function(err, answerDB){
+	Add: function(sessHesh, dmy, nTask, nTime1, nTime2, priority, callback){
 
-						if(answerDB.warningCount == 0)
-						{
-							console.log(dmy);
-							pool.query('INSERT INTO ??  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [sessHesh+'efficiency',dmy, 0, 0, 0], function(err, answerDB2){
-								pool.query('INSERT INTO ?? (taskName, time1, time2, priority) VALUES (?, ?, ?, ?)' , [sessHesh+dmy, nTask, nTime1, nTime2, priority], callback);
+				pool.query('SELECT * FROM ?? WHERE data = ?', [sessHesh, dmy], function(err, answerDB){
+					if (answerDB.length === 0)
+					{
+						pool.query('INSERT INTO ??  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [sessHesh+'efficiency',dmy, 0, 0, 0], function(err, answerDB2){
+								pool.query('INSERT INTO ?? (data, taskName, time1, time2, priority) VALUES (?, ?, ?, ?, ?)' , [sessHesh, dmy, nTask, nTime1, nTime2, priority], callback);
 
 								pool.query('SELECT totalNumbTasks FROM ?? WHERE data = ?', [sessHesh+'efficiency', dmy], function(err, answerDB){
 									var localTotalNumbTasks = answerDB[0].totalNumbTasks + 1;
 									pool.query('UPDATE ?? SET totalNumbTasks = ? WHERE data = ?', [sessHesh+'efficiency', localTotalNumbTasks, dmy]);
 								});
 							});
-
-							//console.log(answerDB.warningCount);
-						}
-						else
-						{
-							pool.query('INSERT INTO ?? (taskName, time1, time2, priority) VALUES (?, ?, ?, ?)' , [sessHesh+dmy, nTask, nTime1, nTime2, priority], callback);
+					}
+					else
+					{
+							pool.query('INSERT INTO ?? (data, taskName, time1, time2, priority) VALUES (?, ?, ?, ?, ?)' , [sessHesh, dmy, nTask, nTime1, nTime2, priority], callback);
 
 							pool.query('SELECT totalNumbTasks FROM ?? WHERE data = ?', [sessHesh+'efficiency', dmy], function(err, answerDB){
 								var localTotalNumbTasks = answerDB[0].totalNumbTasks + 1;
 								pool.query('UPDATE ?? SET totalNumbTasks = ? WHERE data = ?', [sessHesh+'efficiency', localTotalNumbTasks, dmy]);
 							});
-						}
-						
-			});
-		},
+					}
+				});				
+	},
 
 		Edit: function(sessHesh, dmy, pTask, nTask, nTime1, nTime2, priority, callback){
-			pool.query("UPDATE ?? SET taskName= ?, time1 = ?, time2 = ?, priority = ? WHERE taskName = ?", [sessHesh+dmy, nTask, nTime1, nTime2, priority, pTask ], callback);
+			pool.query("UPDATE ?? SET taskName= ?, time1 = ?, time2 = ?, priority = ? WHERE taskName = ? AND data = ?", [sessHesh, nTask, nTime1, nTime2, priority, pTask, dmy], callback);
 		},
-
 		list: function(sessHesh, dmy, token, callback){
+
+			pool.query("SELECT * FROM ?? WHERE data = ?", [sessHesh, dmy], callback);
 			
-			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
-						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
-						"taskName varchar(200) DEFAULT NULL," +  
-						"time1 varchar(10) DEFAULT NULL," + 
-						"time2 varchar(10) DEFAULT NULL," +  
-						"priority varchar(1) DEFAULT NULL," +
-						"done varchar(1) DEFAULT NULL," +
-						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [sessHesh+dmy], function(err, answerDB){
-
-						if(answerDB.warningCount == 0 && token === '+')
-						{
-							pool.query('INSERT INTO ??  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [sessHesh+'efficiency', dmy, 0, 0, 0]);
-						}
-
-						pool.query("SELECT * FROM ??", [sessHesh+dmy], callback);
-
-			});
-			
-		},
+		},	
 		doneTask: function(sessHesh, dmy, task, callback){
-			pool.query("UPDATE ?? SET done = ? WHERE taskName = ?", [sessHesh+dmy, 1, task], callback);
+			pool.query("UPDATE ?? SET done = ? WHERE taskName = ? AND data = ?", [sessHesh, 1, task, dmy], callback);
 
 			pool.query('SELECT doneNumbTasks FROM ?? WHERE data = ?', [sessHesh+'efficiency', dmy], function(err, answerDB){
 				var localdoneNumbTasks = answerDB[0].doneNumbTasks + 1;
@@ -76,7 +48,7 @@ module.exports = function(pool){
 			if(includeEfficiency)
 			{
 				pool.query('SELECT totalNumbTasks, doneNumbTasks FROM ?? WHERE data = ?', [sessHesh+'efficiency', dmy], function(err, answerDB){
-					pool.query('SELECT done FROM ?? WHERE taskName = ?', [sessHesh+dmy, pTask], function(err, answerSecondDB){
+					pool.query('SELECT done FROM ?? WHERE taskName = ? AND data = ?', [sessHesh, pTask, dmy], function(err, answerSecondDB){
 						var localtotalNumbTasks = answerDB[0].totalNumbTasks - 1;
 						var localdoneNumbTasks = answerDB[0].doneNumbTasks - 1;
 						if(answerSecondDB[0].done == 1)
@@ -87,7 +59,7 @@ module.exports = function(pool){
 						{
 							pool.query('UPDATE ?? SET totalNumbTasks = ? WHERE data = ?', [sessHesh+'efficiency', localtotalNumbTasks, dmy]);
 						}
-						pool.query("DELETE FROM ?? WHERE taskName = ?", [sessHesh+dmy, pTask], callback);				
+						pool.query("DELETE FROM ?? WHERE taskName = ? AND data = ?", [sessHesh, pTask, dmy], callback);				
 					});
 				});
 			}
@@ -116,16 +88,27 @@ module.exports = function(pool){
 						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [md5Code+'efficiency'], function(err, answerDB){
 				pool.query('INSERT INTO ?? (data, totalNumbTasks, doneNumbTasks, procrastination)',[md5Code+'efficiency', dmy, 0, 0, 0]);
 			});
+			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
+						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
+						"taskName varchar(200) DEFAULT NULL," +  
+						"time1 varchar(10) DEFAULT NULL," + 
+						"time2 varchar(10) DEFAULT NULL," +  
+						"priority varchar(1) DEFAULT NULL," +
+						"done varchar(1) DEFAULT NULL," +
+						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [md5Code]);
 
 		},
 		getPassword: function(email, callback){
 			pool.query("SELECT pass, name FROM users WHERE email = ?", [email], callback);
 		},
 		getUserByHesh: function(hesh, callback){
-			pool.query('SELECT town FROM users WHERE hesh = ?', [hesh], callback)
+			pool.query('SELECT town FROM users WHERE hesh = ?', [hesh], callback);
 		},
 		getNumberUsers: function(callback){
 			pool.query("SELECT name FROM users WHERE 1", callback);
+		},
+		getDataNews: function(nameSubNews, callback){
+			pool.query("SELECT * FROM datanews WHERE title = ?", [nameSubNews], callback);
 		}
 	}
 }

@@ -7,41 +7,37 @@
 	box-sizing: border-box;
 }
 
-/*body {
-	/*background-image: url(http://habrastorage.org/files/996/d76/d04/996d76d0410d422fa54cc433ce7ead2a.png);*/
-	/*background-color: #234062;
-}*/
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #234062;
+height: 100%;
+margin: 0;
+padding: 0;
+background-color: #234062;
 }
 
 input {
-	margin: 0px 4px 0px 2px;
+		
 }
  a { 
     text-decoration: none; /* Отменяем подчеркивание у ссылки */
-   }
-   a {
-     color: #234062;; /* Цвет ссылок */
-   }
-   a:visited {
-     color: #234062;; /* Цвет посещенных ссылок */
-   }
-   a:active {
-     color: #234062;; /* Цвет активных ссылок */
-   }
+  }
+a {
+ color: #234062;; /* Цвет ссылок */
+}
+a:visited {
+ color: #234062;; /* Цвет посещенных ссылок */
+}
+a:active {
+ color: #234062;; /* Цвет активных ссылок */
+}
 input[type='button'], select{
 	cursor: pointer;
 }
 #mainWrapper{
-	min-height: 100%;
-    margin-bottom: 60px;
+min-height: 100%;
+margin-bottom: 60px;
 }
 * html #mainWrapper {
-    height: 100%;
+height: 100%;
 
 }
 #header{
@@ -65,14 +61,6 @@ padding-left: 46%;
 .containerForArrowHeader img{
 cursor: pointer;
 }
-
-/*#header p{
-color: #234062;
-}
-
-#header p:hover{
-color: #355F98;
-}*/
 
 #imgHeader{
 width: 17px;
@@ -98,8 +86,6 @@ font-weight: bold;
 #efficiency{
 padding: 0;
 padding-top: 7.5px;
- /*width: 100%;
- /*height: 100%;*/
 }
 
 @media screen and (max-width: 1199px) {
@@ -156,10 +142,6 @@ background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 #leftArrowSlider:hover{
 cursor: pointer;
 margin-top: 0px;  
-/*Тень*/
-/*-webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
--moz-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.8);*/
 /*Градиент*/
 background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
@@ -193,10 +175,6 @@ float: left;
 color: black;
 font-weight: bolder;
 font-family:  Time New Roman;
-/*font-size: 16px;*/
-/*border-right: solid;
-border-left: solid;
-border-color: black;*/
 border-width: 1px;
 background-color: #B3BBCD;
 
@@ -250,9 +228,6 @@ font-size: 14px;
 width:100%;
 height: 38.8px;
 font-family: Georgia;
-/* border-bottom: solid;
-border-color: red;
-border-width: 1px;*/
 }
 
 #rightArrowSlider{
@@ -275,9 +250,6 @@ background-color: #466892;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-/*Тень*/
-/*-webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
--moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);*/
 
 /*Градиент*/
 background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
@@ -288,8 +260,7 @@ background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 
 }
 #rightArrowSlider:hover{
-	cursor: pointer;
-	/*box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.8);*/
+cursor: pointer;
 /*Градиент*/
 background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
@@ -317,24 +288,15 @@ background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 	}
 }
 
-
-
-
 /*--- Wheather ---*/
 #wheatherSide{
-
 height: 250px;
-
 border-radius: 5px;
-/*border: solid;
-border-color: black;
-border-width: 1px;*/
-
 background-color: #B3BBCD;
 }
 
 #mainTimeWeather {
-	height: 21px;
+height: 21px;
 }
 
 .leftArrowWeather {
@@ -360,13 +322,11 @@ clear: right;
 width: 100%;
 height: 40px;
 text-align: center;
-/*margin-top: 7px;*/
 padding-top: 3px;
 font-size: 25px;
 font-family: Georgia;
 }
 #clockWeather {
-/*clear: right;*/
 height: 22px;
 }
 
@@ -401,26 +361,22 @@ font-size: 18px;
 }
 
 #addParamWeath{
-	margin: 10px 7px 10px 10px;
+margin: 10px 7px 10px 10px;
 }
 #addParamWeath td{
-	padding: 5px 0px 5px 0px;
-	font-size: 14px;
+padding: 5px 0px 5px 0px;
+font-size: 14px;
 }
 #mainTemp{
 font-size: 25px;
 text-align: center;
-margin-top: -10px;
-/*font-family: Georgia;*/
 }
 
 /*--- button show/hide---*/
 #showHideBut{
 height: 20px;
 margin: 20px auto 0;
-/*position: relative;*/
 text-align: center;
-/*padding-left: 5%;*/
 }
 
 #animButSH{
@@ -453,7 +409,6 @@ text-align: center;
 #animButSH img {
 margin-top:1px;
 margin-left: -2px;
-/*margin: -2px 5px 1px 22px;*/
 }
 
 /*--- TODO list---*/ 
@@ -501,9 +456,7 @@ float: left;
 }
 
 .popUpGRUD{
-
 height: 35px;
-/*padding: 2px 3px 2px 3px;*/
 
 border: solid;
 border-color: black;
@@ -513,15 +466,15 @@ font-size: 15px;
 display: none;
 }
 .popInput{
-	padding: 7px 2px 3px 2px;
+padding: 7px 2px 3px 2px;
 }
 
 li {
 list-style-type: none; 
 }
 .mainTasksTime {
-	padding: 0;
-	text-align: center;
+padding: 0;
+text-align: center;
 }
 .time1{
 height: 20px;
@@ -545,7 +498,6 @@ text-align: center;
 }
 
 .priority{
-
 height: 50px;
 margin-top:32px;
 color: white;
@@ -556,12 +508,9 @@ font-weight: bold;
 margin-top:13px;
 text-align: center;
 background-color: #9DB2CB;
-/*width: 65px;*/
 height: 25px;
-/*padding: 4px 2px 2px 15px;*/
 border-radius: 4px;
 font-family:  Georgia;
-/*color: #234062;*/
 }
 .done:hover{
 background-color: #234062;
@@ -572,7 +521,6 @@ text-align: center;
 margin-top:15px;
 background-color: #9DB2CB;
 height: 25px;
-/*padding: 3px 2px 2px 13px;*/
 border-radius: 4px;
 font-family:  Georgia;
 }
@@ -580,65 +528,46 @@ font-family:  Georgia;
 background-color: #234062;	
 color: 	#687D95;
 }
-
 .tastInput{
 height: 20px;
 margin: -1px 10px 0px 0px;
 width: 100%;
 }
-
-.time1Pop{
-
-}
 .time1Pop, .time2Pop{
 width: 28%;
 font-size: 12px;
-}
-.time2Pop{
-
 }
 
 .textPopMenu {
 font-size: 13px;
 padding-top:1px; 
 }
-
 .editAdd{
 text-align: center;
 background-color: #9DB2CB;
-/*width: 65px;*/
 height: 25px;
-/*padding: 2px 2px 2px 19px;*/
 border-radius: 4px;
 font-family:  Georgia;
 margin-top: -3px;
-
 }
 .editAdd:hover{
 background-color: #234062;
 color: 	#687D95;
 cursor: pointer;
 }
-
 .newPriority{
-	font-size: 12px;
+font-size: 12px;
 }
-
 .arrowForNextDay{
-
 cursor: pointer;
 display: none;
-
 height: 30px;
 width: 30px;
-
-/*text-align: center;*/
 padding: 17px 0px 40px 5px;
 font-size: 35px;
 font-weight: bolder;
 color: #687D95;
 }
-
 
 #Add_task{
 height: auto;
@@ -660,7 +589,6 @@ font-family:  Georgia;
 }
 #add_button:hover{
 background-color: #B3BBCD;	
-/*color: 	#687D95;*/
 cursor: pointer;
 }
 
@@ -669,7 +597,6 @@ cursor: pointer;
 		display: block;
 	}
 }
-
 @media screen and (max-width: 767px) {
 	.textContent {
 		top: 18px;
@@ -703,7 +630,6 @@ cursor: pointer;
 	}
 }
 
-
 /*** Main Content NEW --- START ****/
 
 
@@ -712,7 +638,6 @@ margin-top: 30px;
 left: 0;
 bottom: 0;
 }
-
 #conNbeforeBlock{
 position: relative;
 top: 50%;
@@ -720,32 +645,25 @@ left: 50%;
 margin: -12px 0 0 -550px;
 width: 1100px;
 }
-
 #wrapperContentNew {
 margin: 0 auto;
 width: inherit;
 }
-
 .contentNewDirectly {
 padding: 15px 15px 15px 15px;
 background-color: #B3BBCD;
 border-radius: 5px;
 }
-
 .contentNewDirectly  li.liPartNews{
 width: 100%;
 height: auto;
-/*border: 1px solid red;*/
 background-color: #B3BBCD;
 }
-
 .titleContentNew {
 height: 30px;
-/*border: 1px solid green;*/
 background-color: #687D95;
 border-radius: 5px;
 }
-
 .titleContentNew img {
 margin-top:3px;
 margin-left: 3px;
@@ -761,17 +679,13 @@ color: black;
 font-family: Time New Roman;
 font-weight: bold;
 }
-
 .afterTitleContentNew {
-
 }
 .afterTitleContentNew .container-fluid {
 padding: 0;
 }
-
 .listStudwayOpportunity {
 height: 20px;
-/*margin-top: 4.5px;*/
 }
 
 .listStudwayOpportunity li {
@@ -785,7 +699,6 @@ padding-top: 2px;
 .listStudwayOpportunity li:hover {
 background-color: #7990AD;
 }
-
 #Terytorija .titleContentNew p.logoContentNew {
 width: 200px;
 }
@@ -795,7 +708,6 @@ width: 11%;
 float: left;
 text-align: center;
 }
-
 @media screen and (max-width: 991px) {
 	.listStudwayOpportunity li.subNewsStudway {
 		font-size: 12px;
@@ -840,31 +752,21 @@ text-align: center;
 width: 11%;
 float: left;
 text-align: center;
-
 }
-
-
-
 .listStudwayOpportunity li.subNewsNULP a {
 color: black;
 }
-
 .listStudwayOpportunity li.subNewsTerytorija {
 width: 10%;
 float: left;
 text-align: center;
-/*margin-top: 4.5px;*/
 }
 
 .listStudwayOpportunity li.subNewsZaxid {
 width: 10%;
 float: left;
 text-align: center;
-/*margin-top: 4.5px;*/
 }
-
-
-
 .leftArrowContent {
 height: 218px;
 width: 4.5%;
@@ -880,7 +782,6 @@ background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 }
-
 .leftArrowContent:hover{
 cursor: pointer;
 /*Градиент*/
@@ -891,15 +792,10 @@ background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4
 background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
-
-
-
-
 .container-studway {
-	height: 220px;
-	width: 500px;
+height: 220px;
+width: 500px;
 }
-
 .contentBetweenArrows {
 height: auto;
 width: 91%;
@@ -910,17 +806,13 @@ padding: 0 2% 0 2%;
 .contentBetweenArrows .col-lg-3 {
 	padding: 0;
 }
-
 article.imgText{
-/*height: 215px;*/
 float: left;
 padding: 5% 0 0% 6%;
 }
-
 .imgText img {
 	background-size: auto;
 }
-
 h3, h4, h5 {
 color: black;
 }
@@ -929,7 +821,6 @@ color: black;
 font-size: 14.5px;
 font-weight: bold;
 }
-
 @media  screen and (max-width: 1199px) {
 	.title-text p {
 		font-size: 13.4px;
@@ -953,7 +844,6 @@ color: black;
 font-size: 13px;
 font-weight: bold;
 }
-
 @media screen and (max-width: 1199px) {
 	.title-onlyText p {
 		font-size: 12px;
@@ -987,7 +877,6 @@ float: right;
 font-size: 30px;
 text-align: center;
 padding-top: 8%;
-/*border: 1px solid white;*/
 
 border-radius: 0 5px 5px 0;
 background-color: #466892;
@@ -1019,121 +908,75 @@ background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 		padding-top: 13%;
 	}	
 }
-
-
-
 footer{
 height: 48px auto;
 
 background-color: #B3BBCD;
 }
-
 footer ul {
 width: 100%;
 margin:0 auto;
 }
-
 footer ul li:first-child {
 	margin-left: 0%;
 }
-
-
-
-
 footer ul li{
 float: left;
 margin-left: 7.5%;
 margin-top: 1.2%;
 }
-
 @media screen and (min-width:1200px) and (max-width: 1262px) {
 	footer ul li{
 		margin-left: 6%;
 	}
 }
-
 @media screen and (min-width: 992px) and (max-width: 1199px) {
 	footer ul li{
 		margin-left: 4.2%;
 	}
 } 
-
-
 @media screen and (min-width: 768px) and (max-width: 991px) {
 	footer ul li{
 		margin-left: 4.5%;
 		font-size: 12px;
 	}
 } 
-
 @media screen and (min-width: 768px) and (max-width: 935px) {
 	footer ul li{
 		margin-left: 9%;
 		font-size: 14px;
 	}
 } 
-
 @media screen and (max-width: 767px) {
 	footer ul li{
 		margin-left: 3.5%;
 		font-size: 9px;
 	}
 } 
-
-
 footer p {
 font-size: 11.5px;
 
 }
-
-
 #imgDiv{
 margin-top: -3.2%;
 }
-
 #comFoot{
 color: #234062;
 }
-
 #aboutUs{
 color: #234062;
-
 }
-
 #amountUser{
 color: #234062;
-
-
 }
-
-#socialNet{
-
-}
-
-.fb-share-button{
-
-}
-
 #ourPartners{
 color: #234062;
-
 }
-
 #contFooter{
 color: #234062;
 font-size: 14px;
-
 }
 
-#imgUser{
-
-}
-#imgLogout{
-
-}
-#imgLogout img{
-
-}
 
 
 

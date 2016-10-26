@@ -1,7 +1,5 @@
-п»ї/* -------------------------------- 
-
+/* -------------------------------- 
 Primary style
-
 -------------------------------- */
 html * {
   -webkit-font-smoothing: antialiased;
@@ -47,9 +45,7 @@ input::-ms-clear, textarea::-ms-clear {
 }
 
 /* -------------------------------- 
-
 Main components 
-
 -------------------------------- */
 header[role=banner] {
   position: relative;
@@ -202,9 +198,7 @@ header[role=banner]::after {
 }
 
 /* -------------------------------- 
-
 xnugget info 
-
 -------------------------------- */
 .cd-nugget-info {
   text-align: center;
@@ -241,9 +235,7 @@ xnugget info
 }
 
 /* -------------------------------- 
-
 xsigin/signup popup 
-
 -------------------------------- */
 .cd-user-modal {
   position: fixed;
@@ -350,7 +342,7 @@ xsigin/signup popup
   font-size: 0.875rem;
 }
 .cd-form label.image-replace {
-  /* Р·Р°РјРµРЅРёС‚СЊ С‚РµРєСЃС‚ СЃ РёРєРѕРЅРѕР№ */
+  /* заменить текст с иконой */
   display: inline-block;
   position: absolute;
   left: 15px;
@@ -371,7 +363,7 @@ xsigin/signup popup
   background-repeat: no-repeat;
   background-position: 50% 0;
 }
-/* РРєРѕРЅРєРё РїРѕР»РµР№ РІРІРѕРґР° */
+/* Иконки полей ввода */
 .cd-form label.cd-username {
   background-image: url("../img/cd-icon-username.svg");
 }
@@ -409,7 +401,7 @@ xsigin/signup popup
   border: 1px solid #d76666;
 }
 .cd-form input[type=password] {
-  /* РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ РґР»СЏ РєРЅРѕРїРєРё РЎРєСЂС‹С‚СЊ */
+  /* пространство для кнопки Скрыть */
   padding-right: 65px;
 }
 .cd-form input[type=submit] {
@@ -459,7 +451,7 @@ xsigin/signup popup
   font-size: 13px;
   font-size: 0.8125rem;
   border-radius: 0.25em;
-  /* РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РєР»РёРєРѕРІ Рё РїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ */
+  /* предотвращения кликов и прикосновения */
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
@@ -468,7 +460,7 @@ xsigin/signup popup
   transition: opacity 0.2s 0, visibility 0 0.2s;
 }
 .cd-form .cd-error-message::after {
-  /* СѓРіРѕР»РѕРє СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ */
+  /* уголок сообщения об ошибке */
   content: '';
   position: absolute;
   left: 22px;
@@ -532,7 +524,7 @@ xsigin/signup popup
   text-decoration: underline;
 }
 .cd-close-form {
-  /* СЃС‚РёР»СЊ X РєРЅРѕРїРєРё РІРІРµСЂС…Сѓ СЃРїСЂР°РІР° */
+  /* стиль X кнопки вверху справа */
   display: block;
   position: absolute;
   width: 40px;
