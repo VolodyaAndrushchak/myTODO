@@ -141,7 +141,7 @@ module.exports = function(model, view, request, cheerio){
 		getNews: function(req, res) {
 			function ConstrGetNews() {
 				this.request = function() {
-					var picture = '';
+					var picture = "<div class = 'container-fluid'><div class = 'rows'>";
 
 					var objSubNewsStudway = { 'News' : [4, 'http://studway.com.ua/category/news/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
 											'Inside' : [4, 'http://studway.com.ua/category/inside/', '.entry-wrap', '.post-thumbnail', '.wp-post-image', '.entry-title', '.entry-title'],
@@ -177,17 +177,21 @@ module.exports = function(model, view, request, cheerio){
 								switch (req.query.doman) 
 								{
 									case 'http://terytoriya.com.ua': 
-										var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' height = '150px;' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-											$(this).find(objSubNewsStudway[req.query.subNewStud][5]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).html() + "</p> </a> </div> </article>";
+										var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '100%' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+											$(this).find(objSubNewsStudway[req.query.subNewStud][5]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).html() + "</p> </a> </div> </article></div>";
 										break;
 
 									case 'http://studway.com.ua':
-										var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-										$(this).find(objSubNewsStudway[req.query.subNewStud][5]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).find('a').html() + "</p> </a> </div> </article>";
+										var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '100%' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+										$(this).find(objSubNewsStudway[req.query.subNewStud][5]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][6]).find('a').html() + "</p> </a> </div> </article></div>";
 										break;
 
 									case 'http://www.lp.edu.ua':
-										var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://www.lp.edu.ua/" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('a').html() + "</p></div> </article>";
+										if (i % 4 === 0) {
+
+										}
+
+										var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://www.lp.edu.ua/" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('a').html() + "</p></div> </article></div>";
 										break;
 
 									case 'http://zaxid.net':
@@ -195,17 +199,17 @@ module.exports = function(model, view, request, cheerio){
 										{
 											if (req.query.subNewStud == 'IQ') 
 											{
-												var article = "<article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '220px' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
-											$(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][5]).html() + "</p> </a> </div> </article>";
+												var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <img width = '100%' src ='" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).find('img').attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
+											$(this).find(objSubNewsStudway[req.query.subNewStud][3]).attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][5]).html() + "</p> </a> </div> </article></div>";
 											}
 											else
 											{
-												var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find('.title').html() + "</p></div> </article>";
+												var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find('.title').html() + "</p></div> </article></div>";
 											}
 										}
 										else
 										{
-											var article = "<article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).html() + "</p></div> </article>";
+											var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'onlyText'> <div class = 'title-onlyText'> <a href ='http://zaxid.net/" + $(this).find('a').attr('href') + "'> <p>" + $(this).find(objSubNewsStudway[req.query.subNewStud][4]).html() + "</p></div> </article></div>";
 										}
 
 									default: break;
@@ -215,7 +219,7 @@ module.exports = function(model, view, request, cheerio){
 							}
  
 						});
-
+						picture = picture + "</div></div>";
 						res.json(picture);
 					});
 				};

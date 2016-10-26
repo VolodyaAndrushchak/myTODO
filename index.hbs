@@ -1,27 +1,40 @@
 <html>
 
 <head>
-	
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
-	 <link rel="stylesheet" href="dist/chartist.min.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<link rel="stylesheet" href="dist/chartist.min.css">
+
 	<script src="dist/chartist.min.js"> </script>
-	<script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251"></script>
+	<script src="js/jquery.js"></script>
 </head>
 
 <body>
 <div id = "mainWrapper">
-	<div id="header"><p>&#171</p>
+	<div class = 'container-fluid'>
+		<div class = 'row' id="header">
+			<div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'></div>
+			<div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+				<div class = 'containerForArrowHeader'>
+					<img  onmouseover='overHeaderArrow(this);' onmouseout='outHeaderArrow(this);' src="img/headerArrow.png">
+				</div>
+			</div>
+			<div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'></div>
+
+		</div>
+
 	</div>
-	<div  id = 'beforeWrapper'>
-		<div id = 'wrapperForSlider'>
-			<div id = 'blockWrapSlider' >
-				<div id='efficiency'>
-					<div id='tegEfficiency'>Your efficiency</div>
+
+
+	<div class = 'container-fluid'>
+		<div class = 'row' id="beforeWrapper">
+
+				<div id='efficiency' class = 'col-lg-3  col-md-3'>
 					<div class="ct-chart ct-perfect-fourth"></div>
 				</div>
 
-				<div class="wrapper">
+				<div class="wrapper col-lg-6  col-md-6 ">
 					<div id ='leftArrowSlider'>&#171</div>
 					<div id = 'timeSlider'></div>
 					<div id = 'statusSlider'>Status</div>
@@ -32,38 +45,82 @@
 					<div id ='rightArrowSlider'>&#187</div>
 				</div>
 
-				<div id = 'wheatherSide'>
-						<div id = 'mainTimeWeather'>
-							<div class = 'leftArrowWeather'><img src="img/leftArrow.png" onclick = 'leftArrowDate()'></div>
-							<div id="timeWheather"></div>
-							<div class = 'rightArrowWeather'><img src="img/rightArrow.png" onclick = 'rightArrowDate()'></div>
-						</div>
-						<div id="dayWeek"></div>
-						<div id = 'clockWeather'>
-							<div class = 'leftArrowWeather'><img src="img/leftArrow.png" onclick = 'leftArrowClock()'></div>
-							<p id = 'clockWeather_p'>09:00</p>
-							<div class = 'rightArrowWeather'><img src="img/rightArrow.png" onclick = 'rightArrowClock()'></div>
-						</div>
-						<img id="imgWheather" >
-						<div id= "mainTemp"></div>
-						<table id = 'addParamWeath'>
-							<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Humidity</td> <td style="text-align: center; " id="humidity">12</td></tr>
-							<tr><td style="text-align: left; font-family: Georgia; font-size: 16.5px;">Wind</td> <td style="text-align: center" id='wind'>12</td></tr>
-						</table>
-				</div>
-			</div>
-		</div>
 
+				<div  class = 'col-lg-3  col-md-3 '>
+					<div class = 'row'>
+						<div class = 'col-lg-2  col-md-1  col-sm-0'></div>
+						<div class = 'col-lg-8  col-md-9 col-sm-12'>
+						<div id = 'wheatherSide' >
+							<div id = 'mainTimeWeather'>
+								<div class = 'container-fluid'> 
+									<div class = 'row'>
+										<div class = 'leftArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/leftArrow.png" onclick = 'leftArrowDate()'></div>
+										<div id="timeWheather" class = 'col-lg-10  col-md-10  col-sm-10'>2016-10-17</div>
+										<div class = 'rightArrowWeather col-lg-1  col-md-1 col-sm-1'><img src="img/rightArrow.png" onclick = 'rightArrowDate()'></div>
+									</div>
+								</div>
+							</div>
+
+							<div id="dayWeek">Monday</div>
+
+							<div id = 'clockWeather'>
+								<div class = 'container-fluid'> 
+									<div class = 'row'>
+										<div class = 'leftArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/leftArrow.png" onclick = 'leftArrowClock()'></div>
+										<p id = 'clockWeather_p' class = 'col-lg-10  col-md-10  col-sm-10'>09:00</p>
+										<div class = 'rightArrowWeather col-lg-1  col-md-1  col-sm-1'><img src="img/rightArrow.png" onclick = 'rightArrowClock()'></div>
+									</div>
+								</div>
+							</div>
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'></div>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'>
+										<img id="imgWheather" src = ''>
+									</div>
+									<div class = 'col-lg-4  col-md-4  col-sm-4'></div>
+								</div>
+							</div>
+
+							<div id= "mainTemp">+8.98C</div>
+
+							<div class = 'container-fluid'> 
+								<div class = 'row'>
+									<div class = 'col-lg-12  col-md-12  col-sm-12'>
+										<table id = 'addParamWeath'>
+											<tr><td style="text-align: center; font-family: Georgia; font-size: 15.5px; width: 40%;">Humidity</td> <td style="text-align: center; width: 40%;" id="humidity">70 %</td></tr>
+											<tr><td style="text-align: center; font-family: Georgia; font-size: 15.5px; width: 40%; ">Wind</td> <td style="text-align: center; width: 40%;" id='wind'>9.2 m/s</td></tr>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						</div>
+						<div class = 'col-lg-2  col-md-2  col-sm-0'></div>
+					</div>
+				</div>
+		</div>
 	</div>	
 
-	<div id="showHideBut">
-		<div id="animButSH"><img src="img/couple-arrows.png"></div>
+	<div class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'></div>
+			<div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2' id="showHideBut">
+				<!--<div id="showHideBut">-->
+				<div id="animButSH"><img src="img/couple-arrows.png"></div>
+				<!--</div>-->
+			</div>
+			<div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'></div>
+		</div>
 	</div>
+	
 
 
-	<div id = 'contentNew'>
-		<div id = 'conNbeforeBlock'>
-			<div id = 'wrapperContentNew'>
+	<div id = 'contentNew' class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-1 col-md-0 col-sm-0 col-xs-0'></div>
+			<div class = 'col-lg-10 col-md-12 col-sm-12 col-xs-0'>
 				<div class = 'contentNewDirectly'>
 					<ul>
 						<li class = 'liPartNews' id = 'Studway'>
@@ -98,16 +155,16 @@
 										<li class = 'subNewsNULP' >Students</li>
 										<li class = 'subNewsNULP' >Graduares</li>
 										<li class = 'subNewsNULP' >Employees</li>
-										<li class = 'subNewsNULP' style="width:160px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
-										<li class = 'subNewsNULP' style="width:170px"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
+										<li class = 'subNewsNULP' style="width:20%"><a href = 'http://www.lp.edu.ua/rozklad-dlya-studentiv'> Schedule for students</a></li>
+										<li class = 'subNewsNULP' style="width:22%"><a href = 'http://www.lp.edu.ua/rozklad-dlya-vykladachiv'>Schedule for employees</a></li>
 									</ul>
 								</div>
 							</div>
 
 							<div class = 'afterTitleContentNew'>
-								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)'>&#171</div>
+								<div class = 'leftArrowContent exceptionArrow' onclick = 'leftClickStudway(this)'>&#171</div>
 								<div class = 'contentBetweenArrows NULP'>Content</div>
-								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+								<div class = 'rightArrowContent exceptionArrow' onclick = 'rightClickStudway(this)'>&#187</div>
 							</div>
 						</li>
 
@@ -149,24 +206,36 @@
 							</div>
 
 							<div class = 'afterTitleContentNew '>
-								<div class = 'leftArrowContent' onclick = 'leftClickStudway(this)' >&#171</div>
+								<div class = 'leftArrowContent exceptionArrow' onclick = 'leftClickStudway(this)' >&#171</div>
 								<div class = 'contentBetweenArrows Zaxid'>
 								</div>
-								<div class = 'rightArrowContent' onclick = 'rightClickStudway(this)'>&#187</div>
+								<div class = 'rightArrowContent exceptionArrow' onclick = 'rightClickStudway(this)'>&#187</div>
 							</div>
 						</li>
 
 					</ul>
 				</div>
 			</div>
+
+			<div class = 'col-lg-1 col-md-0 col-sm-0 col-xs-0'></div>
 		</div>
 	</div>
 
 
-	<div id="main_content">
-		<ul id='mainUL'>
+	<div class = 'container-fluid'>
+		<div class = 'row'>
+			<div class = 'col-lg-2 col-md-1 col-sm-0 col-xs-0'></div>
+			<div class = 'col-lg-8 col-md-10 col-sm-12 col-xs-12'>
+
+				<div id="main_content">
+					<ul id='mainUL'>
 		
-		</ul>
+					</ul>
+				</div>
+			</div>
+			<div class = 'col-lg-2 col-md-1 col-sm-0 col-xs-0'></div>
+
+		</div>
 	</div>
 
 	<div id="Add_task">
@@ -175,53 +244,59 @@
 
 </div>
 
-<div id="footer">
-	<div id= "wrapperFotter">
-		<div id="maintContFot">
-			<ul>
-				<li>
-					<div id = "imgDiv">
-						<img src="sfs.png">
-					</div>
-				</li>
+<div class = 'container-fluid' style = 'padding: 0;'>
+	<div class = 'row'>
 
-				<li>
-					<div id="comFoot">
-						<a href="joinTeam"><p>Join to our team</p></a>
-					</div>
-				</li>
+		<div class = 'col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+			<footer>
+				<div class = 'container-fluid'>
+					<div class = 'row'>
+						<div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div>
+						<div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10' style = 'margin:0 auto;'>
+							<ul >
+								<li>
+									<div id = "imgDiv" style = 'margin-top: -10%;'>
+										<img src="sfs.png">
+									</div>
+								</li>
 
-				<li>
-					<div id="aboutUs">
-						<a href="joinTeam"><p>About us</p></a>
-					</div>
-				</li>
+								<li>
+									<div id="aboutUs">
+										<a href="joinTeam"><p>Join to our team</p></a>
+									</div>
+								</li>
 
-				<li>
-					<div id="amountUser"> 
-						<a href="/" id = 'numberUsers' ><p id = 'numberUsers'></p></a>
-					</div>
-				</li>
+								<li>
+									<div id="amountUser"> 
+										<a href="/" id = 'numberUsers' ><p id = 'numberUsers'></p></a>
+									</div>
+								</li>
 
-				<li>
-					<div id="ourPartners">
-						<p>Our partners</p>
-					</div>
-				</li>
+								<li>
+									<div id="ourPartners">
+										<p>Our partners</p>
+									</div>
+								</li>
 
 
-				<li>
-					<div id = "contFooter">
-						<p>feedback:  todoforstudent@ukr.net</p>
-					</div>
-				</li>
-				<li>
-					<div id='imgLogout'>
-						<a href="/logout"><p>exit</p><!--<img src="exit.png">--></a>
-					</div>
-				</li>
-			</ul>
+								<li>
+									<div id = "contFooter">
+										<p>feedback:  <u>todoforstudent@ukr.net</u></p>
+									</div>
+								</li>
+								<li>
+									<div id='imgLogout'>
+										<a href="/logout"><p>exit</p><!--<img src="exit.png">--></a>
+									</div>
+								</li>
+							</ul>
 				
+						</div>
+						<div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div>
+					</div>
+				</div>
+				
+			</footer>	
 		</div>
 	</div>
 </div>
@@ -235,55 +310,94 @@
 	/*--- click on header(show slideMenu)---*/
 
 	/* if user clicked more then 1 time - prohibit moving upper main menu*/
+		
+	window.onload = function() {
+			$('.liPartNews').each(function(i){
+
+				$(this).find('.leftArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+				$(this).find('.rightArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+				$(this).find('.afterTitleContentNew').css("height", $(this).find('.leftArrowContent').outerHeight() + 2);
+
+			});
+	}
+
+
+
+
+	$(window).resize(function(){
+
+		$('.liPartNews').each(function(i){
+
+			$(this).find('.leftArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+			$(this).find('.rightArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+			$(this).find('.afterTitleContentNew').css("height", $(this).find('.leftArrowContent').outerHeight() + 2);
+
+		});
+
+		//$('#efficiency').css('padding-top', ( (screen.width - window.outerWidth)/8) + "px");
+	});
+
+
+
+
+	function overHeaderArrow(event){
+		if( ($('#beforeWrapper').css('display')) == 'block') {
+			$(event).attr('src', 'img/headerArrowHover.png');
+		}
+		else
+		{
+			$(event).attr('src', 'img/upHeaderArrowHover.png');
+		}			
+	}
+
+	function outHeaderArrow(event){
+		if( ($('#beforeWrapper').css('display')) == 'block') {
+			$(event).attr('src', 'img/headerArrow.png');
+		}
+		else
+		{
+			$(event).attr('src', 'img/upHeaderArrow.png');
+		}	
+	}
+
+
 	var counterHeader = 0;
 
 	/*--- click on header arrow---*/
 	$('#header').click(function(){
-		firstSlideDown();
 
-		/*if header menu is none - display*/
-		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') && counterHeader == 0 )
-		{
-			animateMainContent('+');
-			counterHeader++;
-		}
+		//$('#beforeWrapper').slideToggle('slow');
+		$('#beforeWrapper').slideToggle('slow', function() {
+			if( ($('#beforeWrapper').css('display')) == 'block')
+			{
+				$('#header').find('img').attr("src", "img/headerArrow.png");
+				//console.log(1);
+			}
+			else
+			{
+				$('#header').find('img').attr("src", "img/upHeaderArrow.png");
+				//console.log(2);
+			}
+		});
+
 	});
 	
 	/*--- button show/hide---*/ 
 	$('#animButSH').click(function(){
-		/*--- check if header menu is block ---*/
-		if( ($('#beforeWrapper').css('display')) == 'block' && ($('#main_content').css('display') == 'block') )
-		{
 
-			secondSlideDown();
-		}
-		else
-		{
-			if ( $('#beforeWrapper').css('display') == 'block') 
-			{
-				animateMainContent('-');
-			}
-			else
-			{
-				animateMainContent('+');
-			}
-			$('#contentNew').slideToggle('fast', function(){
-				$('#main_content').slideToggle('slow');
-				$('#Add_task').slideToggle('slow');
-			});
+		$('#main_content').slideToggle('slow', function(){
+			$('#contentNew').slideToggle('slow');
+		});
+		$('#Add_task').slideToggle('slow');
 
-			$('#beforeWrapper').slideToggle('slow');
-			//$('#wheatherSide').slideToggle('slow');
-			
 
-			/* allow moving upper main menu*/
-			counterHeader = 0;
-		} 
 	});
 
 	/*--- help functions for main animates (#header) and (#animButSH) ---*/
 	function firstSlideDown(){
 		$('#beforeWrapper').slideDown('slow');
+
+		
 		//$('#wheatherSide').slideDown('slow');
 	}
 	function secondSlideDown(){
@@ -294,9 +408,9 @@
 		
 	}
 	function animateMainContent(token){
-		$('#showHideBut').animate({"top":  token + "=260px"}, "slow");
-		$('#main_content').animate({"top": token + "=260px"}, "fast");
-		$('#Add_task').animate({"top": token + "=260px"}, "fast");
+		//$('#showHideBut').animate({"top":  token + "=260px"}, "slow");
+		//$('#main_content').animate({"top": token + "=260px"}, "fast");
+		//$('#Add_task').animate({"top": token + "=260px"}, "fast");
 	}
 	/*--- end help functions ---*/
 	/****************************************/
@@ -344,7 +458,6 @@
 	var DATE_FOR_WEATHER = new Date();
 	var wheather = function(){
 
-		/*$('#timeWheather').html(''+ DATE_FOR_WEATHER.getDate() + '-' + ( DATE_FOR_WEATHER.getMonth() + 1 ) + '-' + DATE_FOR_WEATHER.getFullYear());*/
 
 		var objWheather = {
 			timeWheather: DATE_FOR_WEATHER.getFullYear() + '-' + ('0' + (DATE_FOR_WEATHER.getMonth() + 1 )).slice(-2) + '-' + ('0' + DATE_FOR_WEATHER.getDate()).slice(-2),
@@ -361,7 +474,6 @@
 	        $('#clockWeather_p').fadeToggle("fast");
 	        $('#timeWheather').fadeToggle("fast");
 	        $('#addParamWeath').fadeToggle("fast");
-
 
 
 		$.ajax({
@@ -405,10 +517,19 @@
 	}
 
 	function leftArrowDate() {
-		COUNTER_ARROW_WHEATHER_DATE--;
-		COUNTER_ARROW_WHEATHER_CLOCK = 0;
-		DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() - 1);
-		wheather();
+		if(COUNTER_ARROW_WHEATHER_DATE === 0)
+		{
+			COUNTER_ARROW_WHEATHER_CLOCK = 0;
+		}
+		else 
+		{
+			COUNTER_ARROW_WHEATHER_DATE--;
+			COUNTER_ARROW_WHEATHER_CLOCK = 0;
+			DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() - 1);
+			wheather();
+		}
+
+		
 	}
 
 	function rightArrowDate() {
@@ -419,8 +540,13 @@
 	}
 
 	function leftArrowClock() {
-		COUNTER_ARROW_WHEATHER_CLOCK--;
-		wheather();
+		if (COUNTER_ARROW_WHEATHER_CLOCK === 0)
+		{}
+		else
+		{
+			COUNTER_ARROW_WHEATHER_CLOCK--;
+			wheather();
+		}	
 	}
 
 	function rightArrowClock() {
@@ -475,16 +601,16 @@
             type: 'GET',
             success: function(answer){
             	console.log(answer);
-            	$('#numberUsers').html('Us already <b>' + answer + '</b> join to the fans planning time');
+            	$('#numberUsers').html('<p>Us already <b>' + answer + '</b> join us</p>');
             }
         });
 	}
 
 
-	function ConstrGetNews(url, doman ,id, subNews) {
+	function ConstrGetNews(url, doman, localClass, subNews) {
 		this.url = url;
 		this.doman = doman;
-		this.idName = id;
+		this.localClassName = localClass;
 		this.counter = 0;
 		this.subNews = subNews || false;
 		this.rightClick = function() {
@@ -497,7 +623,7 @@
 
 		};
 		this.getNews = function() {
-			$(this.idName).fadeToggle("fast");
+			$(this.localClassName).fadeToggle("fast");
 			
 			if (this.subNews) {
 				var obj = {
@@ -519,10 +645,18 @@
             type: 'GET',
             data: obj,
             success: function(answer){ 
-            	console.log(answer);
-            	$(that.idName).empty();
-            	$(that.idName).html(answer);
-            	$(that.idName).fadeToggle("fast");
+            	//console.log(answer);
+            	$(that.localClassName).empty();
+            	$(that.localClassName).html(answer);
+            	$(that.localClassName).fadeToggle("fast", function(){
+            		$('.liPartNews').each(function(i){
+
+						$(this).find('.leftArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+						$(this).find('.rightArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+						$(this).find('.afterTitleContentNew').css("height", $(this).find('.leftArrowContent').outerHeight() + 2);
+
+					});
+            	});           		
             }
 	     });
 		}
@@ -609,7 +743,7 @@
 
 	$('#add_button').click(function(){
 		
-		$('#mainUL').append("<div class = 'wrapperLI' style='display: none;'> <li class='liTodo' onmouseover = 'evMOverList(this);' onmouseout = 'evMOutList(this);' ><div class='TaskContent'><div class = 'helpDivTC' onclick='clickList(this);'> <div class='textContent'>New Tasks</div><div class='time1'>HH:mm</div> <div class='time2'>HH:mm</div><div class='priority'>B</div> </div> <div class='delete' onclick= 'deleteTask(this);'> delete</div>  <div onclick ='doneTask(this);' class='done'>done</div> <div class = 'arrowForNextDay' onclick = 'taskOnTomorrow(this);'>&#187</div> </div> <div class = 'popUpGRUD'  onclick = 'checkTime1(this);'> <div class = 'popInput'> <input class='tastInput'>time <input class = 'time1Pop' >to<input class = 'time2Pop'  >priority<select class = 'newPriority'><option>A</option><option>B</option><option>C</option></select> <div class = 'editAdd' style = 'top: -22px;' onclick= 'editADD(this)'>add</div></div></div> </li> </div>");
+		$('#mainUL').append("<li class='liTodo' onmouseover='evMOverList(this);' onmouseout='evMOutList(this);'><div class = 'container-fluid'> <div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'> </div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='TaskContent container-fluid' style='background-color:#4C7C35;'> <div class = 'row'><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='helpDivTC container-fluid' onclick='clickList(this);'><div class = 'row'><div class = 'col-lg-9 col-md-9 col-sm-9 col-xs-9 textContent'>New Task</div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='time1'>10:00</div> <div class='time2'>11:30</div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='priority'>A</div> </div></div></div></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='done' onclick='deleteTask(this);'> done</div><div class='delete' onclick='deleteTask(this);'> delete</div></div></div></div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='arrowForNextDay' onclick='taskOnTomorrow(this);''>»</div> </div></div></div><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='popUpGRUD' style='background-color:#4C7C35;'><div class='popInput'><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'><input class='tastInput'></div><div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3 textPopMenu'>time <input class='time1Pop'>to<input class='time2Pop'></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2 textPopMenu'>priority<select class='newPriority'><option>A</option><option>B</option><option>C</option></select></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='editAdd' onclick='editADD(this)'>add</div></div></div></div> </div> </div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div></div> </div></li> ");
 		$('.wrapperLI').last().show('fast');
 	});
  
@@ -792,7 +926,6 @@
 			}
 			else
 			{
-				console.log(3);
 				$eventPoint.find(item).css({'border-color': 'red', 'border-width': '1px'});
 			}
 		});		
