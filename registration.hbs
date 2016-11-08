@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <html>
 
 <head>
@@ -7,7 +8,7 @@
 	<link rel="stylesheet" href="css/registrResetStyle.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/registrStyle.css"> <!-- Gem style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="js/jquery.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,13 @@
 				<form class="cd-form" method="POST" action="/login">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail" name="username">
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail" name="username" required>
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password" name="password">
+						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password" name="password" required>
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
 					</p>
@@ -52,26 +53,51 @@
 				<form class="cd-form"  method="POST" action = "/registration">
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">First and second name</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="First and second name" name="username">
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="First and second name" name="username" required>
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Town</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text"  placeholder="Town" name="town">
+						<input class="full-width has-padding has-border" id="signup-username" type="text"  placeholder="Choose town from drop-down list" name="town" list = 'listTowns' required>
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
+						<datalist id = 'listTowns'>
+							<option value = 'Вінниця, '></option>
+							<option value = 'Дніпро'></option>
+							<option value = 'Донецьк'></option>
+							<option value = 'Житомир'></option>
+							<option value = 'Запоріжжя'></option>
+							<option value = 'Івано-Франківськ'></option>
+							<option value = 'Київ'></option>
+							<option value = 'Кропивницький'></option>
+							<option value = 'Луганськ'></option>
+							<option value = 'Луцьк'></option>
+							<option value = 'Львів'></option>
+							<option value = 'Одеса'></option>
+							<option value = 'Полтава'></option>
+							<option value = 'Рівне'></option>
+							<option value = 'Суми'></option>
+							<option value = 'Тернопіль'></option>
+							<option value = 'Ужгород'></option>
+							<option value = 'Харків'></option>
+							<option value = 'Херсон'></option>
+							<option value = 'Хмельницький'></option>
+							<option value = 'Черкаси'></option>
+							<option value = 'Чернівці'></option>
+							<option value = 'Чернігів'></option>
+						</datalist>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" name="email">
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" name="email" required>
 						<span class="cd-error-message">error</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Password" name="password">
+						<input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Password - at least 8 characters" name="password" pattern="[a-zA-Z0-9_@#$%<^&*]{8,}" required>
 						<!--<a href="#0" class="hide-password">Hide</a>-->
 						<span class="cd-error-message">error</span>
 					</p>
@@ -121,6 +147,8 @@
 		$('#statusAuthRegist').find('h3').empty();
 		console.log('Empty');
 	});
+
+
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/main.js"></script> 

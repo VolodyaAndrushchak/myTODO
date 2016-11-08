@@ -46,7 +46,6 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 
     				transport.sendMail(params, function (err, res) {
      		 			if (err) {
-         					//console.error(err);
       					}
     				});
 

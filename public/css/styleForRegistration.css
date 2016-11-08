@@ -102,3 +102,7 @@ width: 120px;
 color: black;
 }
 
+#listTowns option {
+height: 50px !important;
+}
+

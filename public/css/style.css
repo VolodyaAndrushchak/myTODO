@@ -410,24 +410,20 @@ font-size: 18px;
 #mainTemp{
 font-size: 25px;
 text-align: center;
-/*margin-top: -10px;
-/*font-family: Georgia;*/
 }
 
 /*--- button show/hide---*/
 #showHideBut{
 height: 20px;
-margin: 20px auto 0;
-/*position: relative;*/
+margin: 15px auto 0;
 text-align: center;
-/*padding-left: 5%;*/
 }
 
 #animButSH{
 background-color: #9DB2CB;
-width: 80px;
-height: 25px;
-margin-left: 27%;
+width: 120px;
+height: 30px;
+margin-left: 18%;
 border-radius: 4px;
 font-family:  Georgia;
 font-size: 15px;
@@ -440,18 +436,19 @@ text-align: center;
 
 @media screen and (max-width: 991px) {
 	#animButSH{
-		margin-left: 20%;
+		margin-left: 10%;
 	} 
 }
 
 @media screen and (max-width: 767px) {
 	#animButSH{
+		width: 80px;
 		margin-left: 0;
 	} 
 }
 
 #animButSH img {
-margin-top:1px;
+margin-top:3px;
 margin-left: -2px;
 /*margin: -2px 5px 1px 22px;*/
 }

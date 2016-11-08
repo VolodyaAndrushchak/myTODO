@@ -24,9 +24,7 @@ module.exports = function(model, view, request, cheerio){
 						});
 					}); 
 				}
-			});
-		
-			console.log(req.body.previousDate);			
+			});	
 		},
 		
 		edit: function(req, res){		
@@ -44,6 +42,9 @@ module.exports = function(model, view, request, cheerio){
 					res.json(htmlContent);
 				});
 			});
+
+			model.delFirstRowList(req.session.passport.user);
+
 		},
 		doneTask: function(req, res){
 			model.doneTask(req.session.passport.user, req.body.dmy, req.body.pTask, function(){ 
@@ -65,8 +66,7 @@ module.exports = function(model, view, request, cheerio){
 		},
 		wheather: function(req, res){
 			model.getUserByHesh(req.session.passport.user, function(err, answerDB){
-				//console.log(answerDB[0].town);
-				request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + answerDB[0].town + 
+				request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + answerDB[0].cityLatin + 
 						'&units=metric&APPID=286ff9ff4dfbca6883247c211e36349c', function(error, response, body){
 				var bodyObj = JSON.parse(body);
 				var temperature = '';
@@ -92,7 +92,6 @@ module.exports = function(model, view, request, cheerio){
 						}
 
 						i = i + Number(req.query.countHourWheather) + 1;
-						console.log(i);
 					} else {
 
 						if (req.query.countDateWheatre != 0) {
@@ -132,7 +131,7 @@ module.exports = function(model, view, request, cheerio){
 				});
 				if(answerDB.length > 20)
 				{
-					model.delFirstRow(req.session.passport.user);
+					model.delFirstRowEff(req.session.passport.user);
 				}
 			});
 		},

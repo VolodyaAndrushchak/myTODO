@@ -34,16 +34,6 @@ app.use(passport.session());
 
 var config = require('./config');
 var pool = mysql.createPool(config);
-/*var pool = mysql.createPool({
-	connectionLimit : 10,
-	host: '127.0.0.1',
-	database: "mybase",
-	user: 'root',
-	password: '',
-	port: '3306'
-	//socketPath: '/var/run/mysqld/mysqld.sock'
-});*/
-
 var taskModel = require('./model')(pool);
 var view = require('./view')
 var controller = require('./controller')(taskModel, view, request, cheerio);
@@ -54,7 +44,6 @@ var LocalStrategy = require('passport-local').Strategy;
 		
 		function(username, password, done){
 			taskModel.checkUser(username, function(err, ansQuery){
-				console.log(ansQuery);
 				if (ansQuery.length != 0){
 					if (password != ansQuery[0].pass)
 						return done(null, false, {message: 'Неправильний пароль'});
@@ -89,8 +78,6 @@ app.get('/login', function(req, res){
 
 app.get('/', mustBeAuthenticated);
 app.get('/', function(req, res){
-	//console.log(req.session.passport.user );
-	//var cookies = cookie.parse(req.headers.cookie || '');
 	res.render('index');
 });
 
