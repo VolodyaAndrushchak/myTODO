@@ -92,7 +92,7 @@ module.exports = function(pool){
 						"doneNumbTasks int(10) DEFAULT NULL," +  
 						"procrastination int(10) DEFAULT NULL," +
 						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [md5Code+'efficiency'], function(err, answerDB){
-				pool.query('INSERT INTO ?? (data, totalNumbTasks, doneNumbTasks, procrastination)',[md5Code+'efficiency', dmy, 0, 0, 0]);
+				pool.query('INSERT INTO ??  (data, totalNumbTasks, doneNumbTasks, procrastination) VALUES (?, ?, ?, ?)' , [md5Code+'efficiency',dmy, 1, 0, 0]);
 			});
 			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
 						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," +

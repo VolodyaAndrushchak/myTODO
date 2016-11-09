@@ -442,7 +442,7 @@ text-align: center;
 
 @media screen and (max-width: 767px) {
 	#animButSH{
-		width: 80px;
+		width: 90px;
 		margin-left: 0;
 	} 
 }
@@ -450,7 +450,6 @@ text-align: center;
 #animButSH img {
 margin-top:3px;
 margin-left: -2px;
-/*margin: -2px 5px 1px 22px;*/
 }
 
 /*--- TODO list---*/ 
@@ -500,8 +499,6 @@ float: left;
 .popUpGRUD{
 
 height: 35px;
-/*padding: 2px 3px 2px 3px;*/
-
 border: solid;
 border-color: black;
 border-width: 1px;
@@ -553,12 +550,9 @@ font-weight: bold;
 margin-top:13px;
 text-align: center;
 background-color: #9DB2CB;
-/*width: 65px;*/
 height: 25px;
-/*padding: 4px 2px 2px 15px;*/
 border-radius: 4px;
 font-family:  Georgia;
-/*color: #234062;*/
 }
 .done:hover{
 background-color: #234062;
@@ -569,7 +563,6 @@ text-align: center;
 margin-top:15px;
 background-color: #9DB2CB;
 height: 25px;
-/*padding: 3px 2px 2px 13px;*/
 border-radius: 4px;
 font-family:  Georgia;
 }
@@ -603,9 +596,7 @@ padding-top:1px;
 .editAdd{
 text-align: center;
 background-color: #9DB2CB;
-/*width: 65px;*/
 height: 25px;
-/*padding: 2px 2px 2px 19px;*/
 border-radius: 4px;
 font-family:  Georgia;
 margin-top: -3px;
@@ -628,8 +619,6 @@ display: none;
 
 height: 30px;
 width: 30px;
-
-/*text-align: center;*/
 padding: 17px 0px 40px 5px;
 font-size: 35px;
 font-weight: bolder;
@@ -639,27 +628,41 @@ color: #687D95;
 
 #Add_task{
 height: auto;
-margin: 10px auto 0;
-position: relative;
-width: 700px;
+margin-left: 18%;
 display: none;
 }
 
 #add_button{
-margin: 10px 0px 20px 300px;
-position: relative;
 background-color: #9DB2CB;
 width: 120px;
-height: 25px;
-padding: 3px 2px 2px 13px;
+height: 30px;
+padding: 4px 2px 2px 17px;
 border-radius: 4px;
 font-family:  Georgia;
 }
+
 #add_button:hover{
 background-color: #B3BBCD;	
-/*color: 	#687D95;*/
 cursor: pointer;
 }
+
+@media screen and (max-width: 991px) {
+	#Add_task{
+		margin-left: 10%;
+	} 
+}
+
+@media screen and (max-width: 767px) {
+	#Add_task{
+		margin-left: 0;
+	}
+	#add_button{
+		width: 90px;
+		font-size: 12px;
+		padding: 7px 2px 2px 6px;
+	} 
+}
+
 
 @media screen and (max-width: 991px) {
 	.arrowForNextDay {
@@ -749,13 +752,13 @@ margin-left: 3px;
 float: left;
 }
 .titleContentNew p {
-padding-top: 3px;
+padding-top: 4px;
 width: 70px;
 float: left;
 margin: 0;
 margin-left: 5px;
 color: black;
-font-family: Time New Roman;
+font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 font-weight: bold;
 }
 
@@ -768,7 +771,6 @@ padding: 0;
 
 .listStudwayOpportunity {
 height: 20px;
-/*margin-top: 4.5px;*/
 }
 
 .listStudwayOpportunity li {
@@ -784,6 +786,7 @@ background-color: #7990AD;
 }
 
 #Terytorija .titleContentNew p.logoContentNew {
+font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 width: 200px;
 }
 
@@ -1020,7 +1023,7 @@ background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 
 
 footer{
-height: 48px auto;
+height: 60px;
 
 background-color: #B3BBCD;
 }
@@ -1040,7 +1043,7 @@ footer ul li:first-child {
 footer ul li{
 float: left;
 margin-left: 7.5%;
-margin-top: 1.2%;
+margin-top: 2%;
 }
 
 @media screen and (min-width:1200px) and (max-width: 1262px) {

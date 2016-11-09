@@ -541,7 +541,10 @@ xsigin/signup popup
     display: none;
   }
 }
-#cd-login, #cd-signup, #cd-reset-password {
+ /*{
+  display: block;
+}*/
+#cd-signup, #cd-login, #cd-reset-password {
   display: none;
 }
 #cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {

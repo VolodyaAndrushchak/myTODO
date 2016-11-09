@@ -1,4 +1,4 @@
-* {
+﻿* {
 margin: 0;
 padding: 0;
 -webkit-box-sizing: border-box;
@@ -8,7 +8,7 @@ box-sizing: border-box;
 }
 
 body{
-background-image: url(../background.png);
+background-image: url(../img/background.png);
 }
  p {
     /*text-indent: 20px; /* Отступ первой строки в пикселах */
@@ -27,6 +27,13 @@ background-image: url(../background.png);
    a:active {
     color: black; /* Цвет активных ссылок */
    }
+
+.title-before-form {
+  color: #8A0000;
+  width: 200px;
+  margin: 0 auto;
+}
+
 #statusAuthRegist{
 	width: 250px;
 	position: absolute;

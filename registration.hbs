@@ -16,12 +16,15 @@
 	<div class="cd-user-modal"> <!-- все формы на фоне затемнения-->
 		<div class="cd-user-modal-container"> <!-- основной контейнер -->
 			<ul class="cd-switcher">
-				<li><a href="#0">Sing in</a></li>
+				<li><a href="#0" class="selected">Sing in</a></li>
 				<li><a href="#0">Registration</a></li>
 			</ul>
 
-			<div id="cd-login"> <!-- форма входа -->
+			<div id="cd-login" class="is-selected"> <!-- форма входа -->
 				<form class="cd-form" method="POST" action="/login">
+					<div class = 'title-before-form'>
+						<p>Welcome to DailyStudent!</p>
+					</div>
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
 						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail" name="username" required>
@@ -51,6 +54,10 @@
 
 			<div id="cd-signup"> <!-- форма регистрации -->
 				<form class="cd-form"  method="POST" action = "/registration">
+					<div class = 'title-before-form'>
+						<p>Welcome to DailyStudent!</p>
+					</div>
+					
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">First and second name</label>
 						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="First and second name" name="username" required>
@@ -132,7 +139,7 @@
 
 				<p class="cd-form-bottom-message"><a href="#0">Back to the entrance</a></p>
 			</div> <!-- cd-reset-password -->
-			<a href="#0" class="cd-close-form">Close</a>
+			<!--<a href="#0" class="cd-close-form">Close</a>-->
 			<div id="statusAuthRegist"><h3>{{{status}}}</h3></div>
 		</div> <!-- cd-user-modal-container -->
 

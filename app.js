@@ -86,7 +86,6 @@ app.post('/login', auth);
 app.get('/logout', function(req, res){
 	req.logout();
 	res.render('registration');
-	//res.clearCookie('remember_me');
 });
 app.get('/joinTeam', function(req, res){
 	res.render('joinTeam');
