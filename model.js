@@ -103,7 +103,6 @@ module.exports = function(pool){
 						"priority varchar(1) DEFAULT NULL," +
 						"done varchar(1) DEFAULT NULL," +
 						"PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8", [md5Code]);
-
 		},
 		getPassword: function(email, callback){
 			pool.query("SELECT pass, name FROM users WHERE email = ?", [email], callback);
