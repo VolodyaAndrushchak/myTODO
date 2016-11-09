@@ -1020,8 +1020,6 @@ background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 	}	
 }
 
-
-
 footer{
 height: 61px;
 
@@ -1036,8 +1034,6 @@ margin:0 auto;
 footer ul li:first-child {
 	margin-left: 0%;
 }
-
-
 
 
 footer ul li{

@@ -516,10 +516,16 @@
 	}
 
 	function rightArrowDate() {
-		COUNTER_ARROW_WHEATHER_DATE++;
-		COUNTER_ARROW_WHEATHER_CLOCK = 0;
-		DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() + 1);
-		wheather();
+		if(COUNTER_ARROW_WHEATHER_DATE == 2)
+		{}
+		else
+		{
+			COUNTER_ARROW_WHEATHER_DATE++;
+			COUNTER_ARROW_WHEATHER_CLOCK = 0;
+			DATE_FOR_WEATHER.setDate(DATE_FOR_WEATHER.getDate() + 1);
+			wheather();
+		}
+		
 	}
 
 	function leftArrowClock() {
@@ -533,8 +539,13 @@
 	}
 
 	function rightArrowClock() {
-		COUNTER_ARROW_WHEATHER_CLOCK++;
-		wheather();
+		if (COUNTER_ARROW_WHEATHER_CLOCK == 10) 
+		{}	
+		else
+		{
+			COUNTER_ARROW_WHEATHER_CLOCK++;
+			wheather();
+		}		
 	}
 
 	function efficiency(){

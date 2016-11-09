@@ -66,7 +66,16 @@ module.exports = function(model, view, request, cheerio){
 		},
 		wheather: function(req, res){
 			model.getUserByHesh(req.session.passport.user, function(err, answerDB){
-				request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + answerDB[0].cityLatin + 
+				var cityUser = '';
+				if (answerDB.length == 0)
+				{
+					cityUser = 'Lviv';
+				}
+				else
+				{
+					cityUser = answerDB[0].cityLatin;
+				}
+				request.get('http://api.openweathermap.org/data/2.5/forecast/city?q=' + cityUser + 
 						'&units=metric&APPID=286ff9ff4dfbca6883247c211e36349c', function(error, response, body){
 				var bodyObj = JSON.parse(body);
 				var temperature = '';
