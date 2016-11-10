@@ -124,11 +124,13 @@ function getNews(req, answerDB, cheerio, body,  callback) {
 				case 'http://terytoriya.com.ua': 
 					var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(answerDB.class2).attr('href') + "'> <img width = '100%' src ='" + $(this).find(answerDB.class3).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
 						$(this).find(answerDB.class4).attr('href') + "'> <p>" + $(this).find(answerDB.class5).html() + "</p> </a> </div> </article></div>";
+
 					break;
 
 				case 'http://studway.com.ua':
 					var article = "<div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3'><article class = 'imgText'> <div class = 'title-img'> <a href ='" + $(this).find(answerDB.class2).attr('href') + "'> <img width = '100%' src ='" + $(this).find(answerDB.class3).attr('src') + "'></a></div> <div class = 'title-text'> <a href ='" + 
 					$(this).find(answerDB.class4).find('a').attr('href') + "'> <p>" + $(this).find(answerDB.class5).find('a').html() + "</p> </a> </div> </article></div>";
+
 					break;
 
 				case 'http://www.lp.edu.ua':

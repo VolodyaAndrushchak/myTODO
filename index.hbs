@@ -378,12 +378,18 @@
 	
 	/*--- button show/hide---*/ 
 	$('#animButSH').click(function(){
-
+		
 		$('#main_content').slideToggle('slow', function(){
 			$('#contentNew').slideToggle('slow');
-		});
-		$('#Add_task').slideToggle('slow');
 
+			$('.liPartNews').each(function(i){
+				$(this).find('.leftArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+				$(this).find('.rightArrowContent').css("height", $(this).find('.contentBetweenArrows').outerHeight());
+				$(this).find('.afterTitleContentNew').css("height", $(this).find('.leftArrowContent').outerHeight() + 2);
+			});
+		});
+		
+		$('#Add_task').slideToggle('slow');
 
 	});
 
