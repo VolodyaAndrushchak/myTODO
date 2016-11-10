@@ -81,10 +81,7 @@ module.exports = function(model, view, request, cheerio){
 				var temperature = '';
 				try
 				{
-					if(Math.sign(bodyObj.list[0].main.temp) === 1)
-					{
-						temperature = '+';
-					}
+
 
 					var reg = {
 						clock: /[0-2]{1}[0-9]{1}:00/,
@@ -114,7 +111,14 @@ module.exports = function(model, view, request, cheerio){
 							i =  Number(req.query.countHourWheather) ;
 						}
 					}
+
 					/*--- algorithm for changing the time and date in weather (end)---*/
+
+					console.log(bodyObj.list[i].main.temp);
+					if(Math.sign(bodyObj.list[i].main.temp) === 1)
+					{
+						temperature = '+';
+					}
 
 					res.json({ 	listWheather: bodyObj.list[i], 
 							icon: bodyObj.list[i].weather[0].icon, 
