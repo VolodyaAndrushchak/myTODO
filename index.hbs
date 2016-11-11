@@ -734,15 +734,20 @@
 
 	$('#add_button').click(function(){
 		
-		$('#mainUL').append("<li class='liTodo' onmouseover='evMOverList(this);' onmouseout='evMOutList(this);'><div class = 'container-fluid'> <div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'> </div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='TaskContent container-fluid' style='background-color:#4C7C35;'> <div class = 'row'><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='helpDivTC container-fluid' onclick='clickList(this);'><div class = 'row'><div class = 'col-lg-9 col-md-9 col-sm-9 col-xs-9 textContent'>New Task</div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='time1'>09:00</div> <div class='time2'>10:00</div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='priority'>A</div> </div></div></div></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='done' onclick='deleteTask(this);'> done</div><div class='delete' onclick='deleteTask(this);'> delete</div></div></div></div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='arrowForNextDay' onclick='taskOnTomorrow(this);''>»</div> </div></div></div><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='popUpGRUD' style='background-color:#4C7C35; display: block;'><div class='popInput'><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'><input autofocus class='tastInput' value = 'New Task'  ></div><div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3 textPopMenu'>time <input class='time1Pop' placeholder = 'HH:MM' pattern ='[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}'>to<input class='time2Pop' placeholder = 'HH:MM' pattern ='[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}'></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2 textPopMenu'>priority<select class='newPriority'><option>A</option><option>B</option><option>C</option></select></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='editAdd' onclick='editADD(this)'>add</div></div></div></div> </div> </div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div></div> </div></li> ");
+		$('#mainUL').append("<li class='liTodo' onmouseover='evMOverList(this);' onmouseout='evMOutList(this);'><div class = 'container-fluid'> <div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'> </div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='TaskContent container-fluid' style='background-color:#4C7C35;'> <div class = 'row'><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='helpDivTC container-fluid' onclick='clickList(this);'><div class = 'row'><div class = 'col-lg-9 col-md-9 col-sm-9 col-xs-9 textContent'>New Task</div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='time1'>09:00</div> <div class='time2'>10:00</div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='priority'>A</div></div></div></div></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class = 'closeTask'><div class = 'container-close-task' onclick = 'delEmptyTask(this);'><img src = 'img/delete.png'></div></div></div></div></div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'><div class='arrowForNextDay' onclick='taskOnTomorrow(this);' title = 'Перекинути завдання на наступний день'>»</div> </div></div></div><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div><div class = 'col-lg-10 col-md-10 col-sm-10 col-xs-10'><div class='popUpGRUD' style='background-color:#4C7C35; display: block;'><div class='popInput'><div class = 'container-fluid'><div class = 'row'><div class = 'col-lg-5 col-md-5 col-sm-5 col-xs-5'><input autofocus class='tastInput' value = '' placeholder = 'New task'></div><div class = 'col-lg-3 col-md-3 col-sm-3 col-xs-3 textPopMenu'>time <input class='time1Pop' placeholder = 'HH:MM' pattern ='[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}'>to<input class='time2Pop' placeholder = 'HH:MM' pattern ='[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}'></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2 textPopMenu'>priority<select class='newPriority'><option>A</option><option>B</option><option>C</option></select></div><div class = 'col-lg-2 col-md-2 col-sm-2 col-xs-2'><div class='editAdd' onclick='editADD(this)'>add</div></div></div></div> </div> </div></div><div class = 'col-lg-1 col-md-1 col-sm-1 col-xs-1'></div></div> </div></li> ");
 		$('.wrapperLI').last().show('fast');
 	});
  
+		var delEmptyTask = function(event) {
+			$(event).closest('li').slideToggle("fast", function(){
+				$(event).closest('li').remove();
+			});		
+		}
+
 		var editADD = function(event, method, next){
 
 			var localDate = newDate || OBJDATA;
 			var $eventPoint = $(event).closest("li");
-			console.log($(event).closest("li"));
 			var typeReqAjax = '';
 			var previousDate = ''; 
 			if(!method || !next)
@@ -750,6 +755,7 @@
 				if ($eventPoint.find('.editAdd').html() === 'add')
 				{
 					typeReqAjax = 'POST';
+
 				}
 				else
 				{
@@ -774,19 +780,48 @@
 				previousDate: previousDate
 			};
 
-			 $.ajax({
-	            url: '/tasks/editAdd',
-	            type: typeReqAjax,
-	            data: obj,
-	            success: function(answer){           
-	            	$('#mainUL').empty();
-		            $('#mainUL').html(answer.mainContent);
-		            if(previousDate)
-		            {
-		            	localDate.setDate(localDate.getDate() - 1);
+
+			if( ($eventPoint.find('.tastInput').val() == '') || ($eventPoint.find('.time1Pop').val().match(/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/) == null) ||  ($eventPoint.find('.time2Pop').val().match(/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/) == null))
+			{
+				if($eventPoint.find('.tastInput').val() == '')
+				{
+					$eventPoint.find('.tastInput').css({'box-shadow': '0 0 5px 2px rgba(100,0,0,1)'});
+				}
+				else
+				{
+					$eventPoint.find('.tastInput').css({'box-shadow': 'none'});
+				}
+
+				arrForCheck = ['.time1Pop', '.time2Pop'];
+				for (var i = 0; i < 2; i++)
+				{
+					if ( $eventPoint.find(arrForCheck[i]).val().match(/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/) == null )
+					{
+						$eventPoint.find(arrForCheck[i]).css({'box-shadow': '0 0 5px 2px rgba(100,0,0,1)'});
+					}
+					else
+					{
+						$eventPoint.find(arrForCheck[i]).css({'box-shadow': 'none'});
+					}
+				}
+			} 
+			else
+			{
+				$.ajax({
+		            url: '/tasks/editAdd',
+		            type: typeReqAjax,
+		            data: obj,
+		            success: function(answer){           
+		            	$('#mainUL').empty();
+			            $('#mainUL').html(answer.mainContent);
+			            if(previousDate)
+			            {
+			            	localDate.setDate(localDate.getDate() - 1);
+			            }
 		            }
-	            }
-	        });
+		        });
+			}
+				 
 		}
 
 		var deleteTask = function(event){
@@ -815,25 +850,28 @@
 		}
 
 		var doneTask = function(event){
-			
-			var localDate = newDate || OBJDATA;
-			var $eventPoint = $(event).closest("li");
+			/****    first you have to add task - in another way - error - you could not add task that not exists ***/
+			if ($(event).find('.editAdd').html() != 'add')
+			{
+				console.log(111);
+				var localDate = newDate || OBJDATA;
+				var $eventPoint = $(event).closest("li");
 
-			var obj = {
-					pTask : $eventPoint.find('.textContent').html(),
-					dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
-				};
-			
-				 $.ajax({
-		            url: '/tasks/donetask',
-		            type: 'PUT',
-		            data: obj,
-		            success: function(answer){
-		            	console.log(answer);
-		            	$('#mainUL').empty();
-		            	$('#mainUL').html(answer.mainContent);
-		            }
-		        });
+				var obj = {
+						pTask : $eventPoint.find('.textContent').html(),
+						dmy : "" + localDate.getDate() +'-' + ( localDate.getMonth() + 1 ) + '-' + localDate.getFullYear()
+					};
+				
+					 $.ajax({
+			            url: '/tasks/donetask',
+			            type: 'PUT',
+			            data: obj,
+			            success: function(answer){
+			            	$('#mainUL').empty();
+			            	$('#mainUL').html(answer.mainContent);
+			            }
+			        });
+			}
 		}
 
 
@@ -863,20 +901,25 @@
 
 	/*---Arrows - this is rigth arrows ---*/
 	$('#rightArrowSlider').click(function(){
-
-		++counterData;
-		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-
-		actionArrow('+');
-		
+		/* the range of posible days*/
+		if(counterData <= 20)
+		{
+			++counterData;
+			newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
+			actionArrow('+');
+		}
+			
 	});
 	/*--- this is left arrows ---*/
 	$('#leftArrowSlider').click(function(){
+		/* the range of posible days*/
+		if(counterData >= -20)
+		{
+			--counterData;
+			newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
 
-		--counterData;
-		newDate = new Date(OBJDATA.getFullYear(), OBJDATA.getMonth(), OBJDATA.getDate() + counterData);
-
-		actionArrow('-');
+			actionArrow('-');
+		}
 	});
 
 	/*--- help function for right and left arrows---*/
@@ -950,7 +993,11 @@
 		/*--- help function---*/
 
 		function evMOverList(event){
-			$(event).find('.arrowForNextDay').css('display', 'block');
+			/****    first you have to add task - in another way - error - you could not add task that not exists ***/
+			if ($(event).find('.editAdd').html() != 'add')
+			{
+				$(event).find('.arrowForNextDay').css('display', 'block');
+			}			
 		}
 
 		function evMOutList(event){

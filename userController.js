@@ -26,7 +26,6 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 	    						}
 							})
 	    				);
-						console.log(req.body.email);
 	   					var params = {
 	      					from: 'todoforstudent@ukr.net', 
 	     					to: req.body.email, 
@@ -56,7 +55,6 @@ module.exports = function(model, nodemailer, smtpTransport, md5){
 					res.render('successRegistration');
 				}
 			});
-			console.log(req.query.id_confirm);
 		},
 
 		getPassword: function(req, res){

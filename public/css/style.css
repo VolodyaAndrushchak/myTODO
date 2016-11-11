@@ -570,6 +570,16 @@ font-family:  Georgia;
 background-color: #234062;	
 color: 	#687D95;
 }
+.closeTask {
+
+}
+
+.container-close-task {
+	padding-top: 4px;
+	float: right;
+	width: 16px;
+}
+
 
 .tastInput{
 height: 20px;

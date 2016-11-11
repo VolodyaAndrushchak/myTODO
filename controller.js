@@ -113,8 +113,6 @@ module.exports = function(model, view, request, cheerio){
 					}
 
 					/*--- algorithm for changing the time and date in weather (end)---*/
-
-					console.log(bodyObj.list[i].main.temp);
 					if(Math.sign(bodyObj.list[i].main.temp) === 1)
 					{
 						temperature = '+';
