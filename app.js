@@ -45,9 +45,12 @@ var LocalStrategy = require('passport-local').Strategy;
 		function(username, password, done){
 			taskModel.checkUser(username, function(err, ansQuery){
 				if (ansQuery.length != 0){
-					if (password != ansQuery[0].pass)
-						return done(null, false, {message: 'Неправильний пароль'});
-					return done(null, ansQuery[0])
+					if(ansQuery[0].registered == 1) 
+					{
+						if (password != ansQuery[0].pass)
+							return done(null, false, {message: 'Неправильний пароль'});
+						return done(null, ansQuery[0])
+					}						
 				}
 				return done(null, false, {message: 'Неправильний логін'});
 			});
@@ -105,6 +108,7 @@ app.get('/getNewsStudway', controller.getNews);
 app.get('/getNewsNULP', controller.getNews);
 app.get('/getNewsTerytorija', controller.getNews);
 app.get('/getNewsZaxid', controller.getNews);
+app.get('/confirmRegistration', userController.confirmRegistration);
 app.post('/tasks/editAdd', controller.add);
 app.put('/tasks/editAdd', controller.edit);
 app.put('/tasks/donetask', controller.doneTask);

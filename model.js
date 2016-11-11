@@ -83,8 +83,8 @@ module.exports = function(pool){
 		chekUserEmail: function(email, callback){
 			pool.query("SELECT name FROM users WHERE email = ?", [email], callback);
 		},
-		createAccount: function(dmy, username, town, email, password, md5Code, callback){
-			pool.query("INSERT INTO users (name, town, email, pass, hesh) VALUES (?, ?, ?, ?, ?)", [username, town, email, password, md5Code], callback);
+		createAccount: function(dmy, username, town, email, password, md5Code, md5CodeForSMTP, callback){
+			pool.query("INSERT INTO users (name, town, email, pass, hesh, heshsalt) VALUES (?, ?, ?, ?, ?,  ?)", [username, town, email, password, md5Code, md5CodeForSMTP], callback);
 			pool.query("CREATE TABLE IF NOT EXISTS ??" + 
 						"(id int(10) unsigned NOT NULL AUTO_INCREMENT," + 
 						"data varchar(10) DEFAULT NULL," +  
@@ -111,6 +111,12 @@ module.exports = function(pool){
 			pool.query('SELECT town FROM users WHERE hesh = ?', [hesh], function(err, answerDB){
 				pool.query('SELECT cityLatin FROM citybase WHERE cityCyrillic = ?', [answerDB[0].town], callback)
 			});
+		},
+		getRegistered: function(id_confirm, callback) {
+			pool.query('SELECT heshsalt FROM users WHERE heshsalt = ?', [id_confirm], callback);
+		},
+		setRegistered: function(id_confirm) {
+			pool.query('UPDATE users SET registered = ? WHERE heshsalt = ?', [1, id_confirm]);
 		},
 		getNumberUsers: function(callback){
 			pool.query("SELECT name FROM users WHERE 1", callback);
